@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoronavirusInTheUKDashboard.Api.Console", "CoronavirusInTheUKDashboard.Api.Console\CoronavirusInTheUKDashboard.Api.Console.csproj", "{FE7B2693-7FB9-433C-9500-DD288C1F853C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronavirusInTheUKDashboard.Api.Console", "CoronavirusInTheUKDashboard.Api.Console\CoronavirusInTheUKDashboard.Api.Console.csproj", "{FE7B2693-7FB9-433C-9500-DD288C1F853C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronavirusInTheUKDashboard.Api.Service", "CoronavirusInTheUKDashboard.Api.Service\CoronavirusInTheUKDashboard.Api.Service.csproj", "{C59EC87F-7424-42F2-ADA9-489A03CB5E22}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronavirusInTheUKDashboard.Api.Service.Models", "CoronavirusInTheUKDashboard.Api.Service.Models\CoronavirusInTheUKDashboard.Api.Service.Models.csproj", "{D58A55C1-07DB-4EBC-B511-C73526F16488}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronavirusInTheUKDashboard.Api.Service.Queries", "CoronavirusInTheUKDashboard.Api.Service.Queries\CoronavirusInTheUKDashboard.Api.Service.Queries.csproj", "{1EE91A9B-E6F7-4554-9C8E-7BEFE2C55737}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronavirusInTheUKDashboard.Api.Service.Templating", "CoronavirusInTheUKDashboard.Api.Service.Templating\CoronavirusInTheUKDashboard.Api.Service.Templating.csproj", "{4C609526-29EB-48EA-B474-C1287B762D5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronavirusInTheUKDashboard.Api.Service.Transformation", "CoronavirusInTheUKDashboard.Api.Service.Transformation\CoronavirusInTheUKDashboard.Api.Service.Transformation.csproj", "{95AE353B-4842-438D-BC4A-C9C7FE8554B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoronavirusInTheUKDashboard.Api.DotNetWrapper", "CoronavirusInTheUKDashboard.Api.DotNetWrapper\CoronavirusInTheUKDashboard.Api.DotNetWrapper.csproj", "{6689D9B9-8DE6-4FAE-AFC2-AF80BC18CCB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +27,30 @@ Global
 		{FE7B2693-7FB9-433C-9500-DD288C1F853C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE7B2693-7FB9-433C-9500-DD288C1F853C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE7B2693-7FB9-433C-9500-DD288C1F853C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C59EC87F-7424-42F2-ADA9-489A03CB5E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C59EC87F-7424-42F2-ADA9-489A03CB5E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C59EC87F-7424-42F2-ADA9-489A03CB5E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C59EC87F-7424-42F2-ADA9-489A03CB5E22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D58A55C1-07DB-4EBC-B511-C73526F16488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D58A55C1-07DB-4EBC-B511-C73526F16488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D58A55C1-07DB-4EBC-B511-C73526F16488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D58A55C1-07DB-4EBC-B511-C73526F16488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EE91A9B-E6F7-4554-9C8E-7BEFE2C55737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE91A9B-E6F7-4554-9C8E-7BEFE2C55737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE91A9B-E6F7-4554-9C8E-7BEFE2C55737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE91A9B-E6F7-4554-9C8E-7BEFE2C55737}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C609526-29EB-48EA-B474-C1287B762D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C609526-29EB-48EA-B474-C1287B762D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C609526-29EB-48EA-B474-C1287B762D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C609526-29EB-48EA-B474-C1287B762D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95AE353B-4842-438D-BC4A-C9C7FE8554B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95AE353B-4842-438D-BC4A-C9C7FE8554B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95AE353B-4842-438D-BC4A-C9C7FE8554B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95AE353B-4842-438D-BC4A-C9C7FE8554B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6689D9B9-8DE6-4FAE-AFC2-AF80BC18CCB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6689D9B9-8DE6-4FAE-AFC2-AF80BC18CCB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6689D9B9-8DE6-4FAE-AFC2-AF80BC18CCB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6689D9B9-8DE6-4FAE-AFC2-AF80BC18CCB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

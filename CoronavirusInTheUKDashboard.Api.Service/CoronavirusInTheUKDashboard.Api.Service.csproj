@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Templating\CoronavirusInTheUKDashboard.Api.Service.Templating.csproj" />
+    <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Transformation\CoronavirusInTheUKDashboard.Api.Service.Transformation.csproj" />
+  </ItemGroup>
+
+</Project>

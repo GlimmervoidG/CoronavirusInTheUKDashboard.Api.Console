@@ -3,6 +3,11 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+	<PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service\CoronavirusInTheUKDashboard.Api.Service.csproj" />
+  </ItemGroup>
 
 </Project>

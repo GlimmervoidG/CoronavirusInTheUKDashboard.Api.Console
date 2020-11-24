@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RazorLight" Version="2.0.0-rc.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Models\CoronavirusInTheUKDashboard.Api.Service.Models.csproj" />
+  </ItemGroup>
+
+</Project>
