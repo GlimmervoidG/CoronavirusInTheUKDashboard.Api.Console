@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoronavirusInTheUKDashboard.Api.Service;
+using System;
 
 namespace CoronavirusInTheUKDashboard.Api.Console
 {
@@ -6,7 +7,7 @@ namespace CoronavirusInTheUKDashboard.Api.Console
     {
         static void Main(string[] args)
         {
-
+            Generator.GeneratePosts(args);
         }
     }
 }

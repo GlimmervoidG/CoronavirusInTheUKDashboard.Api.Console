@@ -5,11 +5,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Templates\EmbeddedMainPost\Archive.cshtml" />
+    <None Remove="Templates\EmbeddedMainPost\Daily.cshtml" />
+    <None Remove="Templates\EmbeddedMainPost\LookbackTesting.cshtml" />
+    <None Remove="Templates\EmbeddedMainPost\LookbackTestingWeekend.cshtml" />
+    <None Remove="Templates\EmbeddedMainPost\NoneDaily.cshtml" />
+    <None Remove="Templates\EmbeddedMainPost\OrginalPost.cshtml" />
+    <None Remove="Templates\EmbeddedMainPost\SearchTargetEmbeddedMainPost.txt" />
+    <None Remove="Templates\EmbeddedMainPost\Title.cshtml" />
+    <None Remove="Templates\EmbeddedTrendsPost\SearchTargetEmbeddedTrendsPost.txt" />
+    <None Remove="Templates\EmbeddedTrendsPost\TrendsPost.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\Archive.cshtml" />
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\Daily.cshtml" />
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\LookbackTesting.cshtml" />
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\LookbackTestingWeekend.cshtml" />
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\NoneDaily.cshtml" />
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\OrginalPost.cshtml" />
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\SearchTargetEmbeddedMainPost.txt" />
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\Title.cshtml" />
+    <EmbeddedResource Include="Templates\EmbeddedTrendsPost\SearchTargetEmbeddedTrendsPost.txt" />
+    <EmbeddedResource Include="Templates\EmbeddedTrendsPost\TrendsPost.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="RazorLight" Version="2.0.0-rc.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Models\CoronavirusInTheUKDashboard.Api.Service.Models.csproj" />
   </ItemGroup>
+
 
 </Project>

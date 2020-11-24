@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Html
+@using System.Globalization;
+@using RazorLight
+@using CoronavirusInTheUKDashboard.Api.Service.Templating;
+
+@inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.MainPostModel>
+
+The following API queries were used to generate this post:
+
+@foreach(var item in Model.ArchiveInformation)
+{
+<text>* [@item.Name](@Raw(@item.Url)) ([Archived @item.ArchiveDate.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US"))](@Raw(@item.ArchiveUrl)))
+</text>
+}
+
+

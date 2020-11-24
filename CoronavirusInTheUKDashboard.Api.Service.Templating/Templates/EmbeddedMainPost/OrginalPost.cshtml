@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Html
+@using System.Globalization;
+@using RazorLight
+@using CoronavirusInTheUKDashboard.Api.Service.Templating;
+
+@inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.MainPostModel>
+
+@{ 
+await IncludeAsync("Title", Model);
+}
+
+
+
+
+
+
+@{ 
+await IncludeAsync("Daily", Model);
+}
+
+>
+> -----
+>  
+ 
+@if (Model.LookbackTestingResult != null)
+{
+await IncludeAsync("LookbackTesting", Model); 
+}
+
+@if (Model.LookbackTestingWeekendResult != null)
+{
+await IncludeAsync("LookbackTestingWeekend", Model); 
+}
+ 
+>
+> -----
+>
+
+@{ 
+await IncludeAsync("NoneDaily", Model);
+}
+
+>
+> -----
+>
+
+**The testing pillars**
+
+* pillar 1: NHS and PHE Testing – PCR swab testing in Public Health England (PHE) labs and NHS hospitals for those with a clinical need, and health and care workers
+* pillar 2:Pillar 2: UK Government testing programme – PCR swab testing for the wider population, as set out in government guidance. Lateral flow device testing is included under this pillar
+
+Pillars 1 and 2 are swab tests targeted at those who are sick and with symptoms. They look for the presence of the virus itself. Pillar 1 and 2 tests are only counted when processed. There is no longer a separate 'made available' number.
+
+* pillar 3: serology testing to show if people have antibodies from having had coronavirus
+
+Pillar 3 tests are designed to identify if a person has antibodies in their system, which means that they have had coronavirus at some point, but they do not test for the presence of the virus itself (as in pillars 1 and 2). Tests in pillar 3 are counted when they are processed by a lab.
+
+This pillar does not report people tested or positive cases because tests are anonymised before being sent to a lab. Positive cases for pillar 3 are different to pillars 1 and 2 so should not be classed together.
+
+* Pillar 4:  Surveillance testing – antibody serology and PCR swab testing for national surveillance supported by PHE, ONS, Biobank, universities and other partners to learn more about the prevalence and spread of the virus and for other testing research purposes, for example on the accuracy and ease of use of home testing
+
+Testing in pillar 4 is designed to understand the spread of the virus and the reliability of different testing methods.
+
+As with the other pillars, pillar 4 tests are counted when they are processed by a lab.  People testing positive from Pillar 4 PCR swab tests are now included in the positive cases figure. Previously this was not possible to due the inability to deduplicate individuals.
+
+**Lateral flow device tests**
+
+Lateral flow device tests test for the presence of COVID-19 and are swab tests that give results in less than an hour, without needing to go to a laboratory. Lateral flow device tests have been used in trials of mass testing in schools, universities and care homes, and have been available for those who live or work in Liverpool for a two-week period from 6 November 2020. Data for these tests include confirmed positive, negative or void lateral flow device test results and may include multiple tests for an individual person.
+
+>
+> -----
+>
+
+Data is provided by the Coronavirus (COVID-19) in the UK dashboard: https://coronavirus.data.gov.uk/
+
+@{ 
+await IncludeAsync("Archive", Model);
+}

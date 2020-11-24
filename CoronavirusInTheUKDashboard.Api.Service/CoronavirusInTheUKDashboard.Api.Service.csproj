@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Templating\CoronavirusInTheUKDashboard.Api.Service.Templating.csproj" />
     <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Transformation\CoronavirusInTheUKDashboard.Api.Service.Transformation.csproj" />
   </ItemGroup>

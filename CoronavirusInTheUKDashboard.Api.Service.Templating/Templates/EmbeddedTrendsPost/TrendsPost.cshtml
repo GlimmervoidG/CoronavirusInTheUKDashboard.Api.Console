@@ -1,0 +1,145 @@
+﻿@using Microsoft.AspNetCore.Html
+@using System.Globalization;
+@using RazorLight
+@using CoronavirusInTheUKDashboard.Api.Service.Templating;
+
+@inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.TrendsPostModel>
+
+@{
+    switch (Model.EightDayLookback.CasesPercentageIncreaseChange)
+    {
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Equal:
+            <text>Percentage increase in total positive count is the same as yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Less:
+            <text>Percentage increase in total positive count is less than yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.More:
+            <text>Percentage increase in total positive count is more than yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.NotUpdated:
+            <text>Percentage increase in total positive count hasn't been updated yet.</text>
+            break;
+    }<text> Today is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.TodayCasesPercentageIncrease.Value), yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.YesterdayCasesPercentageIncrease.Value).</text>
+}
+
+
+> Last 8 days were: @string.Join(", ", Model.EightDayLookback.CasesPercentageIncrease.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
+
+@{
+    switch (Model.EightDayLookback.CasesChange)
+    {
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Equal:
+            <text>Absolute increase is the same as yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Less:
+            <text>Absolute increase is less than yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.More:
+            <text>Absolute increase is more than yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.NotUpdated:
+            <text>Absolute increase hasn't been updated yet.</text>
+            break;
+    }<text> Today is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.TodayCases.Value), yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.YesterdayCases.Value).</text>
+}
+
+
+> Last 8 days were: @string.Join(", ", Model.EightDayLookback.Cases.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
+
+@{
+    switch (Model.EightDayLookback.DeathsPercentageIncreaseChange)
+    {
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Equal:
+            <text>Percentage increase in total deaths is the same as yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Less:
+            <text>Percentage increase in total deaths is less than yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.More:
+            <text>Percentage increase in total deaths is more than yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.NotUpdated:
+            <text>Percentage increase in total deaths hasn't been updated yet.</text>
+            break;
+    }<text> Today is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.TodayDeathsPercentageIncrease.Value), yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.YesterdayDeathsPercentageIncrease.Value).</text>
+}
+
+
+> Last 8 days were: @string.Join(", ", Model.EightDayLookback.DeathsPercentageIncrease.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
+
+@{
+    switch (Model.EightDayLookback.DeathsChange)
+    {
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Equal:
+            <text>Absolute increase is the same as yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Less:
+            <text>Absolute increase is less than yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.More:
+            <text>Absolute increase is more than yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.NotUpdated:
+            <text>Absolute increase hasn't been updated yet.</text>
+            break;
+    }<text> Today is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.TodayDeaths.Value), yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.YesterdayDeaths.Value).</text>
+}
+
+
+> Last 8 days were: @string.Join(", ", Model.EightDayLookback.Deaths.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
+
+@{
+    switch (Model.EightDayLookback.PositivityRateChange)
+    {
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Equal:
+            <text>Test positivity rate for yesterday is the same as the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Less:
+            <text>Test positivity rate for yesterday is less than the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.More:
+            <text>Test positivity rate for yesterday is more than the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.NotUpdated:
+            <text>Test positivity rate for yesterday hasn't been updated yet.</text>
+            break;
+    }<text> Yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.TodayPositivityRate.Value), the day before yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.YesterdayPositivityRate.Value).</text>
+}
+
+
+> Last 9 days were: @string.Join(", ", Model.EightDayLookback.PositivityRate.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
+
+*Usual reminder about weekend drops and Tuesday spikes. The data releases on a given day covers the previous day. As such, weekend drops are expected on Sunday and Monday.
+
+**Percentage increase is probably not a good measure. See [here](https://www.reddit.com/r/ukpolitics/comments/g0j4ez/as_of_9am_13_april_367667_tests_have_concluded/fna0f5f/). Remember, this can and will go down, even if deaths are still increasing day on day.
+
+|Area|Daily Cases|Rate per 100,000|
+:--|--:|--:|
+@foreach (var item in Model.OverviewRates.Records)
+{
+    <text>|@item.Name|@HelperFunctions.Format(@item.Daily) (@HelperFunctions.Format(@item.Delta, true))|@HelperFunctions.Format(@item.Rate)|
+</text>
+}
+||||
+@foreach (var item in Model.NationalRates.Records)
+{
+    <text>|@item.Name|@HelperFunctions.Format(@item.Daily) (@HelperFunctions.Format(@item.Delta, true))|@HelperFunctions.Format(@item.Rate)|
+</text>
+}
+||||
+@foreach (var item in Model.RegionRates.Records)
+{
+    <text>|@item.Name|@HelperFunctions.Format(@item.Daily) (@HelperFunctions.Format(@item.Delta, true))|@HelperFunctions.Format(@item.Rate)|
+</text>
+}
+
+The following API queries were used to generate this post:
+
+@foreach (var item in Model.ArchiveInformation)
+{
+    <text>* [@item.Name](@Raw(@item.Url)) ([Archived @item.ArchiveDate.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US"))](@Raw(@item.ArchiveUrl)))
+</text>
+}
+
+Populations numbers taken from [ONS Mid-2019 population estimates](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland)

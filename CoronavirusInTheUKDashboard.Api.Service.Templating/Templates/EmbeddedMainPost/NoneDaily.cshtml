@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.Html
+@using System.Globalization;
+@using RazorLight
+@using CoronavirusInTheUKDashboard.Api.Service.Templating;
+
+@inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.MainPostModel>
+
+These are the key non-daily statistics as reported on gov.uk
+
+||Last Reported Total|
+:--|:--|
+@foreach (var item in Model.NoneDailyQueryResult.Records)
+{
+<text>|@(item.IsNew ? "**" : "")@item.Name (as of @item.Date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US")))@(item.IsNew ? "**" : "")|@(item.IsNew ? "**" : "")@HelperFunctions.Format(@item.LastReportedTotal)@(item.IsNew ? "**" : "")
+</text>
+}
+

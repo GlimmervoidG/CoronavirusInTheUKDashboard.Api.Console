@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CoronavirusInTheUKDashboard.Api.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "-f \"C:\\Users\\gream\\Documents\\Virus\\Scrapes2\""
+    }
+  }
+}

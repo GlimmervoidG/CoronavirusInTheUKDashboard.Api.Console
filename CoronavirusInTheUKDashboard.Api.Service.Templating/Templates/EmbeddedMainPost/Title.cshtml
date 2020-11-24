@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Html
+@using System.Globalization;
+@using RazorLight
+@using CoronavirusInTheUKDashboard.Api.Service.Templating;
+
+@inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.MainPostModel>
+
+@if (Model.Title.TotalCases.Value.HasValue)
+{
+    <text>As of @Model.Title.TotalCases.Date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US")), @HelperFunctions.Format(Model.Title.TotalCases.Value) people have tested positive for COVID-19 in the UK.</text>
+}
+else
+{
+    <text>The number of people who have tested positive hasn't been updated yet.</text>
+}
+@if (Model.Title.TotalDeaths.Value.HasValue)
+{
+    <text> As of @Model.Title.TotalDeaths.Date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US")), of those tested positive for coronavirus in the UK, @HelperFunctions.Format(Model.Title.TotalDeaths.Value) have died across all settings within 28 days of that test.</text>
+}
+else
+{
+    <text> The number of people who have died hasn't been updated yet.</text>
+}
