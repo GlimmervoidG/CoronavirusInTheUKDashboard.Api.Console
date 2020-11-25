@@ -36,14 +36,14 @@ namespace CoronavirusInTheUKDashboard.Api.Service
         private static void GeneratePosts(GeneratorOptions options)
         {
             DateTime trueNow = DateTime.Now;
-            DateTime searchDate = trueNow.Date;
+            DateTime searchDate = trueNow.Date.AddDays(0);
             if (!string.IsNullOrEmpty(options.TargetDate))
             {
                 searchDate = DateTime.Parse(options.TargetDate);
             }
 
-            var mainPost = GetMainPost(searchDate);
-            var trendsPost = GetTrendsPost(searchDate); 
+            var mainPost = GetMainPost(searchDate, options.UseExternalArchiveSite);
+            var trendsPost = GetTrendsPost(searchDate, options.UseExternalArchiveSite); 
         
             var fileDate = string.Format("uk-covid-{0:yyyy-MM-dd_HH-mm-ss}_MainPost.txt", trueNow);
 
@@ -56,11 +56,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service
             return;
         }
 
-        private static string GetMainPost(DateTime searchData)
+        private static string GetMainPost(DateTime searchData, bool doArchive)
         {
             var titleTransformer = new TitleTransformer() { SearchDate = searchData };
             var title = titleTransformer.QueryAndTransform();
-
             var dailyTransformer = new DailyQueryTransformer() { SearchDate = searchData };
             var daily = dailyTransformer.QueryAndTransform();
 
@@ -101,7 +100,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service
                 .ToList();
 
             var archiveTransformer = new ArchiveQueryTransformer() { ArchiveDate = DateTime.Now.Date };
-            archiveTransformer.QueryAndTransform(queryRecords);
+            if (doArchive)
+            {
+                archiveTransformer.QueryAndTransform(queryRecords);
+            }
 
             var model = new MainPostModel()
             {
@@ -119,7 +121,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service
             return trendsPost;
         }
 
-        private static string GetTrendsPost(DateTime searchData)
+        private static string GetTrendsPost(DateTime searchData, bool doArchive)
         {
 
             var eightDayTransform = new LookbackEightDayQueryTransformer() { SearchDate = searchData };
@@ -142,7 +144,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service
                .ToList();
 
             var archiveTransformer = new ArchiveQueryTransformer() { ArchiveDate = DateTime.Now.Date };
-            archiveTransformer.QueryAndTransform(queryRecords);
+            if (doArchive)
+            {
+                archiveTransformer.QueryAndTransform(queryRecords);
+            }
 
             var model = new TrendsPostModel()
             {

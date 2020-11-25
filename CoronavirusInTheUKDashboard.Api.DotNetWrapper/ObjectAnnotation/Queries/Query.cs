@@ -2,7 +2,6 @@
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Formats;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.LatestBys;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Releases;
 using System;
 using System.Collections.Generic;
 using System.Text;

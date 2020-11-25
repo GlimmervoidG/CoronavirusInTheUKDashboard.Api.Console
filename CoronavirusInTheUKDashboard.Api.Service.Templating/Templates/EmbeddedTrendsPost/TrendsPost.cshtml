@@ -136,10 +136,19 @@
 
 The following API queries were used to generate this post:
 
-@foreach (var item in Model.ArchiveInformation)
+@foreach(var item in Model.ArchiveInformation)
 {
-    <text>* [@item.Name](@Raw(@item.Url)) ([Archived @item.ArchiveDate.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US"))](@Raw(@item.ArchiveUrl)))
+
+    if (!string.IsNullOrEmpty(item.ArchiveUrl))
+    {
+<text>* [@item.Name](@Raw(@item.Url)) ([Archived @item.ArchiveDate.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US"))](@Raw(@item.ArchiveUrl)))
 </text>
+    } else
+    {
+<text>* [@item.Name](@Raw(@item.Url))
+</text>
+    }
+
 }
 
 Populations numbers taken from [ONS Mid-2019 population estimates](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/populationestimatesforukenglandandwalesscotlandandnorthernireland)

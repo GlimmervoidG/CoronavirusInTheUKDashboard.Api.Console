@@ -1,7 +1,6 @@
 ﻿using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Formats;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.LatestBys;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Releases;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +12,6 @@ namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation
         public Filter Filter { get; set; }
         public LatestBy LatestBy { get; set; }
         internal Format Format { get; } = new Format(Common.FormatOptions.json);
-        public Release Release { get; set; } 
 
         public static QueryOptions Default()
         {

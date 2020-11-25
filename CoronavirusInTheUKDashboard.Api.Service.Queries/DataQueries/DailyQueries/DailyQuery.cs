@@ -24,7 +24,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.DailyQueri
                     {
                         AreaType = new AreaType(AreaTypeMetrics.overview),
                         Date = new DateFilter(SearchDate)
-                    },
+                    }
 
                 }
             };

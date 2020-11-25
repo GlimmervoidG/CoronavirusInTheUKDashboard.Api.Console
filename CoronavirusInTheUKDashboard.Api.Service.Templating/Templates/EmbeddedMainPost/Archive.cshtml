@@ -9,8 +9,17 @@ The following API queries were used to generate this post:
 
 @foreach(var item in Model.ArchiveInformation)
 {
+
+    if (!string.IsNullOrEmpty(item.ArchiveUrl))
+    {
 <text>* [@item.Name](@Raw(@item.Url)) ([Archived @item.ArchiveDate.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US"))](@Raw(@item.ArchiveUrl)))
 </text>
+    } else
+    {
+<text>* [@item.Name](@Raw(@item.Url))
+</text>
+    }
+
 }
 
 

@@ -2,7 +2,6 @@
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Formats;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.LatestBys;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Releases;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,12 +31,10 @@ namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries
             var filters = GetFilter();
             var structure = GetStructure();
             var format = GetFormat();
-            var release = GetRelease();
 
             request.Parts.Add(filters);
             request.Parts.Add(structure);
             request.Parts.Add(format);
-            request.Parts.Add(release);
 
             return GetUrl(request);
         }
@@ -103,17 +100,6 @@ namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries
         private UrlConstruction.Formats.FormatPart GetFormat()
         {
             return new UrlConstruction.Formats.FormatPart() { Type = Options.Format.Value };
-        }
-        private UrlConstruction.Releases.Release GetRelease()
-        {
-            if (Options.Release == null)
-            {
-                return new UrlConstruction.Releases.ReleaseByLatest();
-            }
-            else
-            {
-                return new UrlConstruction.Releases.ReleaseByDate() { Value = Options.Release.Value };
-            }
         }
 
     }
