@@ -5,12 +5,26 @@ using System.Text;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
+using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.LookbackEightDayQueries;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackEightDayQueries
 {
     public class LookbackEightDayQueryTransformer
     {
         public DateTime SearchDate { get; set; }
+
+
+        private List<DateTime> GetWindow()
+        {
+            var list = new List<DateTime>();
+            var date = SearchDate.AddDays(-10).Date;
+            while (date <= SearchDate.Date)
+            {
+                list.Add(date);
+                date = date.AddDays(1);
+            }
+            return list;
+        }
         public SummationResult QueryAndTransform()
         {
             var query = new LookbackEightDayQuery() { SearchDate = SearchDate };
@@ -22,15 +36,32 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             var casesPercentageIncrease = new List<SimplePercentageRecord>();
             var deathsPercentageIncrease = new List<SimplePercentageRecord>();
             var positivityRate = new List<SimplePercentageRecord>();
+             
+            var window = GetWindow().OrderByDescending( d => d);  
 
-            var targetDate = SearchDate.AddDays(-10).Date;
-
-            var lastNineDays = result.Data.Where(r => r.Date >= targetDate && r.Date <= SearchDate).OrderByDescending(r => r.Date).ToList();
-
+            var windowDays = new List<LookbackEightDayQueryModel>();
+            foreach(var date in window)
+            {
+                var day = result.Data.FirstOrDefault(r => r.Date == date);
+                if (day != null)
+                {
+                    windowDays.Add(day);
+                } else
+                {
+                    windowDays.Add(new LookbackEightDayQueryModel()
+                    {
+                        Date = date,
+                        Cases = new LookbackEightDayQueryCasesModel(),
+                        Deaths = new LookbackEightDayQueryDeathsModel(),
+                        VirusTests = new LookbackEightDayQueryVirusTestsModel()
+                    });
+                }
+            }
+                   
             for (var i = 0; i < 9; i++)
             {
-                var dataItem = lastNineDays[i];
-                var dataItemDaybefore = lastNineDays[i + 1];
+                var dataItem = windowDays[i];
+                var dataItemDaybefore = windowDays[i + 1];
 
                 if (dataItem.Deaths.Daily.HasValue && dataItemDaybefore.Deaths.Cumulative.HasValue)
                 {

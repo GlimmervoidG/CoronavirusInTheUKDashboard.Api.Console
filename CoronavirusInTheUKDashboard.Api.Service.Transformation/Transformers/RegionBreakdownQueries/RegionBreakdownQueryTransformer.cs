@@ -7,8 +7,8 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.RegionBreakdownQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries.Population;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
+using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries.Population;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries
 {
@@ -19,15 +19,12 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
         protected string QueryNameToday { get; set; }
         protected string QueryNameYesterday { get; set; }
 
-        public Result<RegionRateRecord> Transform(QueryResponce<RegionBreakdownQueryModel> resultToday, QueryResponce<RegionBreakdownQueryModel> resultYesterday)
+        public Result<RegionRateRecord> Transform(List<string> regions, QueryResponce<RegionBreakdownQueryModel> resultToday, QueryResponce<RegionBreakdownQueryModel> resultYesterday)
         {
 
             var records = new List<RegionRateRecord>();
             var todayRecords = resultToday.Data.Where(d => d.Date == SearchDate.Date).ToList();
             var yesterdayRecords = resultYesterday.Data.Where(d => d.Date == SearchDate.AddDays(-1).Date).ToList();
-
-            var regions = todayRecords.Select(r => r.Name).Distinct().ToList();
-
             foreach (var region in regions)
             {
                 var today = todayRecords.FirstOrDefault(r => r.Name == region);
@@ -35,10 +32,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
 
                 var record = new RegionRateRecord()
                 {
-                    Name = today.Name,
-                    Date = today.Date,
-                    Daily = today.DailyCases,
-                    Delta = today.DailyCases - yesterday.DailyCases
+                    Name = region,
+                    Date = SearchDate.Date,
+                    Daily = today?.DailyCases,
+                    Delta = today?.DailyCases - yesterday?.DailyCases
                 };
                 SetRatio(record);
                 records.Add(record);

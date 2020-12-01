@@ -18,19 +18,19 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
             var result = query.DoQuery();
 
             var records = new List<StandardRecord>();
-            var relevent = result.Data.Where(d => d.Date == SearchDate).First();
+            var relevent = result.Data.Where(d => d.Date == SearchDate).FirstOrDefault();
 
             var titleResult = new TitleResult()
             {
                 TotalCases = new SimpleRecord() 
                 { 
                     Date = SearchDate,
-                    Value = relevent.Cases.Cumulative 
+                    Value = relevent?.Cases?.Cumulative 
                 },
                 TotalDeaths = new SimpleRecord()
                 {
                     Date = SearchDate,
-                    Value = relevent.Deaths.Cumulative
+                    Value = relevent?.Deaths?.Cumulative
                 },
                 QueryRecords = new List<QueryRecord>()
             };

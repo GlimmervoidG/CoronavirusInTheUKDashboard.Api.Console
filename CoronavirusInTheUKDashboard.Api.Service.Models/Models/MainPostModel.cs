@@ -7,6 +7,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models
 {
     public class MainPostModel
     { 
+        public DateTime SearchDate { get; set; }
         public TitleResult Title { get; set; }
         public Result<StandardRecord> DailyResult { get; set; }
 

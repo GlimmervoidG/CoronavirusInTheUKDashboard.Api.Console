@@ -27,10 +27,21 @@ namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries
             var urlGenerator = new UrlGenerator() { Options = Options, StructureType = typeof(T) }; 
             var url = urlGenerator.GetUrl(); 
             var client = new QueryClient() { Url = url };
-            var textResult = client.DoQuery();
+            var textResult = client.DoQuery(); 
+         
+            if (string.IsNullOrEmpty(textResult))
+            {
+                var nullResult = new QueryResponce<T>()
+                {
+                    Data = new List<T>(),
+                    Length = 0,
+                    Pagination = null,
+                    Url = url
+                };
+                return nullResult; 
+            }
 
-            var json = JsonConvert.DeserializeObject<QueryResponce<T>>(textResult);
-
+            var json = JsonConvert.DeserializeObject<QueryResponce<T>>(textResult); 
             json.Url = url;
 
             return json;

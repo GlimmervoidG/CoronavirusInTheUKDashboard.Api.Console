@@ -35,26 +35,60 @@ namespace CoronavirusInTheUKDashboard.Api.Service
 
         private static void GeneratePosts(GeneratorOptions options)
         {
+
+             
             DateTime trueNow = DateTime.Now;
             DateTime searchDate = trueNow.Date.AddDays(0);
+
+            // Work out the date we should serach for.
             if (!string.IsNullOrEmpty(options.TargetDate))
             {
                 searchDate = DateTime.Parse(options.TargetDate);
             }
 
-            var mainPost = GetMainPost(searchDate, options.UseExternalArchiveSite);
-            var trendsPost = GetTrendsPost(searchDate, options.UseExternalArchiveSite); 
-        
-            var fileDate = string.Format("uk-covid-{0:yyyy-MM-dd_HH-mm-ss}_MainPost.txt", trueNow);
+            foreach( var post in options.PostTypes)
+            {
+                OutputPost(options, post, searchDate, trueNow);
+            }
 
-            System.IO.File.WriteAllText(Path.Join(options.FileOutput, fileDate), mainPost);
-
-            var fileDate2 = string.Format("uk-covid-{0:yyyy-MM-dd_HH-mm-ss}_TrendsPost.txt", trueNow);
-
-            System.IO.File.WriteAllText(Path.Join(options.FileOutput, fileDate2), trendsPost);
-             
             return;
         }
+
+        private static void OutputPost(GeneratorOptions options, PostTypes type, DateTime searchDate, DateTime trueNow)
+        {
+            var result = "";
+            switch (type)
+            {
+                case PostTypes.MainPost:
+                    result = GetMainPost(searchDate, options.UseExternalArchiveSite);
+                    break;
+                case PostTypes.TrendsPost:
+                    result = GetTrendsPost(searchDate, options.UseExternalArchiveSite);
+                    break;
+            }
+
+            if (String.IsNullOrWhiteSpace(options.DirectoryOutput))
+            {
+                Console.WriteLine(result);
+            }
+            else
+            {
+                var fileName = string.Empty;
+                if (String.IsNullOrWhiteSpace(options.FileName))
+                {
+                    fileName = string.Format($"uk-covid-{trueNow:yyyy-MM-dd_HH-mm-ss}_{type}.txt");
+                }
+                else
+                {
+                    fileName = options.FileName;
+                }
+
+                var fullOutput = Path.Join(options.DirectoryOutput, fileName);
+                Directory.CreateDirectory(options.DirectoryOutput);
+                System.IO.File.WriteAllText(fullOutput, result);
+            }
+        }
+
 
         private static string GetMainPost(DateTime searchData, bool doArchive)
         {
@@ -107,6 +141,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service
 
             var model = new MainPostModel()
             {
+                SearchDate = searchData,
                 Title = title,
                 DailyResult = daily,
                 LookbackTestingResult = testing,
@@ -151,6 +186,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service
 
             var model = new TrendsPostModel()
             {
+                SearchDate = searchData,
                 EightDayLookback = eighDays,
                 NationalRates = nationalBreakdown,
                 OverviewRates = overviewBreakdown,

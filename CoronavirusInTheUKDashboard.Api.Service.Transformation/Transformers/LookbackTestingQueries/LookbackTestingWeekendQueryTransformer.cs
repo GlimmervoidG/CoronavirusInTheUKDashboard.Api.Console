@@ -18,73 +18,22 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             var records = new List<StandardRecord>();
 
             // Get records from the prevous Friday to yesterday. 
-            var dates = GetDatesToSearchFor(); 
+            var dates = GetDatesToSearchFor().OrderBy(d => d.Date); 
 
-            var relevent = result.Data.Where(d => dates.Contains(d.Date.Date)).OrderBy(d => d.Date).ToList();
-            foreach (var item in relevent)
-            {
-                //records.Add(new StandardRecord()
-                //{
-                //    Name = NameConstants.LookbackTestingQuery_Pillar1
-                //    ,
-                //    Date = item.Date
-                //    ,
-                //    Daily = item.Pillar1.Daily
-                //    ,
-                //    Cumulative = item.Pillar1.Cumulative
-                //});
-                //records.Add(new StandardRecord()
-                //{
-                //    Name = NameConstants.LookbackTestingQuery_Pillar2
-                //    ,
-                //    Date = item.Date
-                //    ,
-                //    Daily = item.Pillar2.Daily
-                //    ,
-                //    Cumulative = item.Pillar2.Cumulative
-                //});
-                //records.Add(new StandardRecord()
-                //{
-                //    Name = NameConstants.LookbackTestingQuery_Pillar3
-                //    ,
-                //    Date = item.Date
-                //    ,
-                //    Daily = item.Pillar3.Daily
-                //    ,
-                //    Cumulative = item.Pillar3.Cumulative
-                //});
-                //records.Add(new StandardRecord()
-                //{
-                //    Name = NameConstants.LookbackTestingQuery_Pillar4
-                //    ,
-                //    Date = item.Date
-                //    ,
-                //    Daily = item.Pillar4.Daily
-                //    ,
-                //    Cumulative = item.Pillar4.Cumulative
-                //});
-                //records.Add(new StandardRecord()
-                //{
-                //    Name = NameConstants.LookbackTestingQuery_PillarAll
-                //    ,
-                //    Date = item.Date
-                //    ,
-                //    Daily = item.PillarAll.Daily
-                //    ,
-                //    Cumulative = item.PillarAll.Cumulative
-                //});
+            foreach(var date in dates)
+            { 
+                var relevent = result.Data.FirstOrDefault(d => d.Date == date.Date);
                 records.Add(new StandardRecord()
                 {
                     Name = NameConstants.LookbackTestingQuery_PcrTests
                     ,
-                    Date = item.Date
+                    Date = date.Date
                     ,
-                    Daily = item.PcrTests.Daily
+                    Daily = relevent?.PcrTests?.Daily
                     ,
-                    Cumulative = item.PcrTests.Cumulative
+                    Cumulative = relevent?.PcrTests?.Cumulative
                 });
-
-            }
+            } 
             return new Result<StandardRecord>()
             {
                 Records = records,

@@ -7,6 +7,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueri
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries.Yesterday;
+using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries.Population;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries
 {
@@ -24,7 +25,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
             QueryNameToday = NameConstants.RegionBreakdownQuery_Overview_Today;
             QueryNameYesterday = NameConstants.RegionBreakdownQuery_Overview_Yesterday;
 
-            return Transform(resultToday, resultYesterday);
+            var regions = PopulationHelper.GetAllAsRegionList().Where(r => r.RegionType == RegionType.Overview).Select(r => r.Name).ToList();
+            return Transform(regions, resultToday, resultYesterday);
         }
 
     }

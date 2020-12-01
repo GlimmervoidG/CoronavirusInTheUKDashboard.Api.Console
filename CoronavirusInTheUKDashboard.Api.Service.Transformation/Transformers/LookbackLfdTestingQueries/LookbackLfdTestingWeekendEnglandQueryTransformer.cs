@@ -19,22 +19,21 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             var records = new List<StandardRecord>();
 
             // Get records from the prevous Friday to yesterday. 
-            var dates = GetDatesToSearchFor();
+            var dates = GetDatesToSearchFor().OrderBy(d => d.Date);
 
-            var relevent = result.Data.Where(d => dates.Contains(d.Date.Date)).OrderBy(d => d.Date).ToList();
-            foreach (var item in relevent)
+            foreach (var date in dates)
             {
+                var relevent = result.Data.FirstOrDefault(d => d.Date == date.Date);
+
                 records.Add(new StandardRecord()
                 {
-                    Name = NameConstants.LookbackTestingQuery_LfdTests
-                    ,
-                    Date = item.Date
-                    ,
-                    Daily = item.LfdTests.Daily
-                    ,
-                    Cumulative = item.LfdTests.Cumulative
-                }); 
-            }
+                    Name = NameConstants.LookbackTestingQuery_LfdTests,
+                    Date = date.Date,
+                    Daily = relevent?.LfdTests?.Daily,
+                    Cumulative = relevent?.LfdTests?.Cumulative
+                });
+            } 
+
             return new Result<StandardRecord>()
             {
                 Records = records,

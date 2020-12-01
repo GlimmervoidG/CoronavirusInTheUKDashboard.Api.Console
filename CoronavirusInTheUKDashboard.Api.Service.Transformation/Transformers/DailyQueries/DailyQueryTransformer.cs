@@ -17,12 +17,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
             var result = query.DoQuery();
 
             var records = new List<StandardRecord>();
-            var relevent = result.Data.Where(d => d.Date == SearchDate).ToList();
-            foreach (var item in relevent)
-            {
-                records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_Deaths, Date = item.Date, Daily = item.Deaths.Daily, Cumulative = item.Deaths.Cumulative });
-                records.Add(new StandardRecord() {Name = NameConstants.DailyQuery_Cases,  Date = item.Date, Daily = item.Cases.Daily, Cumulative = item.Cases.Cumulative });
-            }
+            var relevent = result.Data.Where(d => d.Date == SearchDate).FirstOrDefault();
+
+            records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_Deaths, Date = SearchDate, Daily = relevent?.Deaths?.Daily, Cumulative = relevent?.Deaths?.Cumulative });
+            records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_Cases, Date = SearchDate, Daily = relevent?.Cases?.Daily, Cumulative = relevent?.Cases?.Cumulative });
+            
             return new Result<StandardRecord>() { 
                 Records = records, 
                 QueryRecords = new List<QueryRecord>() { 

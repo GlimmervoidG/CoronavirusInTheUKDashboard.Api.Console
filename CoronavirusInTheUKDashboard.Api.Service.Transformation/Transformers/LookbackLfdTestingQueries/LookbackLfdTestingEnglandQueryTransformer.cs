@@ -17,21 +17,19 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             var result = query.DoQuery();
 
             var records = new List<StandardRecord>();
-            var relevent = result.Data.Where(d => d.Date == SearchDate.AddDays(-1).Date).ToList();
-            foreach (var item in relevent)
-            {
-                records.Add(new StandardRecord()
-                {
-                    Name = NameConstants.LookbackTestingQuery_LfdTests
-                    ,
-                    Date = item.Date
-                    ,
-                    Daily = item.LfdTests.Daily
-                    ,
-                    Cumulative = item.LfdTests.Cumulative
-                });
+            var relevent = result.Data.FirstOrDefault(d => d.Date == SearchDate.AddDays(-1).Date);
 
-            }
+            records.Add(new StandardRecord()
+            {
+                Name = NameConstants.LookbackTestingQuery_LfdTests
+                               ,
+                Date = SearchDate.Date
+                               ,
+                Daily = relevent?.LfdTests?.Daily
+                               ,
+                Cumulative = relevent?.LfdTests?.Cumulative
+            });
+
             return new Result<StandardRecord>()
             {
                 Records = records,

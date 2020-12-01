@@ -7,6 +7,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models
 {
     public class TrendsPostModel
     {
+        public DateTime SearchDate { get; set; }
         public SummationResult EightDayLookback { get; set; }
         public Result<RegionRateRecord> OverviewRates { get; set; }
         public Result<RegionRateRecord> NationalRates { get; set; }
