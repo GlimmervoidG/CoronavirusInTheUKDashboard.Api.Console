@@ -23,7 +23,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_LfdTests
                                ,
-                Date = SearchDate.Date
+                Date = SearchDate.AddDays(-1).Date
                                ,
                 Daily = relevent?.LfdTests?.Daily
                                ,

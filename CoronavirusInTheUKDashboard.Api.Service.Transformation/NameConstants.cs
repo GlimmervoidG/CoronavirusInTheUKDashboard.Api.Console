@@ -31,6 +31,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
         public const string NoneDailyQuery_PatientsAdmitted = "Patients admitted";
         public const string NoneDailyQuery_WeeklyOnsDeaths = "Deaths with COVID-19 on the death certificate in the last week";
         public const string NoneDailyQuery_TotalOnsDeaths = "Deaths with COVID-19 on the death certificate total";
+        public const string NoneDailyQuery_TotalFirstDose = "First dose vaccinations in the last week";
+        public const string NoneDailyQuery_WeeklyFirstDose = "First dose vaccinations total";
 
         public const string LookbackEightDayQuery_Name = "Eight day lookback query";
 

@@ -22,7 +22,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_Pillar1
                 ,
-                Date = SearchDate.Date
+                Date = SearchDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.Pillar1?.Daily
                 ,
@@ -32,7 +32,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_Pillar2
                 ,
-                Date = SearchDate.Date
+                Date = SearchDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.Pillar2?.Daily
                 ,
@@ -42,7 +42,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_Pillar3
                 ,
-                Date = SearchDate.Date
+                Date = SearchDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.Pillar3?.Daily
                 ,
@@ -52,7 +52,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_Pillar4
                 ,
-                Date = SearchDate.Date
+                Date = SearchDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.Pillar4?.Daily
                 ,
@@ -62,7 +62,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_PillarAll
                 ,
-                Date = SearchDate.Date
+                Date = SearchDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.PillarAll?.Daily
                 ,
@@ -72,7 +72,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_PcrTests
                 ,
-                Date = SearchDate.Date
+                Date = SearchDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.PcrTests?.Daily
                 ,
