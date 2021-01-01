@@ -3,11 +3,20 @@
 @using RazorLight
 @using CoronavirusInTheUKDashboard.Api.Service.Templating;
 
-@inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.AdmissionsByAgeModel>
-
+"New Admissions"
 "Date", "0 to 5", "6 to 17", "18 to 64", "64 to 84", "85+"
 @foreach (var item in Model.AdmissionsByAge.Records)
 {
 <text>@item.Date.ToString("yyyy-MM-dd"),@item.Get0to5().New, @item.Get6To17().New, @item.Get18To64().New, @item.Get65To84().New, @item.Get85OrMore().New
+</text>
+}
+
+
+"Cumulative Admissions"
+@inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.AdmissionsByAgeModel>
+"Date", "0 to 5", "6 to 17", "18 to 64", "64 to 84", "85+"
+@foreach (var item in Model.AdmissionsByAge.Records)
+{
+<text>@item.Date.ToString("yyyy-MM-dd"),@item.Get0to5().Cumulative, @item.Get6To17().Cumulative, @item.Get18To64().Cumulative, @item.Get65To84().Cumulative, @item.Get85OrMore().Cumulative
 </text>
 }
