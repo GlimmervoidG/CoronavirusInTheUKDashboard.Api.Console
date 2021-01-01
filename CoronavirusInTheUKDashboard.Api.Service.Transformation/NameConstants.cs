@@ -44,5 +44,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
 
         public const string RegionBreakdownQuery_Region_Today = "English regions query";
         public const string RegionBreakdownQuery_Region_Yesterday = "English regions query yesterday";
+
+
+        public const string AdmissionsByAge = "Admissions by age";
     }
 }

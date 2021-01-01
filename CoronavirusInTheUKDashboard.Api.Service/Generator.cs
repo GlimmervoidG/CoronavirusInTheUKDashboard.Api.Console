@@ -2,6 +2,7 @@
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Templating;
+using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.AdmissionsQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackEightDayQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackLfdTestingQueries;
@@ -64,6 +65,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service
                     break;
                 case PostTypes.TrendsPost:
                     result = GetTrendsPost(searchDate, options.UseExternalArchiveSite);
+                    break;
+                case PostTypes.AdmissionsByAge:
+                    result = AdmissionsByAgePost(searchDate, options.UseExternalArchiveSite);
                     break;
             }
 
@@ -196,6 +200,20 @@ namespace CoronavirusInTheUKDashboard.Api.Service
 
             var trendsPost = Engine.Run(model).Result;
             return trendsPost;
+        }
+
+        public static string AdmissionsByAgePost(DateTime searchData, bool doArchive)
+        {
+            var transform = new AdmissionsByAgeQueryTransformer() { SearchDate = searchData };
+            var result = transform.QueryAndTransform();
+
+            var model = new AdmissionsByAgeModel()
+            {
+                SearchDate = searchData, AdmissionsByAge = result
+            };
+
+            var post = Engine.Run(model).Result;
+            return post; 
         }
 
 

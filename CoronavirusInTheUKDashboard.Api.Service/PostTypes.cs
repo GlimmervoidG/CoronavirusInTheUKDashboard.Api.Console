@@ -7,6 +7,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service
     public enum PostTypes
     {
         MainPost,
-        TrendsPost
+        TrendsPost,
+        AdmissionsByAge
     }
 }

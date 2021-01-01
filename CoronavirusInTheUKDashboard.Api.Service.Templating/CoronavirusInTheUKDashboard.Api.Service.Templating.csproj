@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Templates\EmbeddedAdmissionsByAgePost\AdmissionsByAgePost.cshtml" />
+    <None Remove="Templates\EmbeddedAdmissionsByAgePost\SearchTargetEmbeddedAdmissionsByAgePost.txt" />
     <None Remove="Templates\EmbeddedMainPost\Archive.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\Daily.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\LookbackTesting.cshtml" />
@@ -18,6 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Templates\EmbeddedAdmissionsByAgePost\SearchTargetEmbeddedAdmissionsByAgePost.txt" />
+    <EmbeddedResource Include="Templates\EmbeddedAdmissionsByAgePost\AdmissionsByAgePost.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\Archive.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\Daily.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\LookbackTesting.cshtml" />
