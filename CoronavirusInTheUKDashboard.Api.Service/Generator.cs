@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using CoronavirusInTheUKDashboard.Api.Service.Csv;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Templating;
@@ -209,10 +210,12 @@ namespace CoronavirusInTheUKDashboard.Api.Service
 
             var model = new AdmissionsByAgeModel()
             {
-                SearchDate = searchData, AdmissionsByAge = result
+                SearchDate = searchData, 
+                AdmissionsByAge = result
             };
 
-            var post = Engine.Run(model).Result;
+            var post = CsvEngine.Run(model);
+         
             return post; 
         }
 

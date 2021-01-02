@@ -29,7 +29,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Templating
             var result = await razorEngine.CompileRenderAsync("OrginalPost.cshtml", model);
             return result;
         }
-
         public static async Task<string> Run(AdmissionsByAgeModel model)
         {
             var razorEngine = new RazorLightEngineBuilder()
@@ -39,7 +38,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Templating
             var result = await razorEngine.CompileRenderAsync("AdmissionsByAgePost.cshtml", model);
             return result;
         }
-
         private static string GetEmbeddedResourceNamespace(string searchTarget)
         {
             var listOfEmbeddedResources = new List<string>(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceNames());

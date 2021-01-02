@@ -2,7 +2,7 @@
   "profiles": {
     "CoronavirusInTheUKDashboard.Api.Console": {
       "commandName": "Project",
-      "commandLineArgs": "-p MainPost,TrendsPost"
+      "commandLineArgs": "-p AdmissionsByAge"
     }
   }
 }

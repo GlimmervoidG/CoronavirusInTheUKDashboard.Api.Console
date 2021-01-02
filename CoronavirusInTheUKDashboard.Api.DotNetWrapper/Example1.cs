@@ -18,8 +18,7 @@ namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper
                      
                 }
             };
-            var result = quary.DoQuery();
-            var stop = "STP;0;";
+            var result = quary.DoQuery(); 
 
         }
 

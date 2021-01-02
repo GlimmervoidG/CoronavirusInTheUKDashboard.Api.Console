@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Csv\CoronavirusInTheUKDashboard.Api.Service.Csv.csproj" />
     <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Templating\CoronavirusInTheUKDashboard.Api.Service.Templating.csproj" />
     <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Transformation\CoronavirusInTheUKDashboard.Api.Service.Transformation.csproj" />
   </ItemGroup>

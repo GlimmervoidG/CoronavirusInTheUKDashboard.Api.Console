@@ -35,18 +35,18 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Ad
             {
                 if( last != null)
                 {
-                    item.Get0to5().New = item.Get0to5().Cumulative - last.Get0to5().Cumulative;
-                    item.Get6To17().New = item.Get6To17().Cumulative - last.Get6To17().Cumulative;
-                    item.Get18To64().New = item.Get18To64().Cumulative - last.Get18To64().Cumulative;
-                    item.Get65To84().New = item.Get65To84().Cumulative - last.Get65To84().Cumulative;
-                    item.Get85OrMore().New = item.Get85OrMore().Cumulative - last.Get85OrMore().Cumulative;
+                    item.Get0to5.New = item.Get0to5.Cumulative - last.Get0to5.Cumulative;
+                    item.Get6To17.New = item.Get6To17.Cumulative - last.Get6To17.Cumulative;
+                    item.Get18To64.New = item.Get18To64.Cumulative - last.Get18To64.Cumulative;
+                    item.Get65To84.New = item.Get65To84.Cumulative - last.Get65To84.Cumulative;
+                    item.Get85OrMore.New = item.Get85OrMore.Cumulative - last.Get85OrMore.Cumulative;
                 } else
                 {
-                    item.Get0to5().New = item.Get0to5().Cumulative;
-                    item.Get6To17().New = item.Get6To17().Cumulative;
-                    item.Get18To64().New = item.Get18To64().Cumulative;
-                    item.Get65To84().New = item.Get65To84().Cumulative;
-                    item.Get85OrMore().New = item.Get85OrMore().Cumulative;
+                    item.Get0to5.New = item.Get0to5.Cumulative;
+                    item.Get6To17.New = item.Get6To17.Cumulative;
+                    item.Get18To64.New = item.Get18To64.Cumulative;
+                    item.Get65To84.New = item.Get65To84.Cumulative;
+                    item.Get85OrMore.New = item.Get85OrMore.Cumulative;
                 }
 
                 last = item;
