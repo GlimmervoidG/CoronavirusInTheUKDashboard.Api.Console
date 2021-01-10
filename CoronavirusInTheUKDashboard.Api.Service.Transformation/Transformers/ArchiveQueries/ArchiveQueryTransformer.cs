@@ -16,9 +16,22 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
         {
             foreach(var record in records)
             {
-                var query = new ArchiveQuery() { TargetUrl = record.Url };
-                record.ArchiveUrl = query.DoQuery();
-                record.ArchiveDate = ArchiveDate;
+
+                for(int i=0; i < 5; i++)
+                {
+                    try
+                    {
+                        var query = new ArchiveQuery() { TargetUrl = record.Url };
+                        record.ArchiveUrl = query.DoQuery();
+                        record.ArchiveDate = ArchiveDate;
+                        break;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Attempt {i} of 5 failed: {ex}");
+                    }
+                }
+
             }
         }
     }

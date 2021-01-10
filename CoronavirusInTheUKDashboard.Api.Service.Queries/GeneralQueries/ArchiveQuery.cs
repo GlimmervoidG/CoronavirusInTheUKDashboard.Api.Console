@@ -19,16 +19,22 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries.GeneralQueries
                     var html = client.GetAsync(archiveUrl, HttpCompletionOption.ResponseHeadersRead);
                     var result = html.Result;
                     var reletiveUri = result.RequestMessage.RequestUri;
-                    var absuluteUri = Uri.EscapeUriString(reletiveUri.ToString()); 
+
+                    var absuluteUri = Uri.EscapeUriString(reletiveUri.ToString());
+
+                    if (absuluteUri.ToString().StartsWith("https://web.archive.org/save/"))
+                    {
+                        // something has gone wrong. Try again.
+                        throw new Exception("Achive failed. Page did not correctly save.");
+                    }
 
                     return absuluteUri.ToString();
 
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex);
-                }
-                return "UNKNOWN";
+                    throw new Exception("Exception when archiving.", ex);
+                } 
             }
 
         }
