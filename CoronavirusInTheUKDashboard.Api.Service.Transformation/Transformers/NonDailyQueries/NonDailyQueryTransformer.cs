@@ -14,7 +14,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.No
 {
    public class NonDailyQueryTransformer : INonDailyQueryTransformer
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
         public INonDailyQuery Query { get; set; }
         public NonDailyQueryTransformer(INonDailyQuery query)
         {
@@ -22,12 +22,12 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.No
         }
         public Result<IrregularRecord> QueryAndTransform()
         {
-            Query.SearchDate = SearchDate;
+            Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 
             var records = new List<IrregularRecord>();
 
-            var filteredResults = result.Data.Where(d => d.Date <= SearchDate).ToList();
+            var filteredResults = result.Data.Where(d => d.Date <= TargetDate).ToList();
 
             // Get the most up to date record for each metric
             var capacity = filteredResults.FirstOrDefault(d => d.Capacity.HasValue);
@@ -71,7 +71,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.No
                     Date = record.Date,
                     LastReportedTotal = value,
                     Name = name,
-                    IsNew = (record.Date == SearchDate || record.Date == SearchDate.AddDays(-1))
+                    IsNew = (record.Date == TargetDate || record.Date == TargetDate.AddDays(-1))
                 };
             }
             else

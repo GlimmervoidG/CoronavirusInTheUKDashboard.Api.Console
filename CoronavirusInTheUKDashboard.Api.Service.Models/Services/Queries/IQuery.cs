@@ -8,7 +8,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries
 {
     public interface IQuery<T> where T : BaseModel
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
         QueryResponce<T> DoQuery();
     }
 }

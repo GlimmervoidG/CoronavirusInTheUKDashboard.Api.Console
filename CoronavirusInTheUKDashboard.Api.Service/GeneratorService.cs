@@ -83,7 +83,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service
         {
 
             DateTime trueNow = DateTime.Now;
-            DateTime searchDate = trueNow.Date.AddDays(0);
+            DateTime targetDate = trueNow.Date.AddDays(0);
 
             var serviceOptions = new ServiceOptions();
             serviceOptions.DirectoryOutput = options.DirectoryOutput;
@@ -95,7 +95,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service
             }
             else
             {
-                serviceOptions.TargetDate = searchDate;
+                serviceOptions.TargetDate = targetDate;
             }
 
             serviceOptions.TrueDateTime = trueNow;

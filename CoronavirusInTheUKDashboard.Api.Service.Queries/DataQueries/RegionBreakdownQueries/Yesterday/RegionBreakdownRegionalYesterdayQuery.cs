@@ -18,7 +18,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQ
         }
         public QueryResponce<RegionBreakdownQueryModel> DoQuery()
         {
-            var targetDate = SearchDate.AddDays(-1).Date;
+            var targetDate = TargetDate.AddDays(-1).Date;
             var quary = new Query<RegionBreakdownQueryModel>()
             {
                 Options = new QueryOptions()

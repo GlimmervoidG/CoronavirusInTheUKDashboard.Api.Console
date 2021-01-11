@@ -21,15 +21,15 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackLf
         }
         public QueryResponce<LookbackLfdTestingQueryModel> DoQuery()
         {
-            var trueSearchDate = SearchDate.AddDays(0);
-            var searchDate = SearchDate.AddDays(-1);
+            var trueTargetDate = TargetDate.AddDays(0);
+            var targetDate = TargetDate.AddDays(-1);
             Query.Options = new QueryOptions()
             {
                 Filter = new Filter()
                 {
                     AreaType = new AreaType(AreaTypeMetrics.nation),
                     AreaName = new AreaName("England"),
-                    Date = new DateFilter(searchDate)
+                    Date = new DateFilter(targetDate)
                 },
 
             };

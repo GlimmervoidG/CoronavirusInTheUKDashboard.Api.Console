@@ -12,7 +12,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
 {
     public class TitleTransformer: ITitleTransformer
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
         public IDailyQuery Query { get; set; }
         public TitleTransformer(IDailyQuery query)
         {
@@ -20,30 +20,30 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
         }
         public Result<TitleResult> QueryAndTransform()
         {
-            Query.SearchDate = SearchDate;
+            Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 
             var records = new List<StandardRecord>();
-            var relevent = result.Data.Where(d => d.Date == SearchDate).FirstOrDefault();
+            var relevent = result.Data.Where(d => d.Date == TargetDate).FirstOrDefault();
 
             var titleResult = new TitleResult()
             {
                 TotalCases = new SimpleRecord() 
                 { 
-                    Date = SearchDate,
+                    Date = TargetDate,
                     Value = relevent?.Cases?.Cumulative 
                 },
                 TotalDeaths = new SimpleRecord()
                 {
-                    Date = SearchDate,
+                    Date = TargetDate,
                     Value = relevent?.Deaths?.Cumulative
                 },
                 TotalVaccines = new SimpleRecord()
                 {
-                    Date = SearchDate,
+                    Date = TargetDate,
                     Value = relevent?.FirstDose?.Cumulative
                 },
-                Date = SearchDate 
+                Date = TargetDate 
             };
 
             var list = new List<TitleResult>() { titleResult };

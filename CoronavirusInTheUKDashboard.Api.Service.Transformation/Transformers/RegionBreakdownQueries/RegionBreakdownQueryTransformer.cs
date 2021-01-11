@@ -14,7 +14,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
 {
     public abstract class RegionBreakdownQueryTransformer
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
 
         protected string QueryNameToday { get; set; }
         protected string QueryNameYesterday { get; set; }
@@ -23,8 +23,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
         {
 
             var records = new List<RegionRateRecord>();
-            var todayRecords = resultToday.Data.Where(d => d.Date == SearchDate.Date).ToList();
-            var yesterdayRecords = resultYesterday.Data.Where(d => d.Date == SearchDate.AddDays(-1).Date).ToList();
+            var todayRecords = resultToday.Data.Where(d => d.Date == TargetDate.Date).ToList();
+            var yesterdayRecords = resultYesterday.Data.Where(d => d.Date == TargetDate.AddDays(-1).Date).ToList();
             foreach (var region in regions)
             {
                 var today = todayRecords.FirstOrDefault(r => r.Name == region);
@@ -33,7 +33,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
                 var record = new RegionRateRecord()
                 {
                     Name = region,
-                    Date = SearchDate.Date,
+                    Date = TargetDate.Date,
                     Daily = today?.DailyCases,
                     Delta = today?.DailyCases - yesterday?.DailyCases
                 };

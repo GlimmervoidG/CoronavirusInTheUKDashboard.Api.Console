@@ -40,7 +40,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             var doArchive = Option.UseExternalArchiveSite;
 
 
-            AdmissionsByAgeQueryTransformer.SearchDate = searchData;
+            AdmissionsByAgeQueryTransformer.TargetDate = searchData;
             var result = AdmissionsByAgeQueryTransformer.QueryAndTransform();
 
             var queryRecords = new List<QueryRecord>()
@@ -56,7 +56,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 
             var model = new AdmissionsByAgePostModel()
             {
-                SearchDate = searchData,
+                TargetDate = searchData,
                 AdmissionsByAge = result,
                 ArchiveInformation = queryRecords
             };

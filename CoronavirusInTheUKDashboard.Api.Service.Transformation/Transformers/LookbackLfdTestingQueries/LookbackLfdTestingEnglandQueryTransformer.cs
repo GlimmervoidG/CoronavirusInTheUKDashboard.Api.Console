@@ -12,7 +12,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
 {
     public class LookbackLfdTestingEnglandQueryTransformer : ILookbackLfdTestingEnglandQueryTransformer
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
         public ILookbackLfdTestingEnglandQuery Query { get; set; }
         public LookbackLfdTestingEnglandQueryTransformer(ILookbackLfdTestingEnglandQuery query)
         {
@@ -20,17 +20,17 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
         }
         public Result<StandardRecord> QueryAndTransform()
         {
-            Query.SearchDate = SearchDate; 
+            Query.TargetDate = TargetDate; 
             var result = Query.DoQuery();
 
             var records = new List<StandardRecord>();
-            var relevent = result.Data.FirstOrDefault(d => d.Date == SearchDate.AddDays(-1).Date);
+            var relevent = result.Data.FirstOrDefault(d => d.Date == TargetDate.AddDays(-1).Date);
 
             records.Add(new StandardRecord()
             {
                 Name = NameConstants.LookbackTestingQuery_LfdTests
                                ,
-                Date = SearchDate.AddDays(-1).Date
+                Date = TargetDate.AddDays(-1).Date
                                ,
                 Daily = relevent?.LfdTests?.Daily
                                ,

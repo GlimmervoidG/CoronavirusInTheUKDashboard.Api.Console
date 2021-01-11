@@ -26,10 +26,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
         public Result<RegionRateRecord> QueryAndTransform()
         {
 
-            QueryToday.SearchDate = SearchDate;
+            QueryToday.TargetDate = TargetDate;
             var resultToday = QueryToday.DoQuery();
 
-            QueryYesterday.SearchDate = SearchDate;
+            QueryYesterday.TargetDate = TargetDate;
             var resultYesterday = QueryYesterday.DoQuery();
 
             QueryNameToday = NameConstants.RegionBreakdownQuery_Region_Today;

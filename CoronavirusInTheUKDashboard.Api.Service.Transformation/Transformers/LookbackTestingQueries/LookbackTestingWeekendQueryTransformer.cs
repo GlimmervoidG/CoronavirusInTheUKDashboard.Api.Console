@@ -11,7 +11,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
 {
     public class LookbackTestingWeekendQueryTransformer : ILookbackTestingWeekendQueryTransformer
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
         public ILookbackTestingWeekendQuery Query { get; set; }
         public LookbackTestingWeekendQueryTransformer(ILookbackTestingWeekendQuery query)
         {
@@ -19,7 +19,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
         }
         public Result<StandardRecord> QueryAndTransform()
         {
-            Query.SearchDate = SearchDate;
+            Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 
             var records = new List<StandardRecord>();
@@ -53,7 +53,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
         private List<DateTime> GetDatesToSearchFor()
         {
             var searchTarget = DayOfWeek.Friday;
-            var currentSearch = SearchDate.Date;
+            var currentSearch = TargetDate.Date;
             var datesToSearchFor = new List<DateTime>();
             while (true)
             {

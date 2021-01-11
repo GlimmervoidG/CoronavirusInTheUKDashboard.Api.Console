@@ -6,6 +6,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts
 {
     public abstract class PostModel
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
     }
 }

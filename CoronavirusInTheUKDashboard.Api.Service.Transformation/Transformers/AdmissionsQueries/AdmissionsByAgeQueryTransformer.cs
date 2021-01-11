@@ -13,7 +13,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Ad
 {
     public class AdmissionsByAgeQueryTransformer : IAdmissionsByAgeQueryTransformer
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
 
         public IAdmissionsByAgeQuery Query { get; set; }
         public AdmissionsByAgeQueryTransformer(IAdmissionsByAgeQuery query)
@@ -23,7 +23,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Ad
 
         public Result<AdmissionsByAgeRecord> QueryAndTransform()
         {
-            Query.SearchDate = SearchDate;
+            Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 
             var list = new List<AdmissionsByAgeRecord>(); 

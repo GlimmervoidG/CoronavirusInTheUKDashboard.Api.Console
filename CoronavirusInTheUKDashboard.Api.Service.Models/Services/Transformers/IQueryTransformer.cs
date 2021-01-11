@@ -8,7 +8,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Transformers
 {
     public interface IQueryTransformer<T> where T : BaseRecord
     {
-        DateTime SearchDate { get; set; }
+        DateTime TargetDate { get; set; }
         public Result<T> QueryAndTransform();
     }
 }

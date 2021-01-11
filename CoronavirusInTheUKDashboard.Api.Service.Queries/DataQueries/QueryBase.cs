@@ -6,6 +6,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries
 {
     public abstract class QueryBase
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
     }
 }

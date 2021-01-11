@@ -11,7 +11,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
 {
     public class LookbackTestingQueryTransformer : ILookbackTestingQueryTransformer
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
         public ILookbackTestingQuery Query { get; set; }
         public LookbackTestingQueryTransformer(ILookbackTestingQuery query)
         {
@@ -19,17 +19,17 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
         }
         public Result<StandardRecord> QueryAndTransform()
         {
-            Query.SearchDate = SearchDate;
+            Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 
             var records = new List<StandardRecord>();
-            var relevent = result.Data.FirstOrDefault(d => d.Date == SearchDate.AddDays(-1).Date);
+            var relevent = result.Data.FirstOrDefault(d => d.Date == TargetDate.AddDays(-1).Date);
             
             records.Add(new StandardRecord()
             {
                 Name = NameConstants.LookbackTestingQuery_Pillar1
                 ,
-                Date = SearchDate.AddDays(-1).Date
+                Date = TargetDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.Pillar1?.Daily
                 ,
@@ -39,7 +39,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_Pillar2
                 ,
-                Date = SearchDate.AddDays(-1).Date
+                Date = TargetDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.Pillar2?.Daily
                 ,
@@ -49,7 +49,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_Pillar3
                 ,
-                Date = SearchDate.AddDays(-1).Date
+                Date = TargetDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.Pillar3?.Daily
                 ,
@@ -59,7 +59,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_Pillar4
                 ,
-                Date = SearchDate.AddDays(-1).Date
+                Date = TargetDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.Pillar4?.Daily
                 ,
@@ -69,7 +69,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_PillarAll
                 ,
-                Date = SearchDate.AddDays(-1).Date
+                Date = TargetDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.PillarAll?.Daily
                 ,
@@ -79,7 +79,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             {
                 Name = NameConstants.LookbackTestingQuery_PcrTests
                 ,
-                Date = SearchDate.AddDays(-1).Date
+                Date = TargetDate.AddDays(-1).Date
                 ,
                 Daily = relevent?.PcrTests?.Daily
                 ,

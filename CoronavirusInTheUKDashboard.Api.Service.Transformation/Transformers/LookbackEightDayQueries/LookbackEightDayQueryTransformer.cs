@@ -12,7 +12,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
 {
     public class LookbackEightDayQueryTransformer : ILookbackEightDayQueryTransformer
     {
-        public DateTime SearchDate { get; set; }
+        public DateTime TargetDate { get; set; }
         public ILookbackEightDayQuery Query { get; set; }
         public LookbackEightDayQueryTransformer(ILookbackEightDayQuery query)
         {
@@ -22,8 +22,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
         private List<DateTime> GetWindow()
         {
             var list = new List<DateTime>();
-            var date = SearchDate.AddDays(-10).Date;
-            while (date <= SearchDate.Date)
+            var date = TargetDate.AddDays(-10).Date;
+            while (date <= TargetDate.Date)
             {
                 list.Add(date);
                 date = date.AddDays(1);
@@ -32,7 +32,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
         }
         public Result<SummationResult> QueryAndTransform()
         {
-            Query.SearchDate = SearchDate;
+            Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 
             var cases = new List<SimpleRecord>(); 
@@ -198,7 +198,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
 
             var summationResult =  new SummationResult()
             {  
-                Date = SearchDate,
+                Date = TargetDate,
                 Cases = cases,
                 Deaths = deaths,
                 CasesPercentageIncrease = casesPercentageIncrease,

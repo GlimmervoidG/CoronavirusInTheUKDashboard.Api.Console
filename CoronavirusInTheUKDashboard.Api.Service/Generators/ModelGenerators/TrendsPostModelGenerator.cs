@@ -49,17 +49,17 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             var trueDate = Option.TrueDateTime;
             var doArchive = Option.UseExternalArchiveSite;
 
-            LookbackEightDayQueryTransformer.SearchDate = searchData;
+            LookbackEightDayQueryTransformer.TargetDate = searchData;
             var eighDays = LookbackEightDayQueryTransformer.QueryAndTransform();
 
 
-            RegionBreakdownOverviewQueryTransformer.SearchDate = searchData;
+            RegionBreakdownOverviewQueryTransformer.TargetDate = searchData;
             var overviewBreakdown = RegionBreakdownOverviewQueryTransformer.QueryAndTransform();
 
-            RegionBreakdownNationalQueryTransformer.SearchDate = searchData;
+            RegionBreakdownNationalQueryTransformer.TargetDate = searchData;
             var nationalBreakdown = RegionBreakdownNationalQueryTransformer.QueryAndTransform();
 
-            RegionBreakdownRegionQueryTransformer.SearchDate = searchData;
+            RegionBreakdownRegionQueryTransformer.TargetDate = searchData;
             var regionalBreakdown = RegionBreakdownRegionQueryTransformer.QueryAndTransform();
 
             var queryRecords = new List<QueryRecord>()
@@ -77,7 +77,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 
             var model = new TrendsPostModel()
             {
-                SearchDate = searchData,
+                TargetDate = searchData,
                 EightDayLookback = eighDays.Records.First(),
                 NationalRates = nationalBreakdown,
                 OverviewRates = overviewBreakdown,

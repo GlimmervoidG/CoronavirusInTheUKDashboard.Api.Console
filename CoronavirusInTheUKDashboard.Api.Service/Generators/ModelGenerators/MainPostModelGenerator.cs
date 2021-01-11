@@ -67,10 +67,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             var trueDate = Option.TrueDateTime;
             var doArchive = Option.UseExternalArchiveSite;
 
-            TitleTransformer.SearchDate = searchData;
+            TitleTransformer.TargetDate = searchData;
             var title = TitleTransformer.QueryAndTransform();
 
-            DailyQueryTransformer.SearchDate = searchData;
+            DailyQueryTransformer.TargetDate = searchData;
             var daily = DailyQueryTransformer.QueryAndTransform();
 
             var normalDays = new List<DayOfWeek>() { DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
@@ -80,10 +80,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             Result<StandardRecord> testingLfd = null;
             if (normalDays.Contains(searchData.DayOfWeek))
             {
-                LookbackTestingQueryTransformer.SearchDate = searchData;
+                LookbackTestingQueryTransformer.TargetDate = searchData;
                 testing = LookbackTestingQueryTransformer.QueryAndTransform();
 
-                LookbackLfdTestingEnglandQueryTransformer.SearchDate = searchData;
+                LookbackLfdTestingEnglandQueryTransformer.TargetDate = searchData;
                 testingLfd = LookbackLfdTestingEnglandQueryTransformer.QueryAndTransform(); 
             }
 
@@ -91,14 +91,14 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             Result<StandardRecord> testingWeekendLfd = null;
             if (catchUpDays.Contains(searchData.DayOfWeek))
             {
-                LookbackTestingWeekendQueryTransformer.SearchDate = searchData;
+                LookbackTestingWeekendQueryTransformer.TargetDate = searchData;
                 testingWeekend = LookbackTestingWeekendQueryTransformer.QueryAndTransform();
 
-                LookbackLfdTestingWeekendEnglandQueryTransformer.SearchDate = searchData;
+                LookbackLfdTestingWeekendEnglandQueryTransformer.TargetDate = searchData;
                 testingWeekendLfd = LookbackLfdTestingWeekendEnglandQueryTransformer.QueryAndTransform(); 
             }
 
-            NoneDailyQueryTransformer.SearchDate = searchData;
+            NoneDailyQueryTransformer.TargetDate = searchData;
             var nonDaily = NoneDailyQueryTransformer.QueryAndTransform();
              
             var queryRecords = new List<QueryRecord>()
@@ -118,7 +118,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
  
             var model = new MainPostModel()
             {
-                SearchDate = searchData,
+                TargetDate = searchData,
                 Title = title.Records.First(),
                 DailyResult = daily,
                 LookbackTestingResult = testing,
