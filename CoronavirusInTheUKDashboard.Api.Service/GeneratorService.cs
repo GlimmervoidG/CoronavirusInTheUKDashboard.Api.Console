@@ -73,8 +73,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service
             services.AddSingleton<IOptions>(serviceOptions);
             services.AddLogging(configure => configure.AddDebug());
 
-
-
             using (var serviceProvider = services.BuildServiceProvider(true))
             {
                serviceProvider.GetRequiredService<IGenerator>().Run();

@@ -10,6 +10,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
         public const string DailyQuery_Name = "Daily query";
         public const string DailyQuery_Deaths = "Deaths in all settings (death within 28 days of test)";
         public const string DailyQuery_Cases = "Positive cases (pillars 1, 2 and parts of 4)";
+        public const string DailyQuery_FirstDose = "People who have received vaccinations (First Dose)";
+        public const string DailyQuery_SecondDose = "People who have received vaccinations (Second Dose)";
 
         public const string LookbackTestingQuery_Name = "Testing Lookback query";
         public const string LookbackTestingQuery_Lfd_Name = "Testing Lookback query (England)";

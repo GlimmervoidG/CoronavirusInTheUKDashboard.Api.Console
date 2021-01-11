@@ -45,11 +45,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.NonDaily
         [StructureMetric("cumOnsDeathsByRegistrationDate")]
         public long? TotalOnsDeaths { get; set; }     
 
-        [StructureMetric("newPeopleReceivingFirstDose")]
-        public long? WeeklyFirstDose { get; set; }
+        //[StructureMetric("newPeopleReceivingFirstDose")]
+        //public long? WeeklyFirstDose { get; set; }
 
-        [StructureMetric("cumPeopleReceivingFirstDose")]
-        public long? TotalFirstDose { get; set; }
+        //[StructureMetric("cumPeopleReceivingFirstDose")]
+        //public long? TotalFirstDose { get; set; }
         
     }
 }

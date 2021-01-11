@@ -1,5 +1,6 @@
 ﻿using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Attributes;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.DailyQueries;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,7 +23,13 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.DailyQue
         public DailyQueryCasesModel Cases { get; set; }
 
         [Structure]
-        public DailyQueryDeathsModel Deaths { get; set; } 
+        public DailyQueryDeathsModel Deaths { get; set; }
+
+        [Structure]
+        public DailyQueriesFirstDose FirstDose { get; set; }
+
+        [Structure]
+        public DailyQueriesSecondDose SecondDose { get; set; }
 
     }
 }

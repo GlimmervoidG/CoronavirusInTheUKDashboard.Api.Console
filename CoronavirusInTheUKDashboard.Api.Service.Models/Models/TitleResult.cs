@@ -9,5 +9,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models
     {
         public SimpleRecord TotalCases { get; set; }
         public SimpleRecord TotalDeaths { get; set; }
+        public SimpleRecord TotalVaccines { get; set; }
     }
 }

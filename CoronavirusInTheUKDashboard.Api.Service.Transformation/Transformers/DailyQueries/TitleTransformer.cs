@@ -37,7 +37,12 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
                 {
                     Date = SearchDate,
                     Value = relevent?.Deaths?.Cumulative
-                }, 
+                },
+                TotalVaccines = new SimpleRecord()
+                {
+                    Date = SearchDate,
+                    Value = relevent?.FirstDose?.Cumulative
+                },
                 Date = SearchDate 
             };
 
