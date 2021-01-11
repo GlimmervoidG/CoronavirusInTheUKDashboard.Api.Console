@@ -17,7 +17,7 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Queries;
 
 namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries
 {
-    public class Query<T>
+    public class Query<T> : IQuery<T>
     {
         public QueryOptions Options { get; set; }
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models
 {
-    public class SummationResult : BaseResult
+    public class SummationResult : BaseRecord
     {
         public List<SimpleRecord> Cases { get; set; }
         public List<SimpleRecord> Deaths { get; set; }

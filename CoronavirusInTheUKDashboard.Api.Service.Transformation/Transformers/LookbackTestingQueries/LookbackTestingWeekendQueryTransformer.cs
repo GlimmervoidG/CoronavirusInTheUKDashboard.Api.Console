@@ -4,16 +4,23 @@ using System.Collections.Generic;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackTestingQueries
 {
-    public class LookbackTestingWeekendQueryTransformer
+    public class LookbackTestingWeekendQueryTransformer : ILookbackTestingWeekendQueryTransformer
     {
         public DateTime SearchDate { get; set; }
+        public ILookbackTestingWeekendQuery Query { get; set; }
+        public LookbackTestingWeekendQueryTransformer(ILookbackTestingWeekendQuery query)
+        {
+            Query = query;
+        }
         public Result<StandardRecord> QueryAndTransform()
         {
-            var query = new LookbackTestingWeekendQuery() { SearchDate = SearchDate };
-            var result = query.DoQuery();
+            Query.SearchDate = SearchDate;
+            var result = Query.DoQuery();
 
             var records = new List<StandardRecord>();
 

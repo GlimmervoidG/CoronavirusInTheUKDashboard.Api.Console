@@ -6,12 +6,22 @@ using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.GeneralQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Common;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries
 {
-    public class ArchiveQueryTransformer
+    public class ArchiveQueryTransformer : IArchiveTransformer
     { 
         public DateTime ArchiveDate {get;set;}
+        public IArchiveQuery ArchiveQuery { get; set; }
+
+        public ArchiveQueryTransformer(IArchiveQuery archiveQuery)
+        {
+            ArchiveQuery = archiveQuery;
+        }
+
+
         public void QueryAndTransform(List<QueryRecord> records)
         {
             foreach(var record in records)
@@ -21,8 +31,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
                 {
                     try
                     {
-                        var query = new ArchiveQuery() { TargetUrl = record.Url };
-                        record.ArchiveUrl = query.DoQuery();
+                        ArchiveQuery.TargetUrl = record.Url;
+                        record.ArchiveUrl = ArchiveQuery.DoQuery();
                         record.ArchiveDate = ArchiveDate;
                         break;
                     }

@@ -6,16 +6,25 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.AdmissionsByAge;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.AdmissionsByAge;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.AdmissionsQueries
 {
-    public class AdmissionsByAgeQueryTransformer
+    public class AdmissionsByAgeQueryTransformer : IAdmissionsByAgeQueryTransformer
     {
         public DateTime SearchDate { get; set; }
+
+        public IAdmissionsByAgeQuery Query { get; set; }
+        public AdmissionsByAgeQueryTransformer(IAdmissionsByAgeQuery query)
+        {
+            Query = query;
+        }
+
         public Result<AdmissionsByAgeRecord> QueryAndTransform()
         {
-            var query = new AdmissionsByAgeQuery() { SearchDate = SearchDate };
-            var result = query.DoQuery();
+            Query.SearchDate = SearchDate;
+            var result = Query.DoQuery();
 
             var list = new List<AdmissionsByAgeRecord>(); 
             foreach( var item in result.Data)

@@ -7,29 +7,32 @@ using System.Collections.Generic;
 using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.AdmissionsQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.AdmissionsQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.AdmissionsByAge;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.AdmissionsQueries
 {
-    public class AdmissionsByAgeQuery : QueryBase
+    public class AdmissionsByAgeQuery : QueryBase, IAdmissionsByAgeQuery
     {
-
+        public IQuery<AdmissionsByAgeModel> Query { get; set; }
+        public AdmissionsByAgeQuery(IQuery<AdmissionsByAgeModel> query)
+        {
+            Query = query;
+        }
         public QueryResponce<AdmissionsByAgeModel> DoQuery()
         {
-            var quary = new Query<AdmissionsByAgeModel>()
-            {
-                Options = new QueryOptions()
-                {
-                    Filter = new Filter()
-                    {
-                        AreaType = new AreaType(AreaTypeMetrics.nation),
-                        AreaName = new AreaName("England")
-                    }
 
+            Query.Options = new QueryOptions()
+            {
+                Filter = new Filter()
+                {
+                    AreaType = new AreaType(AreaTypeMetrics.nation),
+                    AreaName = new AreaName("England")
                 }
+
             };
-            return quary.DoQuery();
+
+            return Query.DoQuery();
         }
 
 

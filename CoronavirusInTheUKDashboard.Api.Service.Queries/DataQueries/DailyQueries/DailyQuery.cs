@@ -8,27 +8,31 @@ using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.DailyQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.DailyQueries
 {
-    public class DailyQuery : QueryBase
+    public class DailyQuery : QueryBase, IDailyQuery
     {
+        public IQuery<DailyQueryModel> Query { get; set; }
+        public DailyQuery(IQuery<DailyQueryModel> query)
+        {
+            Query = query;
+        }
 
         public QueryResponce<DailyQueryModel> DoQuery()
         {
-            var quary = new Query<DailyQueryModel>()
+            Query.Options = new QueryOptions()
             {
-                Options = new QueryOptions()
+                Filter = new Filter()
                 {
-                    Filter = new Filter()
-                    {
-                        AreaType = new AreaType(AreaTypeMetrics.overview),
-                        Date = new DateFilter(SearchDate)
-                    }
-
+                    AreaType = new AreaType(AreaTypeMetrics.overview),
+                    Date = new DateFilter(SearchDate)
                 }
+
             };
-            return quary.DoQuery();
+            return Query.DoQuery();
         }
 
 

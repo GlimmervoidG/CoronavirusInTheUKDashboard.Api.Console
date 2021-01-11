@@ -5,10 +5,8 @@ using System.Linq;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records.Ages
 {
-    public class AdmissionsByAgeRecord
+    public class AdmissionsByAgeRecord : BaseRecord
     {
-        public string Name { get; set; }
-        public DateTime Date { get; set; }
 
         public List<AdmissionsByAgeItemRecord> Records { get; set; }
         public AdmissionsByAgeItemRecord Get0to5

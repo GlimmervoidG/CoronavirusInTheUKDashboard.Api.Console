@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,8 +16,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service
         [Option('a', "archive", Required = false,
         HelpText = "Save API requests to Archive.org. Warning, this functionality often fails.")]
         public bool UseExternalArchiveSite { get; set; }
-
-
+         
         [Option('p', "posts", Separator = ',', HelpText = "Which post should be generated....", Required = true)]
         public IEnumerable<PostTypes>  PostTypes { get; set; }
 

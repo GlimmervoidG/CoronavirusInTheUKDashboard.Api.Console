@@ -5,17 +5,23 @@ using System.Text;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
-
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries
 {
-    public class TitleTransformer
+    public class TitleTransformer: ITitleTransformer
     {
         public DateTime SearchDate { get; set; }
-        public TitleResult QueryAndTransform()
+        public IDailyQuery Query { get; set; }
+        public TitleTransformer(IDailyQuery query)
         {
-            var query = new DailyQuery() { SearchDate = SearchDate };
-            var result = query.DoQuery();
+            Query = query;
+        }
+        public Result<TitleResult> QueryAndTransform()
+        {
+            Query.SearchDate = SearchDate;
+            var result = Query.DoQuery();
 
             var records = new List<StandardRecord>();
             var relevent = result.Data.Where(d => d.Date == SearchDate).FirstOrDefault();
@@ -31,11 +37,20 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
                 {
                     Date = SearchDate,
                     Value = relevent?.Deaths?.Cumulative
-                },
-                QueryRecords = new List<QueryRecord>()
+                }, 
+                Date = SearchDate 
             };
 
-            return titleResult;
+            var list = new List<TitleResult>() { titleResult };
+
+            return new Result<TitleResult>()
+            {
+                Records = list,
+                QueryRecords = new List<QueryRecord>() {
+                    new QueryRecord() { Name = NameConstants.DailyQuery_Name, Url = result.Url }
+                }
+            };
+             
         }
     }
 }

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.DotNetWrapper\CoronavirusInTheUKDashboard.Api.DotNetWrapper.csproj" />
+    <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Models\CoronavirusInTheUKDashboard.Api.Service.Models.csproj" />
   </ItemGroup>
 
 </Project>

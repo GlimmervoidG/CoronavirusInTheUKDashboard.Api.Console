@@ -2,6 +2,7 @@
 using CoronavirusInTheUKDashboard.Api.Service.Csv;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Options;
 using CoronavirusInTheUKDashboard.Api.Service.Templating;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.AdmissionsQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries;
@@ -126,7 +127,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service
                 testingWeekendLfd = testingLfdTransformer.QueryAndTransform();
             }
 
-            var nonDailyTransformer = new NoneDailyQueryTransformer() { SearchDate = searchData };
+            var nonDailyTransformer = new NonDailyQueryTransformer() { SearchDate = searchData };
             var nonDaily = nonDailyTransformer.QueryAndTransform();
 
             var queryRecords = new List<QueryRecord>()
@@ -208,7 +209,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service
             var transform = new AdmissionsByAgeQueryTransformer() { SearchDate = searchData };
             var result = transform.QueryAndTransform();
 
-            var model = new AdmissionsByAgeModel()
+            var model = new AdmissionsByAgePostModel()
             {
                 SearchDate = searchData, 
                 AdmissionsByAge = result

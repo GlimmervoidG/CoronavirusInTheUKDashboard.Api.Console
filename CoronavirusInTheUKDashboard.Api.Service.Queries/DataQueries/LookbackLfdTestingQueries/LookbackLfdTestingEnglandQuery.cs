@@ -1,5 +1,4 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.DailyQueries;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
+﻿using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation;
 using System;
@@ -8,32 +7,33 @@ using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.LookbackEightDayQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.LookbackLfdTestingQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackLfdTestingQueries;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackLfdTestingQueries
 {
-    public class LookbackLfdTestingEnglandQuery : QueryBase
+    public class LookbackLfdTestingEnglandQuery : QueryBase, ILookbackLfdTestingEnglandQuery
     {
+        public IQuery<LookbackLfdTestingQueryModel> Query { get; set; }
+        public LookbackLfdTestingEnglandQuery(IQuery<LookbackLfdTestingQueryModel> query)
+        {
+            Query = query;
+        }
         public QueryResponce<LookbackLfdTestingQueryModel> DoQuery()
         {
             var trueSearchDate = SearchDate.AddDays(0);
             var searchDate = SearchDate.AddDays(-1);
-
-            var quary = new Query<LookbackLfdTestingQueryModel>()
+            Query.Options = new QueryOptions()
             {
-                Options = new QueryOptions()
+                Filter = new Filter()
                 {
-                    Filter = new Filter()
-                    {
-                        AreaType = new AreaType(AreaTypeMetrics.nation),
-                        AreaName = new AreaName("England"),
-                        Date = new DateFilter(searchDate)
-                    },
+                    AreaType = new AreaType(AreaTypeMetrics.nation),
+                    AreaName = new AreaName("England"),
+                    Date = new DateFilter(searchDate)
+                },
 
-                }
             };
-            return quary.DoQuery();
+            return Query.DoQuery();
         }
 
 

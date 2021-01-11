@@ -8,19 +8,28 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries.Yesterday;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries.Population;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.TrendsPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries
 {
-    public class RegionBreakdownNationalQueryTransformer : RegionBreakdownQueryTransformer
+    public class RegionBreakdownNationalQueryTransformer : RegionBreakdownQueryTransformer, IRegionBreakdownNationalQueryTransformer
     {
+        public IRegionBreakdownNationalQuery QueryToday { get; set; }
+        public IRegionBreakdownNationalYesterdayQuery QueryYesterday { get; set; }
+        public RegionBreakdownNationalQueryTransformer(IRegionBreakdownNationalQuery queryToday, IRegionBreakdownNationalYesterdayQuery queryYesterday)
+        {
+            QueryToday = queryToday;
+            QueryYesterday = queryYesterday;
+        }
 
         public Result<RegionRateRecord> QueryAndTransform()
         {
-            var queryToday = new RegionBreakdownNationalQuery() { SearchDate = SearchDate };
-            var resultToday = queryToday.DoQuery();
-             
-            var queryYesterday = new RegionBreakdownNationalYesterdayQuery() { SearchDate = SearchDate };
-            var resultYesterday = queryYesterday.DoQuery();
+            QueryToday.SearchDate = SearchDate;
+            var resultToday = QueryToday.DoQuery();
+
+            QueryYesterday.SearchDate = SearchDate;
+            var resultYesterday = QueryYesterday.DoQuery(); 
 
             QueryNameToday = NameConstants.RegionBreakdownQuery_National_Today;
             QueryNameYesterday = NameConstants.RegionBreakdownQuery_National_Yesterday;

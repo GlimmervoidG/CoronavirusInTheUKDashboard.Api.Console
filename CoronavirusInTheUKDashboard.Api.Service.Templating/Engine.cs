@@ -5,12 +5,13 @@ using RazorLight;
 using System.Linq; 
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Engines;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Templating
 {
-    public static class Engine
+    public  class Engine : IMainPostEngine, ITrendsPostEngine
     {
-        public static async Task<string> Run(TrendsPostModel model)
+        public async Task<string> Run(TrendsPostModel model)
         {
             var razorEngine = new RazorLightEngineBuilder()
              .UseEmbeddedResourcesProject(typeof(Root).Assembly, GetEmbeddedResourceNamespace("SearchTargetEmbeddedTrendsPost.txt"))
@@ -20,7 +21,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Templating
             return result;
         }
 
-        public static async Task<string> Run(MainPostModel model)
+        public async Task<string> Run(MainPostModel model)
         {
             var razorEngine = new RazorLightEngineBuilder()
              .UseEmbeddedResourcesProject(typeof(Root).Assembly, GetEmbeddedResourceNamespace("SearchTargetEmbeddedMainPost.txt"))
@@ -29,16 +30,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Templating
             var result = await razorEngine.CompileRenderAsync("OrginalPost.cshtml", model);
             return result;
         }
-        public static async Task<string> Run(AdmissionsByAgeModel model)
-        {
-            var razorEngine = new RazorLightEngineBuilder()
-             .UseEmbeddedResourcesProject(typeof(Root).Assembly, GetEmbeddedResourceNamespace("SearchTargetEmbeddedAdmissionsByAgePost.txt"))
-             .UseMemoryCachingProvider()
-             .Build();
-            var result = await razorEngine.CompileRenderAsync("AdmissionsByAgePost.cshtml", model);
-            return result;
-        }
-        private static string GetEmbeddedResourceNamespace(string searchTarget)
+
+        private string GetEmbeddedResourceNamespace(string searchTarget)
         {
             var listOfEmbeddedResources = new List<string>(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceNames());
             var target = listOfEmbeddedResources.First(r => r.Contains(searchTarget));

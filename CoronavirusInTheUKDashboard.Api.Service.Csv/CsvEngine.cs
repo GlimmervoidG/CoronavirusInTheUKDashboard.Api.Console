@@ -1,4 +1,5 @@
 ﻿using CoronavirusInTheUKDashboard.Api.Service.Csv.AdmissionsByAge;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Engines;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CsvHelper;
 using System;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Csv
 {
-    public class CsvEngine
+    public class CsvEngine : IAdmissionsByAgePostEngine
     {
-        public static string Run(AdmissionsByAgeModel model)
+        public Task<string> Run(AdmissionsByAgePostModel model)
         {
             var builder = new StringBuilder();
 
@@ -21,7 +22,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Csv
                 csv.Configuration.RegisterClassMap<AdmissionsByAgeMap>();
                 csv.WriteRecords(model.AdmissionsByAge.Records);
             } 
-            return builder.ToString();
-        }
+
+            return new Task<string>( () =>  builder.ToString()); 
+        } 
     }
 }

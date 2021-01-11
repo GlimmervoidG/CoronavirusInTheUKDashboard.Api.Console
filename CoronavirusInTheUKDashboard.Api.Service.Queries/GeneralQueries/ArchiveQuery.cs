@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Common;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.GeneralQueries
 {
-    public class ArchiveQuery
+    public class ArchiveQuery : IArchiveQuery
     {
         public string TargetUrl { get; set; } 
         public string DoQuery()

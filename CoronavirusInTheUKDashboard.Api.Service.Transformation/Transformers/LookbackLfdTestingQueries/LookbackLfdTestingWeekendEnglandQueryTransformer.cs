@@ -5,16 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackLfdTestingQueries
 {
-    public class LookbackLfdTestingWeekendEnglandQueryTransformer
+    public class LookbackLfdTestingWeekendEnglandQueryTransformer : ILookbackLfdTestingWeekendEnglandQueryTransformer
     {
         public DateTime SearchDate { get; set; }
+        public ILookbackLfdTestingWeekendEnglandQuery Query { get; set; }
+        public LookbackLfdTestingWeekendEnglandQueryTransformer(ILookbackLfdTestingWeekendEnglandQuery query)
+        {
+            Query = query;
+        }
         public Result<StandardRecord> QueryAndTransform()
         {
-            var query = new LookbackLfdTestingWeekendEnglandQuery() { SearchDate = SearchDate };
-            var result = query.DoQuery();
+            Query.SearchDate = SearchDate; 
+            var result = Query.DoQuery();
 
             var records = new List<StandardRecord>();
 

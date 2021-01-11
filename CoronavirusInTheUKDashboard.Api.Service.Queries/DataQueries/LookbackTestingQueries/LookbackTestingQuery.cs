@@ -1,5 +1,4 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.DailyQueries;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
+﻿using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation;
 using System;
@@ -7,32 +6,33 @@ using System.Collections.Generic;
 using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.LookbackEightDayQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.LookbackLfdTestingQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.LookbackTestingQueries;
+using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements; 
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackTestingQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackTestingQueries
 {
-    public class LookbackTestingQuery : QueryBase
+    public class LookbackTestingQuery : QueryBase, ILookbackTestingQuery
     {
+        public IQuery<LookbackTestingQueryModel> Query { get; set; }
+        public LookbackTestingQuery(IQuery<LookbackTestingQueryModel> query)
+        {
+            Query = query;
+        }
         public QueryResponce<LookbackTestingQueryModel> DoQuery()
         {
             var trueSearchDate = SearchDate.AddDays(0);
             var searchDate = SearchDate.AddDays(-1);
-            var quary = new Query<LookbackTestingQueryModel>()
+            Query.Options = new QueryOptions()
             {
-                Options = new QueryOptions()
+                Filter = new Filter()
                 {
-                    Filter = new Filter()
-                    {
-                        AreaType = new AreaType(AreaTypeMetrics.overview),
-                        Date = new DateFilter(searchDate)
-                    },
+                    AreaType = new AreaType(AreaTypeMetrics.overview),
+                    Date = new DateFilter(searchDate)
+                },
 
-                }
             };
-            return quary.DoQuery();
+            return Query.DoQuery();
         }
     }
 }

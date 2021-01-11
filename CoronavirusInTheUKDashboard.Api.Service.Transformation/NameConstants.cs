@@ -6,6 +6,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
 {
     public static class NameConstants
     {
+        public const string DailyQuery_Title = "Title query";
         public const string DailyQuery_Name = "Daily query";
         public const string DailyQuery_Deaths = "Deaths in all settings (death within 28 days of test)";
         public const string DailyQuery_Cases = "Positive cases (pillars 1, 2 and parts of 4)";

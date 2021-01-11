@@ -1,5 +1,4 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.DailyQueries;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
+﻿using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation;
 using System;
@@ -8,28 +7,29 @@ using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.LookbackEightDayQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.LookbackLfdTestingQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.LookbackTestingQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackTestingQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackTestingQueries
 {
-    public class LookbackTestingWeekendQuery : QueryBase
+    public class LookbackTestingWeekendQuery : QueryBase, ILookbackTestingWeekendQuery
     {
+        public IQuery<LookbackTestingQueryModel> Query { get; set; }
+        public LookbackTestingWeekendQuery(IQuery<LookbackTestingQueryModel> query)
+        {
+            Query = query;
+        }
         public QueryResponce<LookbackTestingQueryModel> DoQuery()
         {
-            var quary = new Query<LookbackTestingQueryModel>()
+            Query.Options = new QueryOptions()
             {
-                Options = new QueryOptions()
+                Filter = new Filter()
                 {
-                    Filter = new Filter()
-                    {
-                        AreaType = new AreaType(AreaTypeMetrics.overview)
-                    },
+                    AreaType = new AreaType(AreaTypeMetrics.overview)
+                },
 
-                }
             };
-            return quary.DoQuery();
+            return Query.DoQuery();
         }
     }
 }

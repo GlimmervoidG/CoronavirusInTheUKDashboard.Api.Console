@@ -5,16 +5,25 @@ using System.Text;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries
 {
-    public class DailyQueryTransformer
+    public class DailyQueryTransformer : IDailyQueryTransformer
     { 
         public DateTime SearchDate {get;set;}
+
+        public IDailyQuery Query { get; set; }
+        public DailyQueryTransformer(IDailyQuery query)
+        {
+            Query = query;
+        }
+
         public Result<StandardRecord> QueryAndTransform()
         {
-            var query = new DailyQuery() { SearchDate = SearchDate };
-            var result = query.DoQuery();
+            Query.SearchDate = SearchDate;
+            var result = Query.DoQuery();
 
             var records = new List<StandardRecord>();
             var relevent = result.Data.Where(d => d.Date == SearchDate).FirstOrDefault();

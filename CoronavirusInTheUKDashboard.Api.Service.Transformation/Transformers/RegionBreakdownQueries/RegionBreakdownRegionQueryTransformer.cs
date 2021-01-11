@@ -8,20 +8,29 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries.Yesterday;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries.Population;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.TrendsPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries
 {
-    public class RegionBreakdownRegionQueryTransformer : RegionBreakdownQueryTransformer
+    public class RegionBreakdownRegionQueryTransformer : RegionBreakdownQueryTransformer, IRegionBreakdownRegionQueryTransformer
     {
+        public IRegionBreakdownRegionalQuery QueryToday { get; set; }
+        public IRegionBreakdownRegionalYesterdayQuery QueryYesterday { get; set; }
+        public RegionBreakdownRegionQueryTransformer(IRegionBreakdownRegionalQuery queryToday, IRegionBreakdownRegionalYesterdayQuery queryYesterday)
+        {
+            QueryToday = queryToday;
+            QueryYesterday = queryYesterday;
+        }
 
         public Result<RegionRateRecord> QueryAndTransform()
         {
 
-            var queryToday = new RegionBreakdownRegionalQuery() { SearchDate = SearchDate };
-            var resultToday = queryToday.DoQuery();
+            QueryToday.SearchDate = SearchDate;
+            var resultToday = QueryToday.DoQuery();
 
-            var queryYesterday = new RegionBreakdownRegionalYesterdayQuery() { SearchDate = SearchDate };
-            var resultYesterday = queryYesterday.DoQuery();
+            QueryYesterday.SearchDate = SearchDate;
+            var resultYesterday = QueryYesterday.DoQuery();
 
             QueryNameToday = NameConstants.RegionBreakdownQuery_Region_Today;
             QueryNameYesterday = NameConstants.RegionBreakdownQuery_Region_Yesterday;

@@ -1,18 +1,23 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackEightDayQueries; 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.LookbackEightDayQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackEightDayQueries;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackEightDayQueries
 {
-    public class LookbackEightDayQueryTransformer
+    public class LookbackEightDayQueryTransformer : ILookbackEightDayQueryTransformer
     {
         public DateTime SearchDate { get; set; }
-
+        public ILookbackEightDayQuery Query { get; set; }
+        public LookbackEightDayQueryTransformer(ILookbackEightDayQuery query)
+        {
+            Query = query;
+        }
 
         private List<DateTime> GetWindow()
         {
@@ -25,10 +30,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             }
             return list;
         }
-        public SummationResult QueryAndTransform()
+        public Result<SummationResult> QueryAndTransform()
         {
-            var query = new LookbackEightDayQuery() { SearchDate = SearchDate };
-            var result = query.DoQuery();
+            Query.SearchDate = SearchDate;
+            var result = Query.DoQuery();
 
             var cases = new List<SimpleRecord>(); 
             var deaths = new List<SimpleRecord>();  
@@ -191,11 +196,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             deathsPercentageIncrease = deathsPercentageIncrease.OrderBy(r => r.Date).ToList();
             positivityRate = positivityRate.OrderBy(r => r.Date).ToList();
 
-            return new SummationResult()
-            {
-                QueryRecords = new List<QueryRecord>() {
-                    new QueryRecord() { Name = NameConstants.LookbackEightDayQuery_Name, Url = result.Url }
-                },
+            var summationResult =  new SummationResult()
+            {  
+                Date = SearchDate,
                 Cases = cases,
                 Deaths = deaths,
                 CasesPercentageIncrease = casesPercentageIncrease,
@@ -216,6 +219,16 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 DeathsChange = deathsChange,
                 DeathsPercentageIncreaseChange = deathsPercentageIncreaseChange,
                 PositivityRateChange = positivityRateChange,
+            };
+
+            var list = new List<SummationResult>() { summationResult };
+
+            return new Result<SummationResult>()
+            {
+                Records = list,
+                QueryRecords = new List<QueryRecord>() {
+                    new QueryRecord() { Name = NameConstants.LookbackEightDayQuery_Name, Url = result.Url }
+                }
             };
         }
 
