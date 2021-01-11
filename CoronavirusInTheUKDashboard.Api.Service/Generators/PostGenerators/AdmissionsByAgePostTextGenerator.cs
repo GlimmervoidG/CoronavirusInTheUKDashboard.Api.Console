@@ -18,6 +18,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.PostGenerators
 
         public string GeneratePostText(AdmissionsByAgePostModel model)
         {
+
             var text = PostEngine.Run(model).Result;
             return text;
         }

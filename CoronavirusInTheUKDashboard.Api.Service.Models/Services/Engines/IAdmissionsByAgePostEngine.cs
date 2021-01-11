@@ -8,6 +8,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Engines
 {
     public interface IAdmissionsByAgePostEngine
     {
-        Task<string> Run(AdmissionsByAgePostModel model);
+         Task<string> Run(AdmissionsByAgePostModel model);
     }
 }

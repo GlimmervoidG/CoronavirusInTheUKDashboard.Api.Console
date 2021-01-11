@@ -9,7 +9,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Queries.GeneralQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Common;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.ArchiveQueries
 {
     public class ArchiveQueryTransformer : IArchiveTransformer
     { 

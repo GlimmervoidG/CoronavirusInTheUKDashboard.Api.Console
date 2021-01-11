@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost
 {
-    public interface INoneDailyQueryTransformer : IQueryTransformer<IrregularRecord>
+    public interface INonDailyQueryTransformer : IQueryTransformer<IrregularRecord>
     {
     }
 }

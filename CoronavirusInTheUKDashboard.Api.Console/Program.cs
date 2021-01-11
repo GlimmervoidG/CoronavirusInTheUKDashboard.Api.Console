@@ -7,7 +7,7 @@ namespace CoronavirusInTheUKDashboard.Api.Console
     {
         static void Main(string[] args)
         {
-            Generator.GeneratePosts(args);
+            GeneratorService.Run(args);
         }
     }
 }

@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service
+namespace CoronavirusInTheUKDashboard.Api.Service.Options
 {
-    public class GeneratorOptions
+    public class CommandLineOptions
     {
 
         [Option('d', "date", Required = false,

@@ -34,7 +34,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 
         public ILookbackLfdTestingWeekendEnglandQueryTransformer LookbackLfdTestingWeekendEnglandQueryTransformer  { get; set; }
 
-        public INoneDailyQueryTransformer NoneDailyQueryTransformer { get; set; }
+        public INonDailyQueryTransformer NoneDailyQueryTransformer { get; set; }
 
         public IArchiveTransformer ArchiveQueryTransformer { get; set; }
 
@@ -47,7 +47,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             ILookbackLfdTestingEnglandQueryTransformer lookbackLfdTestingEnglandQueryTransformer, 
             ILookbackTestingWeekendQueryTransformer lookbackTestingWeekendQueryTransformer, 
             ILookbackLfdTestingWeekendEnglandQueryTransformer lookbackLfdTestingWeekendEnglandQueryTransformer, 
-            INoneDailyQueryTransformer noneDailyQueryTransformer,
+            INonDailyQueryTransformer noneDailyQueryTransformer,
             IArchiveTransformer archiveQueryTransformer)
         {
             Option = option;

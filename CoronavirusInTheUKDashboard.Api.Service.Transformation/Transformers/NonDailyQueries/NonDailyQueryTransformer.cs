@@ -12,7 +12,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.NonDailyQueries
 {
-   public class NonDailyQueryTransformer : INoneDailyQueryTransformer
+   public class NonDailyQueryTransformer : INonDailyQueryTransformer
     {
         public DateTime SearchDate { get; set; }
         public INonDailyQuery Query { get; set; }
@@ -50,7 +50,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.No
             records.Add(GetRecord(NameConstants.NoneDailyQuery_TotalFirstDose, weeklyFirstDose, weeklyFirstDose?.WeeklyFirstDose));
             records.Add(GetRecord(NameConstants.NoneDailyQuery_WeeklyFirstDose, totalFirstDose, totalFirstDose?.TotalFirstDose));
 
-
+            records = records.Where(r => r != null).ToList();
             records = records.OrderByDescending(r => r.Date).ToList();
              
             return new Result<IrregularRecord>()

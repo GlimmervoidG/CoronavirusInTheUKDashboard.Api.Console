@@ -11,7 +11,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 {
-    public class TrendsPostGenerator : IModelGenerator<TrendsPostModel>
+    public class TrendsPostModelGenerator : IModelGenerator<TrendsPostModel>
     {
         public IOptions Option { get; set; }
 
@@ -25,7 +25,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
         public IArchiveTransformer ArchiveQueryTransformer { get; set; }
 
 
-        public TrendsPostGenerator(
+        public TrendsPostModelGenerator(
             IOptions option,
             ILookbackEightDayQueryTransformer lookbackEightDayQueryTransformer,
             IRegionBreakdownOverviewQueryTransformer regionBreakdownOverviewQueryTransformer,

@@ -6,7 +6,6 @@ using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.RegionBreakdownQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries.Population;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.RegionBreakdownQueries;

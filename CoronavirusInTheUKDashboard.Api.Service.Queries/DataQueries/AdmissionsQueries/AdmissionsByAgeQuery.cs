@@ -1,5 +1,4 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Queries.Models.DailyQueries;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
+﻿using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation;
 using System;

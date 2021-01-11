@@ -12,7 +12,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Csv
 {
     public class CsvEngine : IAdmissionsByAgePostEngine
     {
-        public Task<string> Run(AdmissionsByAgePostModel model)
+        public async Task<string> Run(AdmissionsByAgePostModel model)
         {
             var builder = new StringBuilder();
 
@@ -23,7 +23,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Csv
                 csv.WriteRecords(model.AdmissionsByAge.Records);
             } 
 
-            return new Task<string>( () =>  builder.ToString()); 
+            return builder.ToString(); 
         } 
     }
 }
