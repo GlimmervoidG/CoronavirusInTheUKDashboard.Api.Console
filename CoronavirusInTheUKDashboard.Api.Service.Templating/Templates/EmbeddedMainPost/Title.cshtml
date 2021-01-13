@@ -20,17 +20,13 @@ else
 }
 @if (Model.Title.TotalDeaths.Value.HasValue)
 {
-    <text> @HelperFunctions.Format(Model.Title.TotalDeaths.Value) have died within 28 days of a positive test,</text>
+    <text> and @HelperFunctions.Format(Model.Title.TotalDeaths.Value) have died within 28 days of a positive test.</text>
 }
 else
 {
-    <text> the number of people who have died hasn't been updated yet.</text>
+    <text> and the number of people who have died hasn't been updated yet.</text>
 }
 @if (Model.Title.TotalVaccines.Value.HasValue)
 {
-    <text> and @HelperFunctions.Format(Model.Title.TotalVaccines.Value) have received a first dose of vaccine.</text>
-}
-else
-{
-    <text> and the number of people vaccinated hasn't been updated yet.</text>
+    <text> As of yesterday, @HelperFunctions.Format(Model.Title.TotalVaccines.Value) have received a first dose of vaccine.</text>
 }

@@ -6,8 +6,8 @@ using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Admiss
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.ArchiveQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackEightDayQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackLfdTestingQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackTestingQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.NonDailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,10 +31,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
             services.AddTransient<IDailyQueryTransformer, DailyQueryTransformer>();
             services.AddTransient<ITitleTransformer, TitleTransformer>();
             services.AddTransient<ILookbackEightDayQueryTransformer, LookbackEightDayQueryTransformer>();
-            services.AddTransient<ILookbackLfdTestingEnglandQueryTransformer, LookbackLfdTestingEnglandQueryTransformer>();
-            services.AddTransient<ILookbackLfdTestingWeekendEnglandQueryTransformer, LookbackLfdTestingWeekendEnglandQueryTransformer>();
-            services.AddTransient<ILookbackTestingQueryTransformer, LookbackTestingQueryTransformer>();
-            services.AddTransient<ILookbackTestingWeekendQueryTransformer, LookbackTestingWeekendQueryTransformer>();
+            services.AddTransient<ILookbackEnglandQueryTransformer, LookbackEnglandQueryTransformer>();
+            services.AddTransient<ILookbackWeekendEnglandQueryTransformer, LookbackWeekendEnglandQueryTransformer>();
+            services.AddTransient<ILookbackQueryTransformer, LookbackQueryTransformer>();
+            services.AddTransient<ILookbackWeekendQueryTransformer, LookbackWeekendQueryTransformer>();
             services.AddTransient<INonDailyQueryTransformer, NonDailyQueryTransformer>();
             services.AddTransient<IRegionBreakdownNationalQueryTransformer, RegionBreakdownNationalQueryTransformer>();
             services.AddTransient<IRegionBreakdownOverviewQueryTransformer, RegionBreakdownOverviewQueryTransformer>();

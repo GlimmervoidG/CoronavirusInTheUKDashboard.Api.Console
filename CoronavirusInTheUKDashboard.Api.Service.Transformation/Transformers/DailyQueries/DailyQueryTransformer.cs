@@ -30,9 +30,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
 
             records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_Deaths, Date = TargetDate, Daily = relevent?.Deaths?.Daily, Cumulative = relevent?.Deaths?.Cumulative });
             records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_Cases, Date = TargetDate, Daily = relevent?.Cases?.Daily, Cumulative = relevent?.Cases?.Cumulative });
-            records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_FirstDose, Date = TargetDate, Daily = relevent?.FirstDose?.Daily, Cumulative = relevent?.FirstDose?.Cumulative });
-            records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_SecondDose, Date = TargetDate, Daily = relevent?.SecondDose?.Daily, Cumulative = relevent?.SecondDose?.Cumulative });
-
+   
             return new Result<StandardRecord>() { 
                 Records = records, 
                 QueryRecords = new List<QueryRecord>() { 

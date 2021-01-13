@@ -8,8 +8,8 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackEightDayQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackLfdTestingQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackTestingQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries;
 using System;
 using System.Collections.Generic;
@@ -26,13 +26,13 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 
         public IDailyQueryTransformer DailyQueryTransformer  { get; set; }
 
-        public ILookbackTestingQueryTransformer LookbackTestingQueryTransformer  { get; set; }
+        public ILookbackQueryTransformer LookbackQueryTransformer  { get; set; }
 
-        public ILookbackLfdTestingEnglandQueryTransformer LookbackLfdTestingEnglandQueryTransformer  { get; set; }
+        public ILookbackEnglandQueryTransformer LookbackEnglandQueryTransformer  { get; set; }
 
-        public ILookbackTestingWeekendQueryTransformer LookbackTestingWeekendQueryTransformer  { get; set; }
+        public ILookbackWeekendQueryTransformer LookbackWeekendQueryTransformer  { get; set; }
 
-        public ILookbackLfdTestingWeekendEnglandQueryTransformer LookbackLfdTestingWeekendEnglandQueryTransformer  { get; set; }
+        public ILookbackWeekendEnglandQueryTransformer LookbackWeekendEnglandQueryTransformer  { get; set; }
 
         public INonDailyQueryTransformer NoneDailyQueryTransformer { get; set; }
 
@@ -43,20 +43,20 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             IOptions option, 
             ITitleTransformer titleTransformer, 
             IDailyQueryTransformer dailyQueryTransformer, 
-            ILookbackTestingQueryTransformer lookbackTestingQueryTransformer, 
-            ILookbackLfdTestingEnglandQueryTransformer lookbackLfdTestingEnglandQueryTransformer, 
-            ILookbackTestingWeekendQueryTransformer lookbackTestingWeekendQueryTransformer, 
-            ILookbackLfdTestingWeekendEnglandQueryTransformer lookbackLfdTestingWeekendEnglandQueryTransformer, 
+            ILookbackQueryTransformer lookbackQueryTransformer, 
+            ILookbackEnglandQueryTransformer lookbackEnglandQueryTransformer, 
+            ILookbackWeekendQueryTransformer lookbackWeekendQueryTransformer, 
+            ILookbackWeekendEnglandQueryTransformer lookbackWeekendEnglandQueryTransformer, 
             INonDailyQueryTransformer noneDailyQueryTransformer,
             IArchiveTransformer archiveQueryTransformer)
         {
             Option = option;
             TitleTransformer = titleTransformer;
             DailyQueryTransformer = dailyQueryTransformer;
-            LookbackTestingQueryTransformer = lookbackTestingQueryTransformer;
-            LookbackLfdTestingEnglandQueryTransformer = lookbackLfdTestingEnglandQueryTransformer;
-            LookbackTestingWeekendQueryTransformer = lookbackTestingWeekendQueryTransformer;
-            LookbackLfdTestingWeekendEnglandQueryTransformer = lookbackLfdTestingWeekendEnglandQueryTransformer;
+            LookbackQueryTransformer = lookbackQueryTransformer;
+            LookbackEnglandQueryTransformer = lookbackEnglandQueryTransformer;
+            LookbackWeekendQueryTransformer = lookbackWeekendQueryTransformer;
+            LookbackWeekendEnglandQueryTransformer = lookbackWeekendEnglandQueryTransformer;
             NoneDailyQueryTransformer = noneDailyQueryTransformer;
             ArchiveQueryTransformer = archiveQueryTransformer;
         }
@@ -80,22 +80,22 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             Result<StandardRecord> testingLfd = null;
             if (normalDays.Contains(searchData.DayOfWeek))
             {
-                LookbackTestingQueryTransformer.TargetDate = searchData;
-                testing = LookbackTestingQueryTransformer.QueryAndTransform();
+                LookbackQueryTransformer.TargetDate = searchData;
+                testing = LookbackQueryTransformer.QueryAndTransform();
 
-                LookbackLfdTestingEnglandQueryTransformer.TargetDate = searchData;
-                testingLfd = LookbackLfdTestingEnglandQueryTransformer.QueryAndTransform(); 
+                LookbackEnglandQueryTransformer.TargetDate = searchData;
+                testingLfd = LookbackEnglandQueryTransformer.QueryAndTransform(); 
             }
 
             Result<StandardRecord> testingWeekend = null;
             Result<StandardRecord> testingWeekendLfd = null;
             if (catchUpDays.Contains(searchData.DayOfWeek))
             {
-                LookbackTestingWeekendQueryTransformer.TargetDate = searchData;
-                testingWeekend = LookbackTestingWeekendQueryTransformer.QueryAndTransform();
+                LookbackWeekendQueryTransformer.TargetDate = searchData;
+                testingWeekend = LookbackWeekendQueryTransformer.QueryAndTransform();
 
-                LookbackLfdTestingWeekendEnglandQueryTransformer.TargetDate = searchData;
-                testingWeekendLfd = LookbackLfdTestingWeekendEnglandQueryTransformer.QueryAndTransform(); 
+                LookbackWeekendEnglandQueryTransformer.TargetDate = searchData;
+                testingWeekendLfd = LookbackWeekendEnglandQueryTransformer.QueryAndTransform(); 
             }
 
             NoneDailyQueryTransformer.TargetDate = searchData;
@@ -121,10 +121,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
                 TargetDate = searchData,
                 Title = title.Records.First(),
                 DailyResult = daily,
-                LookbackTestingResult = testing,
-                LookbackTestingWeekendResult = testingWeekend,
-                LookbackLfdTestingEnglandResult = testingLfd,
-                LookbackLfdTestingWeekendEnglandResult = testingWeekendLfd,
+                LookbackResult = testing,
+                LookbackWeekendResult = testingWeekend,
+                LookbackEnglandResult = testingLfd,
+                LookbackWeekendEnglandResult = testingWeekendLfd,
                 NoneDailyQueryResult = nonDaily,
                 ArchiveInformation = queryRecords
             };

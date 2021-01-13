@@ -14,17 +14,22 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
     {
         public DateTime TargetDate { get; set; }
         public IDailyQuery Query { get; set; }
-        public TitleTransformer(IDailyQuery query)
+        public ILookbackQuery LookbackQuery { get; set; }
+        public TitleTransformer(IDailyQuery query, ILookbackQuery lookbackQuery)
         {
             Query = query;
+            LookbackQuery = lookbackQuery;
         }
         public Result<TitleResult> QueryAndTransform()
         {
             Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 
-            var records = new List<StandardRecord>();
+            LookbackQuery.TargetDate = TargetDate;
+            var yesterdayResult = LookbackQuery.DoQuery();
+
             var relevent = result.Data.Where(d => d.Date == TargetDate).FirstOrDefault();
+            var yesterdayRelevent = yesterdayResult.Data.Where(d => d.Date == TargetDate.AddDays(-1).Date).FirstOrDefault();
 
             var titleResult = new TitleResult()
             {
@@ -41,7 +46,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
                 TotalVaccines = new SimpleRecord()
                 {
                     Date = TargetDate,
-                    Value = relevent?.FirstDose?.Cumulative
+                    Value = yesterdayRelevent?.FirstDose?.Cumulative
                 },
                 Date = TargetDate 
             };

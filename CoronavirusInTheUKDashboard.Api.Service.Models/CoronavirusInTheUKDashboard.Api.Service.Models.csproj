@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Transformers\Common\" />
+    <Compile Remove="Services\Transformers\Common\**" />
+    <EmbeddedResource Remove="Services\Transformers\Common\**" />
+    <None Remove="Services\Transformers\Common\**" />
   </ItemGroup>
 
   <ItemGroup>

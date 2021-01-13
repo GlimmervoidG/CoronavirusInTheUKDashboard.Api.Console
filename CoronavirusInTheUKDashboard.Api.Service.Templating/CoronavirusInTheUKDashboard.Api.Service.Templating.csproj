@@ -7,8 +7,8 @@
   <ItemGroup>
     <None Remove="Templates\EmbeddedMainPost\Archive.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\Daily.cshtml" />
-    <None Remove="Templates\EmbeddedMainPost\LookbackTesting.cshtml" />
-    <None Remove="Templates\EmbeddedMainPost\LookbackTestingWeekend.cshtml" />
+    <None Remove="Templates\EmbeddedMainPost\Lookback.cshtml" />
+    <None Remove="Templates\EmbeddedMainPost\LookbackWeekend.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\NoneDaily.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\OrginalPost.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\SearchTargetEmbeddedMainPost.txt" />
@@ -20,8 +20,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Templates\EmbeddedMainPost\Archive.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\Daily.cshtml" />
-    <EmbeddedResource Include="Templates\EmbeddedMainPost\LookbackTesting.cshtml" />
-    <EmbeddedResource Include="Templates\EmbeddedMainPost\LookbackTestingWeekend.cshtml" />
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\Lookback.cshtml" />
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\LookbackWeekend.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\NoneDaily.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\OrginalPost.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\SearchTargetEmbeddedMainPost.txt" />

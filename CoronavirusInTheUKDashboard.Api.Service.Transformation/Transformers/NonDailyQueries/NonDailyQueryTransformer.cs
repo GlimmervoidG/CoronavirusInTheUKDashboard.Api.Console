@@ -37,8 +37,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.No
             var patientsAdmitted = filteredResults.FirstOrDefault(d => d.PatientsAdmitted.HasValue);
             var weeklyOnsDeaths = filteredResults.FirstOrDefault(d => d.WeeklyOnsDeaths.HasValue);
             var totalOnsDeaths = filteredResults.FirstOrDefault(d => d.TotalOnsDeaths.HasValue);
-            //var weeklyFirstDose = filteredResults.FirstOrDefault(d => d.WeeklyFirstDose.HasValue);
-            //var totalFirstDose = filteredResults.FirstOrDefault(d => d.TotalFirstDose.HasValue);
+            var weeklyFirstDose = filteredResults.FirstOrDefault(d => d.WeeklyFirstDose.HasValue);
+            var totalFirstDose = filteredResults.FirstOrDefault(d => d.TotalFirstDose.HasValue);
+            var weeklySecondDose = filteredResults.FirstOrDefault(d => d.WeeklySecondDose.HasValue);
+            var totalSecondDose = filteredResults.FirstOrDefault(d => d.TotalSecondDose.HasValue);
 
             records.Add(GetRecord(NameConstants.NoneDailyQuery_Capacity, capacity, capacity?.Capacity));
             records.Add(GetRecord(NameConstants.NoneDailyQuery_CapacityPCR, capacityPCR, capacityPCR?.CapacityPCR));
@@ -47,8 +49,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.No
             records.Add(GetRecord(NameConstants.NoneDailyQuery_PatientsAdmitted, patientsAdmitted, patientsAdmitted?.PatientsAdmitted));
             records.Add(GetRecord(NameConstants.NoneDailyQuery_WeeklyOnsDeaths, weeklyOnsDeaths, weeklyOnsDeaths?.WeeklyOnsDeaths));
             records.Add(GetRecord(NameConstants.NoneDailyQuery_TotalOnsDeaths, totalOnsDeaths, totalOnsDeaths?.TotalOnsDeaths));
-            //records.Add(GetRecord(NameConstants.NoneDailyQuery_TotalFirstDose, weeklyFirstDose, weeklyFirstDose?.WeeklyFirstDose));
-            //records.Add(GetRecord(NameConstants.NoneDailyQuery_WeeklyFirstDose, totalFirstDose, totalFirstDose?.TotalFirstDose));
+            records.Add(GetRecord(NameConstants.NoneDailyQuery_WeeklyFirstDose, weeklyFirstDose, weeklyFirstDose?.WeeklyFirstDose));
+            records.Add(GetRecord(NameConstants.NoneDailyQuery_TotalFirstDose, totalFirstDose, totalFirstDose?.TotalFirstDose));
+            records.Add(GetRecord(NameConstants.NoneDailyQuery_WeeklySecondDose, weeklySecondDose, weeklySecondDose?.WeeklySecondDose));
+            records.Add(GetRecord(NameConstants.NoneDailyQuery_TotalSecondDose, totalSecondDose, totalSecondDose?.TotalSecondDose));
 
             records = records.Where(r => r != null).ToList();
             records = records.OrderByDescending(r => r.Date).ToList();

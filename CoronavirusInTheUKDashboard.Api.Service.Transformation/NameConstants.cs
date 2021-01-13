@@ -10,21 +10,23 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
         public const string DailyQuery_Name = "Daily query";
         public const string DailyQuery_Deaths = "Deaths in all settings (death within 28 days of test)";
         public const string DailyQuery_Cases = "Positive cases (pillars 1, 2 and parts of 4)";
-        public const string DailyQuery_FirstDose = "People who have received vaccinations (First Dose)";
-        public const string DailyQuery_SecondDose = "People who have received vaccinations (Second Dose)";
 
-        public const string LookbackTestingQuery_Name = "Testing Lookback query";
-        public const string LookbackTestingQuery_Lfd_Name = "Testing Lookback query (England)";
-        public const string LookbackTestingQuery_Weekend_Name = "Weekend Lookback query";
-        public const string LookbackTestingQuery_Weekend_Lfd_Name = "Weekend Lookback query (England)";
+        public const string LookbackQuery_Name = "Lookback query";
+        public const string LookbackQuery_Lfd_Name = "Lookback query (England)";
+        public const string LookbackQuery_Weekend_Name = "Weekend Lookback query";
+        public const string LookbackQuery_Weekend_Lfd_Name = "Weekend Lookback query (England)";
 
-        public const string LookbackTestingQuery_Pillar1 = "Pillar 1 all tests processed";
-        public const string LookbackTestingQuery_Pillar2 = "Pillar 2 all tests processed";
-        public const string LookbackTestingQuery_Pillar3 = "Pillar 3 all tests processed";
-        public const string LookbackTestingQuery_Pillar4 = "Pillar 4 all tests processed";
-        public const string LookbackTestingQuery_PillarAll = "All tests processed (pillars 1 to 4)";
-        public const string LookbackTestingQuery_PcrTests = "All PCR tests processed (pillars 1, most of 2 and parts of 4)";
-        public const string LookbackTestingQuery_LfdTests = "Lateral flow device tests conducted (England only)";
+        public const string LookbackQuery_Pillar1 = "Pillar 1 all tests processed";
+        public const string LookbackQuery_Pillar2 = "Pillar 2 all tests processed";
+        public const string LookbackQuery_Pillar3 = "Pillar 3 all tests processed";
+        public const string LookbackQuery_Pillar4 = "Pillar 4 all tests processed";
+        public const string LookbackQuery_PillarAll = "All tests processed (pillars 1 to 4)";
+        public const string LookbackQuery_PcrTests = "All PCR tests processed (pillars 1, most of 2 and parts of 4)";
+        public const string LookbackQuery_LfdTests = "Lateral flow device tests conducted (England only)";
+
+        public const string LookbackQuery_FirstDose = "People who have received vaccinations (First Dose)";
+        public const string LookbackQuery_SecondDose = "People who have received vaccinations (Second Dose)";
+
 
         public const string NoneDailyQuery_Name = "Non daily query";
         public const string NoneDailyQuery_Capacity = "Testing capacity (all pillars)";
@@ -34,8 +36,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
         public const string NoneDailyQuery_PatientsAdmitted = "Patients admitted";
         public const string NoneDailyQuery_WeeklyOnsDeaths = "Deaths with COVID-19 on the death certificate in the last week";
         public const string NoneDailyQuery_TotalOnsDeaths = "Deaths with COVID-19 on the death certificate total";
-        public const string NoneDailyQuery_TotalFirstDose = "First dose vaccinations in the last week";
-        public const string NoneDailyQuery_WeeklyFirstDose = "First dose vaccinations total";
+        public const string NoneDailyQuery_WeeklyFirstDose = "First dose vaccinations in the last week";
+        public const string NoneDailyQuery_TotalFirstDose = "First dose vaccinations total";
+        public const string NoneDailyQuery_WeeklySecondDose = "Second dose vaccinations in the last week";
+        public const string NoneDailyQuery_TotalSecondDose = "Second dose vaccinations total";
 
         public const string LookbackEightDayQuery_Name = "Eight day lookback query";
 

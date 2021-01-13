@@ -22,14 +22,14 @@ await IncludeAsync("Daily", Model);
 > -----
 >  
  
-@if (Model.LookbackTestingResult != null)
+@if (Model.LookbackResult != null)
 {
-await IncludeAsync("LookbackTesting", Model); 
+await IncludeAsync("Lookback", Model); 
 }
 
-@if (Model.LookbackTestingWeekendResult != null)
+@if (Model.LookbackWeekendResult != null)
 {
-await IncludeAsync("LookbackTestingWeekend", Model); 
+await IncludeAsync("LookbackWeekend", Model); 
 }
  
 >

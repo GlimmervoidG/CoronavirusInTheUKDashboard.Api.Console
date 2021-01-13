@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.DailyQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackQueries
 {
-    public class DailyQueryModel : BaseModel
-    { 
-        
+    public class LookbackEnglandQueryModel : BaseModel
+    {
+
         [StructureMetric(StructureMetrics.date)]
         public DateTime Date { get; set; }
 
@@ -19,11 +19,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.DailyQue
         public string Code { get; set; }
 
         [Structure]
-        public DailyQueryCasesModel Cases { get; set; }
+        public LookbacEnglandQueryLfdTestsModel LfdTests { get; set; }
 
-        [Structure]
-        public DailyQueryDeathsModel Deaths { get; set; }
-         
 
     }
 }
