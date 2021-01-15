@@ -10,6 +10,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueri
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries.Population;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.TrendsPost;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.TrendsPost;
+using Microsoft.Extensions.Logging;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries
 {
@@ -17,14 +18,18 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
     {
         public IRegionBreakdownNationalQuery QueryToday { get; set; }
         public IRegionBreakdownNationalYesterdayQuery QueryYesterday { get; set; }
-        public RegionBreakdownNationalQueryTransformer(IRegionBreakdownNationalQuery queryToday, IRegionBreakdownNationalYesterdayQuery queryYesterday)
+        public ILogger<RegionBreakdownNationalQueryTransformer> Logger { get; set; }
+        public RegionBreakdownNationalQueryTransformer(IRegionBreakdownNationalQuery queryToday, IRegionBreakdownNationalYesterdayQuery queryYesterday,
+            ILogger<RegionBreakdownNationalQueryTransformer> logger)
         {
             QueryToday = queryToday;
             QueryYesterday = queryYesterday;
+            Logger = logger;
         }
 
         public Result<RegionRateRecord> QueryAndTransform()
         {
+            Logger.LogInformation($"Running Query and transform.");
             QueryToday.TargetDate = TargetDate;
             var resultToday = QueryToday.DoQuery();
 

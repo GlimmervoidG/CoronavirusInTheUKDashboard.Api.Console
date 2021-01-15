@@ -100,6 +100,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service
 
             serviceOptions.TrueDateTime = trueNow;
             serviceOptions.UseExternalArchiveSite = options.UseExternalArchiveSite;
+            serviceOptions.ArchiveRetries = options.ArchiveRetries;
             return serviceOptions;
         }
 

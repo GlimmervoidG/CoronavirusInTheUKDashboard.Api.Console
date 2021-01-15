@@ -11,6 +11,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lookba
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
         public INonDailyQueryTransformer NoneDailyQueryTransformer { get; set; }
 
         public IArchiveTransformer ArchiveQueryTransformer { get; set; }
+        private ILogger<MainPostModelGenerator> Logger { get; set; }
 
 
         public MainPostModelGenerator(
@@ -48,7 +50,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             ILookbackWeekendQueryTransformer lookbackWeekendQueryTransformer, 
             ILookbackWeekendEnglandQueryTransformer lookbackWeekendEnglandQueryTransformer, 
             INonDailyQueryTransformer noneDailyQueryTransformer,
-            IArchiveTransformer archiveQueryTransformer)
+            IArchiveTransformer archiveQueryTransformer,
+            ILogger<MainPostModelGenerator> logger)
         {
             Option = option;
             TitleTransformer = titleTransformer;
@@ -59,6 +62,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             LookbackWeekendEnglandQueryTransformer = lookbackWeekendEnglandQueryTransformer;
             NoneDailyQueryTransformer = noneDailyQueryTransformer;
             ArchiveQueryTransformer = archiveQueryTransformer;
+            Logger = logger;
         }
 
         public MainPostModel GenerateModel()

@@ -8,6 +8,8 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.GeneralQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Common;
+using Microsoft.Extensions.Logging;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Options;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.ArchiveQueries
 {
@@ -15,19 +17,32 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Ar
     { 
         public DateTime ArchiveDate {get;set;}
         public IArchiveQuery ArchiveQuery { get; set; }
+        public IOptions Options { get; set; }
+        ILogger<ArchiveQueryTransformer> Logger { get; set; }
 
-        public ArchiveQueryTransformer(IArchiveQuery archiveQuery)
+        public ArchiveQueryTransformer(
+            IArchiveQuery archiveQuery,
+            IOptions options,
+            ILogger<ArchiveQueryTransformer> logger)
         {
             ArchiveQuery = archiveQuery;
+            Options = options;
+            Logger = logger;
         }
-
 
         public void QueryAndTransform(List<QueryRecord> records)
         {
-            foreach(var record in records)
+            Logger.LogInformation($"Running Query and transform.");
+            var recordIndex = 0;
+            var recordCount = records.Count;
+            var archiveRetries = Math.Max(1, Options.ArchiveRetries);
+       
+            foreach (var record in records)
             {
+                recordIndex++;
+                Logger.LogInformation($"Archiving page {recordIndex} of {recordCount}");
 
-                for(int i=0; i < 5; i++)
+                for (int i=1; i <= archiveRetries; i++)
                 {
                     try
                     {
@@ -38,7 +53,13 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Ar
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Attempt {i} of 5 failed: {ex}");
+                        if (i < archiveRetries)
+                        {
+                            Logger.LogWarning(ex, $"Problem archiving page {recordIndex}. Making attempt {i+1} of {archiveRetries}.");
+                        } else 
+                        {
+                            Logger.LogWarning(ex, $"Problem archiving page {recordIndex}. Retries exceeded. Skipping archive attempt for this page.");
+                        } 
                     }
                 }
 

@@ -8,6 +8,7 @@ using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.AdmissionsByAge;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.AdmissionsByAge;
+using Microsoft.Extensions.Logging;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.AdmissionsQueries
 {
@@ -16,13 +17,19 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Ad
         public DateTime TargetDate { get; set; }
 
         public IAdmissionsByAgeQuery Query { get; set; }
-        public AdmissionsByAgeQueryTransformer(IAdmissionsByAgeQuery query)
+        ILogger<AdmissionsByAgeQueryTransformer> Logger { get; set; }
+        public AdmissionsByAgeQueryTransformer(
+            IAdmissionsByAgeQuery query,
+            ILogger<AdmissionsByAgeQueryTransformer> logger
+            )
         {
             Query = query;
+            Logger = logger;
         }
 
         public Result<AdmissionsByAgeRecord> QueryAndTransform()
         {
+            Logger.LogInformation($"Running Query and transform.");
             Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 

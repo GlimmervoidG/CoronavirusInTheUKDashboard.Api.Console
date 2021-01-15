@@ -9,6 +9,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Options
         DateTime TargetDate { get; }
         DateTime TrueDateTime { get; }
         bool UseExternalArchiveSite { get; }
+        int ArchiveRetries { get; set; }
 
         string DirectoryOutput { get;}
 

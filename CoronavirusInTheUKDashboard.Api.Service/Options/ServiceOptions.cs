@@ -13,6 +13,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Options
 
         public bool UseExternalArchiveSite { get; set; }
 
+        public int ArchiveRetries { get; set; }
+
         public string DirectoryOutput { get; set; }
 
         public string FileName { get; set; }

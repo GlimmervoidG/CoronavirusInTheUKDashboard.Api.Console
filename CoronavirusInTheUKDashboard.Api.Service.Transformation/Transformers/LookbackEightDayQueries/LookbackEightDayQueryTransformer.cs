@@ -7,6 +7,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.TrendsPost;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.TrendsPost;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackEightDayQueries;
+using Microsoft.Extensions.Logging;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackEightDayQueries
 {
@@ -14,9 +15,12 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
     {
         public DateTime TargetDate { get; set; }
         public ILookbackEightDayQuery Query { get; set; }
-        public LookbackEightDayQueryTransformer(ILookbackEightDayQuery query)
+        ILogger<LookbackEightDayQueryTransformer> Logger { get; set; }
+        public LookbackEightDayQueryTransformer(ILookbackEightDayQuery query,
+            ILogger<LookbackEightDayQueryTransformer> logger)
         {
             Query = query;
+            Logger = logger;
         }
 
         private List<DateTime> GetWindow()
@@ -32,6 +36,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
         }
         public Result<SummationResult> QueryAndTransform()
         {
+            Logger.LogInformation($"Running Query and transform.");
             Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 

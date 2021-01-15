@@ -16,6 +16,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Options
         [Option('a', "archive", Required = false,
         HelpText = "Save API requests to Archive.org. Warning, this functionality often fails.")]
         public bool UseExternalArchiveSite { get; set; }
+
+        [Option('r', "archiveretries", Required = false, Default = 5,
+        HelpText = "How many retries when using external archiving.")]
+        public int ArchiveRetries { get; set; }
+
          
         [Option('p', "posts", Separator = ',', HelpText = "Which post should be generated....", Required = true)]
         public IEnumerable<PostTypes>  PostTypes { get; set; }

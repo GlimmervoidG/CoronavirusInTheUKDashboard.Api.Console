@@ -8,6 +8,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Options;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
+using Microsoft.Extensions.Logging;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 {
@@ -23,6 +24,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 
         public IRegionBreakdownRegionQueryTransformer RegionBreakdownRegionQueryTransformer { get; set; }
         public IArchiveTransformer ArchiveQueryTransformer { get; set; }
+        private ILogger<TrendsPostModelGenerator> Logger { get; set; }
 
 
         public TrendsPostModelGenerator(
@@ -31,7 +33,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             IRegionBreakdownOverviewQueryTransformer regionBreakdownOverviewQueryTransformer,
             IRegionBreakdownNationalQueryTransformer regionBreakdownNationalQueryTransformer,
             IRegionBreakdownRegionQueryTransformer regionBreakdownRegionQueryTransformer,
-            IArchiveTransformer archiveQueryTransformer
+            IArchiveTransformer archiveQueryTransformer,
+            ILogger<TrendsPostModelGenerator> logger
             )
         {
             Option = option;
@@ -40,6 +43,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             RegionBreakdownNationalQueryTransformer = regionBreakdownNationalQueryTransformer;
             RegionBreakdownRegionQueryTransformer = regionBreakdownRegionQueryTransformer;
             ArchiveQueryTransformer = archiveQueryTransformer;
+            Logger = logger;
 
         }
 

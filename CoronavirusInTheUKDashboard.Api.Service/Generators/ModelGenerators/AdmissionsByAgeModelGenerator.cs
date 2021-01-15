@@ -10,6 +10,7 @@ using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.AdmissionsByAge;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries;
+using Microsoft.Extensions.Logging;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 {
@@ -19,22 +20,27 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 
         public IAdmissionsByAgeQueryTransformer AdmissionsByAgeQueryTransformer { get; set; }
         public IArchiveTransformer ArchiveQueryTransformer { get; set; }
+        private ILogger<AdmissionsByAgeModelGenerator> Logger { get; set; }
 
 
         public AdmissionsByAgeModelGenerator(
             IOptions option,
             IAdmissionsByAgeQueryTransformer admissionsByAgeQueryTransformer,
-            IArchiveTransformer archiveQueryTransformer
+            IArchiveTransformer archiveQueryTransformer,
+            ILogger<AdmissionsByAgeModelGenerator> logger
             )
         {
             Option = option;
             AdmissionsByAgeQueryTransformer = admissionsByAgeQueryTransformer;
             ArchiveQueryTransformer = archiveQueryTransformer;
+            Logger = logger;
 
         }
 
         public AdmissionsByAgePostModel GenerateModel()
         {
+            Logger.LogInformation($"Starting Model Creation.");
+
             var searchData = Option.TargetDate;
             var trueDate = Option.TrueDateTime;
             var doArchive = Option.UseExternalArchiveSite;

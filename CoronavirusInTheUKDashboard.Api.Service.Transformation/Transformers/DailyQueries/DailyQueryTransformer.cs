@@ -7,21 +7,26 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
+using Microsoft.Extensions.Logging;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries
 {
     public class DailyQueryTransformer : IDailyQueryTransformer
     { 
         public DateTime TargetDate {get;set;}
-
         public IDailyQuery Query { get; set; }
-        public DailyQueryTransformer(IDailyQuery query)
+        ILogger<DailyQueryTransformer> Logger { get; set; }
+
+        public DailyQueryTransformer(IDailyQuery query,
+             ILogger<DailyQueryTransformer> logger)
         {
             Query = query;
+            Logger = logger;
         }
 
         public Result<StandardRecord> QueryAndTransform()
         {
+            Logger.LogInformation($"Running Query and transform.");
             Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 

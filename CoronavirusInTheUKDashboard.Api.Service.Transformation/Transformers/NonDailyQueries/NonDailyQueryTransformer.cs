@@ -9,6 +9,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NonDailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.NonDailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
+using Microsoft.Extensions.Logging;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.NonDailyQueries
 {
@@ -16,12 +17,15 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.No
     {
         public DateTime TargetDate { get; set; }
         public INonDailyQuery Query { get; set; }
-        public NonDailyQueryTransformer(INonDailyQuery query)
+        public ILogger<NonDailyQueryTransformer> Logger { get; set; }
+        public NonDailyQueryTransformer(INonDailyQuery query, ILogger<NonDailyQueryTransformer> logger)
         {
             Query = query;
+            Logger = logger;
         }
         public Result<IrregularRecord> QueryAndTransform()
         {
+            Logger.LogInformation($"Running Query and transform.");
             Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 

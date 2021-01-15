@@ -6,6 +6,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
+using Microsoft.Extensions.Logging;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries
 {
@@ -13,12 +14,15 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
     {
         public DateTime TargetDate { get; set; }
         public ILookbackQuery Query { get; set; }
-        public LookbackQueryTransformer(ILookbackQuery query)
+        public ILogger<LookbackQueryTransformer> Logger { get; set; }
+        public LookbackQueryTransformer(ILookbackQuery query, ILogger<LookbackQueryTransformer> logger)
         {
             Query = query;
+            Logger = logger;
         }
         public Result<StandardRecord> QueryAndTransform()
         {
+            Logger.LogInformation($"Running Query and transform.");
             Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 

@@ -1,6 +1,7 @@
 ﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Generator;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Options;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Writers;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,9 +12,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Writers
     public class DirectoryWriter : IPostWriter
     {
         public IOptions Options { get; set; }
-        public DirectoryWriter(IOptions options)
+        private ILogger<ConsoleWriter> Logger { get; set; }
+        public DirectoryWriter(IOptions options, ILogger<ConsoleWriter> logger)
         {
             Options = options;
+            Logger = logger;
         }
 
         public void Write(Post post)
@@ -29,6 +32,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Writers
             }
 
             var fullOutput = Path.Join(Options.DirectoryOutput, fileName);
+
+            Logger.LogInformation($"Writing output to {fullOutput}");
+
             Directory.CreateDirectory(Options.DirectoryOutput);
             System.IO.File.WriteAllText(fullOutput, post.Content);
         }
