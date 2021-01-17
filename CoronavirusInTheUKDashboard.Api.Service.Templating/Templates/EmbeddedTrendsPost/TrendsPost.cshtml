@@ -3,7 +3,7 @@
 @using RazorLight
 @using CoronavirusInTheUKDashboard.Api.Service.Templating;
 
-@inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.TrendsPostModel>
+@inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts.TrendsPostModel>
 
 @{
     switch (Model.EightDayLookback.CasesPercentageIncreaseChange)
@@ -110,9 +110,32 @@
 
 > Last 9 days were: @string.Join(", ", Model.EightDayLookback.PositivityRate.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
 
+@{
+    switch (Model.EightDayLookback.FirstDoseChange)
+    {
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Equal:
+            <text>First dose vaccinations for yesterday is the same as the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Less:
+            <text>First dose vaccinations for yesterday is less than the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.More:
+            <text>First dose vaccinations for yesterday is more than the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.NotUpdated:
+            <text>Vaccination data hasn't been updated yet.</text>
+            break;
+    }<text> Yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.TodayFirstDose.Value), the day before yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.YesterdayFirstDose.Value).</text>
+}
+
+
+> Last 9 days were: @string.Join(", ", Model.EightDayLookback.FirstDoses.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
+
 *Usual reminder about weekend drops and Tuesday spikes. The data releases on a given day covers the previous day. As such, weekend drops are expected on Sunday and Monday.
 
-**Percentage increase is probably not a good measure. See [here](https://www.reddit.com/r/ukpolitics/comments/g0j4ez/as_of_9am_13_april_367667_tests_have_concluded/fna0f5f/). Remember, this can and will go down, even if deaths are still increasing day on day.
+**Scotland and Wales do not provide vaccination data over the weekend, creating an temporary undercount.
+
+***Percentage increase is probably not a good measure. See [here](https://www.reddit.com/r/ukpolitics/comments/g0j4ez/as_of_9am_13_april_367667_tests_have_concluded/fna0f5f/). Remember, this can and will go down, even if deaths are still increasing day on day.
 
 |Area|Daily Cases|Rate per 100,000|
 :--|--:|--:|
