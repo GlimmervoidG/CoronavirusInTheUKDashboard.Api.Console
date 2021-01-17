@@ -1,14 +1,14 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.TrendsPost;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Generator.ModelGenerators;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Options;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using System.Linq;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
 using Microsoft.Extensions.Logging;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Generator.ModelGenerators;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 {

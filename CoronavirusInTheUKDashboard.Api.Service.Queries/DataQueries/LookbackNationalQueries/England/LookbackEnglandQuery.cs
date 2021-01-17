@@ -6,27 +6,30 @@ using System.Collections.Generic;
 using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackEnglandQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackNationalQueries.England
 {
-    public class LookbackWeekendEnglandQuery : QueryBase, ILookbackWeekendEnglandQuery
+    public class LookbackEnglandQuery : QueryBase, ILookbackEnglandQuery
     {
         public IQuery<LookbackEnglandQueryModel> Query { get; set; }
-        public LookbackWeekendEnglandQuery(IQuery<LookbackEnglandQueryModel> query)
+        public LookbackEnglandQuery(IQuery<LookbackEnglandQueryModel> query)
         {
             Query = query;
         }
         public QueryResponce<LookbackEnglandQueryModel> DoQuery()
         {
-
+            var trueTargetDate = TargetDate.AddDays(0);
+            var targetDate = TargetDate.AddDays(-1);
             Query.Options = new QueryOptions()
             {
                 Filter = new Filter()
                 {
                     AreaType = new AreaType(AreaTypeMetrics.nation),
                     AreaName = new AreaName("England"),
+                    Date = new DateFilter(targetDate)
                 },
 
             };

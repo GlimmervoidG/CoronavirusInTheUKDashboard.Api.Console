@@ -1,6 +1,6 @@
 ﻿using CoronavirusInTheUKDashboard.Api.Service.Csv.AdmissionsByAge;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Engines;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Engines;
 using CsvHelper;
 using System;
 using System.Globalization;

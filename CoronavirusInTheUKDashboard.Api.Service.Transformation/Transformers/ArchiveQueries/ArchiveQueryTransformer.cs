@@ -6,10 +6,10 @@ using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.GeneralQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Common;
 using Microsoft.Extensions.Logging;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Options;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.Common;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.ArchiveQueries
 {

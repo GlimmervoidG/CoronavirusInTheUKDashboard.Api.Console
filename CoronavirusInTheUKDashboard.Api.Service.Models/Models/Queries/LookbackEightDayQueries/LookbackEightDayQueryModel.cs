@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackEightDayQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackEightDayQueries
 {
     public class LookbackEightDayQueryModel : BaseModel
     {
@@ -26,7 +26,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.Lookback
         [Structure]
         public LookbackEightDayQueryCasesModel Cases { get; set; }
 
-        
+
 
     }
 }

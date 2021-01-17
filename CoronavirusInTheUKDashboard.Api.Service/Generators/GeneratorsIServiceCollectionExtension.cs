@@ -1,9 +1,9 @@
 ﻿using CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators;
 using CoronavirusInTheUKDashboard.Api.Service.Generators.PostGenerators;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Generator;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Generator.ModelGenerators;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Generator.PostTextGenerators;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Generator;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Generator.ModelGenerators;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Generator.PostTextGenerators;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;

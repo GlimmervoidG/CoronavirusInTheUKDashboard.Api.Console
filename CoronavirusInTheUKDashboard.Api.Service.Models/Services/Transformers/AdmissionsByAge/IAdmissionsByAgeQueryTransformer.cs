@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.AdmissionsByAge
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.AdmissionsByAge
 {
-    public interface IAdmissionsByAgeQueryTransformer : IQueryTransformer<AdmissionsByAgeRecord> 
+    public interface IAdmissionsByAgeQueryTransformer : IQueryTransformer<AdmissionsByAgeRecord>
     {
     }
 }

@@ -1,5 +1,4 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Generator;
-using CoronavirusInTheUKDashboard.Api.Service.Options;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;

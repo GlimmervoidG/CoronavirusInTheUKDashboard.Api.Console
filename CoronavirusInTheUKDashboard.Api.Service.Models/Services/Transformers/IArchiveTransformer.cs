@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Transformers
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers
 {
     public interface IArchiveTransformer
     {

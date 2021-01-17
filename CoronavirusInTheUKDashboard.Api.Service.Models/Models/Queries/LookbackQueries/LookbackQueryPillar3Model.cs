@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackQueries
 {
     public class LookbackQueryPillar3Model
     {

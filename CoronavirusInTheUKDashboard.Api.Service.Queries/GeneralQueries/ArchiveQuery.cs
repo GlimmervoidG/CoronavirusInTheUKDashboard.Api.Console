@@ -1,4 +1,4 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Common;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.Common;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;

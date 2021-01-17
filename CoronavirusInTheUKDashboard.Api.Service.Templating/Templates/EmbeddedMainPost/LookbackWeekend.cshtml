@@ -5,17 +5,11 @@
 
 @inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.MainPostModel>
 
-Testing pillar data is available with a one day delay. Here is yesterday’s data.
+Testing pillar data is available with a one day delay. Scotland and Wales do not provide vaccine data on weekends. Here is yesterday’s data.
 
 ||**Daily**|**Cumulative**|
 :--|--:|--:|
-@foreach (var item in Model.LookbackWeekendResult.Records)
-{
-<text>@item.Name (@item.Date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US")) - @Enum.GetName(typeof(DayOfWeek), @item.Date.DayOfWeek)) | @HelperFunctions.Format(@item.Daily) | @HelperFunctions.Format(@item.Cumulative)
-</text>
-}
-:--|:--|
-@foreach (var item in Model.LookbackWeekendEnglandResult.Records)
+@foreach (var item in Model.LookbackWeekendNationalResult.Records)
 {
 <text>@item.Name (@item.Date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US")) - @Enum.GetName(typeof(DayOfWeek), @item.Date.DayOfWeek)) | @HelperFunctions.Format(@item.Daily) | @HelperFunctions.Format(@item.Cumulative)
 </text>

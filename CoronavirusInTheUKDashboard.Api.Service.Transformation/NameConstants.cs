@@ -15,6 +15,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
         public const string LookbackQuery_Lfd_Name = "Lookback query (England)";
         public const string LookbackQuery_Weekend_Name = "Weekend Lookback query";
         public const string LookbackQuery_Weekend_Lfd_Name = "Weekend Lookback query (England)";
+        public const string LookbackQuery_National_England = "Lookback query (England)";
+        public const string LookbackQuery_National_Ni = "Lookback query (Northern Ireland)";
 
         public const string LookbackQuery_Pillar1 = "Pillar 1 all tests processed";
         public const string LookbackQuery_Pillar2 = "Pillar 2 all tests processed";
@@ -23,6 +25,13 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
         public const string LookbackQuery_PillarAll = "All tests processed (pillars 1 to 4)";
         public const string LookbackQuery_PcrTests = "All PCR tests processed (pillars 1, most of 2 and parts of 4)";
         public const string LookbackQuery_LfdTests = "Lateral flow device tests conducted (England only)";
+
+
+        public const string LookbackQuery_FirstDoseEngland = "First vaccination dose (England Only)";
+        public const string LookbackQuery_SecondDoseEngland = "Second vaccination dose (England Only)";
+
+        public const string LookbackQuery_FirstDoseNi = "First vaccination dose (Northern Ireland Only)";
+        public const string LookbackQuery_SecondDoseNi = "Second vaccination dose (Northern Ireland Only)";
 
         public const string LookbackQuery_FirstDose = "People who have received vaccinations (First Dose)";
         public const string LookbackQuery_SecondDose = "People who have received vaccinations (Second Dose)";

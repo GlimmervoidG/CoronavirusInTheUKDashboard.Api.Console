@@ -1,9 +1,9 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackQueries;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackQueries;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost
 {
     public interface ILookbackQuery : IQuery<LookbackQueryModel>
     {

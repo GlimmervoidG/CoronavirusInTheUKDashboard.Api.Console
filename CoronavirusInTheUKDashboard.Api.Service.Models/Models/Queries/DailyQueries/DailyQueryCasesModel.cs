@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.DailyQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.DailyQueries
 {
     public class DailyQueryCasesModel
     {
@@ -12,6 +12,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.DailyQue
         public long? Daily { get; set; }
 
         [StructureMetric(StructureMetrics.cumCasesByPublishDate)]
-        public long? Cumulative { get; set; } 
+        public long? Cumulative { get; set; }
     }
 }

@@ -1,16 +1,10 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Generator;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Generator.ModelGenerators;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Generator.PostTextGenerators;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Options;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackEightDayQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Generator.ModelGenerators;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.MainPost;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -29,26 +23,33 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
 
         public ILookbackQueryTransformer LookbackQueryTransformer  { get; set; }
 
-        public ILookbackEnglandQueryTransformer LookbackEnglandQueryTransformer  { get; set; }
+        public ILookbackNationalQueryTransformer LookbackEnglandQueryTransformer  { get; set; } 
 
-        public ILookbackWeekendQueryTransformer LookbackWeekendQueryTransformer  { get; set; }
+        public ILookbackWeekendNationQueryTransformer LookbackWeekendNationQueryTransformer { get; set; }
 
-        public ILookbackWeekendEnglandQueryTransformer LookbackWeekendEnglandQueryTransformer  { get; set; }
+        public ILookbackWeekendQueryTransformer LookbackCatchUpQueryTransformer  { get; set; }
+
+        public ILookbackCatchUpEnglandQueryTransformer LookbackCatchUpEnglandQueryTransformer  { get; set; }
 
         public INonDailyQueryTransformer NoneDailyQueryTransformer { get; set; }
 
         public IArchiveTransformer ArchiveQueryTransformer { get; set; }
+
+
+
+
         private ILogger<MainPostModelGenerator> Logger { get; set; }
 
 
         public MainPostModelGenerator(
-            IOptions option, 
-            ITitleTransformer titleTransformer, 
-            IDailyQueryTransformer dailyQueryTransformer, 
-            ILookbackQueryTransformer lookbackQueryTransformer, 
-            ILookbackEnglandQueryTransformer lookbackEnglandQueryTransformer, 
-            ILookbackWeekendQueryTransformer lookbackWeekendQueryTransformer, 
-            ILookbackWeekendEnglandQueryTransformer lookbackWeekendEnglandQueryTransformer, 
+            IOptions option,
+            ITitleTransformer titleTransformer,
+            IDailyQueryTransformer dailyQueryTransformer,
+            ILookbackQueryTransformer lookbackQueryTransformer,
+            ILookbackNationalQueryTransformer lookbackEnglandQueryTransformer,
+            ILookbackWeekendQueryTransformer lookbackWeekendQueryTransformer,
+            ILookbackWeekendNationQueryTransformer  lookbackWeekendNationQueryTransformer,
+            ILookbackCatchUpEnglandQueryTransformer lookbackWeekendEnglandQueryTransformer, 
             INonDailyQueryTransformer noneDailyQueryTransformer,
             IArchiveTransformer archiveQueryTransformer,
             ILogger<MainPostModelGenerator> logger)
@@ -58,8 +59,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             DailyQueryTransformer = dailyQueryTransformer;
             LookbackQueryTransformer = lookbackQueryTransformer;
             LookbackEnglandQueryTransformer = lookbackEnglandQueryTransformer;
-            LookbackWeekendQueryTransformer = lookbackWeekendQueryTransformer;
-            LookbackWeekendEnglandQueryTransformer = lookbackWeekendEnglandQueryTransformer;
+            LookbackWeekendNationQueryTransformer = lookbackWeekendNationQueryTransformer;
+            LookbackCatchUpQueryTransformer = lookbackWeekendQueryTransformer;
+            LookbackCatchUpEnglandQueryTransformer = lookbackWeekendEnglandQueryTransformer;
             NoneDailyQueryTransformer = noneDailyQueryTransformer;
             ArchiveQueryTransformer = archiveQueryTransformer;
             Logger = logger;
@@ -78,28 +80,37 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             var daily = DailyQueryTransformer.QueryAndTransform();
 
             var normalDays = new List<DayOfWeek>() { DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
+            var weekendDays = new List<DayOfWeek>() { DayOfWeek.Saturday, DayOfWeek.Sunday };
             var catchUpDays = new List<DayOfWeek>() { DayOfWeek.Monday };
 
-            Result<StandardRecord> testing = null;
-            Result<StandardRecord> testingLfd = null;
+            Result<StandardRecord> lookback = null;
+            Result<StandardRecord> lookbackNational = null;
             if (normalDays.Contains(searchData.DayOfWeek))
             {
                 LookbackQueryTransformer.TargetDate = searchData;
-                testing = LookbackQueryTransformer.QueryAndTransform();
+                lookback = LookbackQueryTransformer.QueryAndTransform();
 
                 LookbackEnglandQueryTransformer.TargetDate = searchData;
-                testingLfd = LookbackEnglandQueryTransformer.QueryAndTransform(); 
+                lookbackNational = LookbackEnglandQueryTransformer.QueryAndTransform(); 
             }
 
-            Result<StandardRecord> testingWeekend = null;
-            Result<StandardRecord> testingWeekendLfd = null;
+
+            Result<StandardRecord> weekend = null;
+            if (weekendDays.Contains(searchData.DayOfWeek))
+            {
+                LookbackWeekendNationQueryTransformer.TargetDate = searchData;
+                weekend = LookbackWeekendNationQueryTransformer.QueryAndTransform(); 
+            }
+
+            Result<StandardRecord> catchUp = null;
+            Result<StandardRecord> catchUpNational = null;
             if (catchUpDays.Contains(searchData.DayOfWeek))
             {
-                LookbackWeekendQueryTransformer.TargetDate = searchData;
-                testingWeekend = LookbackWeekendQueryTransformer.QueryAndTransform();
+                LookbackCatchUpQueryTransformer.TargetDate = searchData;
+                catchUp = LookbackCatchUpQueryTransformer.QueryAndTransform();
 
-                LookbackWeekendEnglandQueryTransformer.TargetDate = searchData;
-                testingWeekendLfd = LookbackWeekendEnglandQueryTransformer.QueryAndTransform(); 
+                LookbackCatchUpEnglandQueryTransformer.TargetDate = searchData;
+                catchUpNational = LookbackCatchUpEnglandQueryTransformer.QueryAndTransform(); 
             }
 
             NoneDailyQueryTransformer.TargetDate = searchData;
@@ -107,10 +118,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
              
             var queryRecords = new List<QueryRecord>()
                 .Union(daily?.QueryRecords != null ? daily?.QueryRecords : Enumerable.Empty<QueryRecord>())
-                .Union(testing?.QueryRecords != null ? testing?.QueryRecords : Enumerable.Empty<QueryRecord>())
-                .Union(testingLfd?.QueryRecords != null ? testingLfd?.QueryRecords : Enumerable.Empty<QueryRecord>())
-                .Union(testingWeekend?.QueryRecords != null ? testingWeekend?.QueryRecords : Enumerable.Empty<QueryRecord>())
-                .Union(testingWeekendLfd?.QueryRecords != null ? testingWeekendLfd?.QueryRecords : Enumerable.Empty<QueryRecord>())
+                .Union(lookback?.QueryRecords != null ? lookback?.QueryRecords : Enumerable.Empty<QueryRecord>())
+                .Union(lookbackNational?.QueryRecords != null ? lookbackNational?.QueryRecords : Enumerable.Empty<QueryRecord>())
+                .Union(weekend?.QueryRecords != null ? weekend?.QueryRecords : Enumerable.Empty<QueryRecord>())
+                .Union(catchUp?.QueryRecords != null ? catchUp?.QueryRecords : Enumerable.Empty<QueryRecord>())
+                .Union(catchUpNational?.QueryRecords != null ? catchUpNational?.QueryRecords : Enumerable.Empty<QueryRecord>())
                 .Union(nonDaily?.QueryRecords != null ? nonDaily?.QueryRecords : Enumerable.Empty<QueryRecord>())
                 .ToList();
 
@@ -125,10 +137,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
                 TargetDate = searchData,
                 Title = title.Records.First(),
                 DailyResult = daily,
-                LookbackResult = testing,
-                LookbackWeekendResult = testingWeekend,
-                LookbackEnglandResult = testingLfd,
-                LookbackWeekendEnglandResult = testingWeekendLfd,
+                LookbackResult = lookback,
+                LookbackCatchUpResult = catchUp,
+                LookbackNationalResult = lookbackNational,
+                LookbackWeekendNationalResult = weekend,
+                LookbackCatchUpNationalResult = catchUpNational,
                 NoneDailyQueryResult = nonDaily,
                 ArchiveInformation = queryRecords
             };

@@ -1,9 +1,9 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Generator;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Generator;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Writers
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Services.Writers
 {
     public interface IPostWriter
     {

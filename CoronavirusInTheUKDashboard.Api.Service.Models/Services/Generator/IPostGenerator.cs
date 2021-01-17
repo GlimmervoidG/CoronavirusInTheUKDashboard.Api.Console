@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Generator
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Services.Generator
 {
     public interface IPostGenerator
     {

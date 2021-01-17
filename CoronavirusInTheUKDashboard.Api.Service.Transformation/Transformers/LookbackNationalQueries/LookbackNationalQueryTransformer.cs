@@ -1,23 +1,21 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackQueries; 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
 using Microsoft.Extensions.Logging;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries
 {
-    public class LookbackEnglandQueryTransformer : ILookbackEnglandQueryTransformer
+    public class LookbackNationalQueryTransformer : ILookbackNationalQueryTransformer
     {
         public DateTime TargetDate { get; set; }
         public ILookbackEnglandQuery Query { get; set; }
-        ILogger<LookbackEnglandQueryTransformer> Logger { get; set; }
-        public LookbackEnglandQueryTransformer(ILookbackEnglandQuery query,
-            ILogger<LookbackEnglandQueryTransformer> logger)
+        ILogger<LookbackNationalQueryTransformer> Logger { get; set; }
+        public LookbackNationalQueryTransformer(ILookbackEnglandQuery query,
+            ILogger<LookbackNationalQueryTransformer> logger)
         {
             Query = query;
             Logger = logger;

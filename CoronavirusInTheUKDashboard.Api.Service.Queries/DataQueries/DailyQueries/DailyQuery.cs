@@ -7,8 +7,8 @@ using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.DailyQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.DailyQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.DailyQueries
 {

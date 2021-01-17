@@ -5,9 +5,9 @@ using System.Text;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
 using Microsoft.Extensions.Logging;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries
 {

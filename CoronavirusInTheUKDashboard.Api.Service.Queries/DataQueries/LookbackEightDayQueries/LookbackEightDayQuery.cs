@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common; 
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackEightDayQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackEightDayQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.TrendsPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackEightDayQueries
 {

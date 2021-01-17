@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.RegionBreakdownQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionBreakdownQueries
 {
     public class RegionBreakdownQueryModel : BaseModel
-    { 
-        
+    {
+
         [StructureMetric(StructureMetrics.date)]
         public DateTime Date { get; set; }
 

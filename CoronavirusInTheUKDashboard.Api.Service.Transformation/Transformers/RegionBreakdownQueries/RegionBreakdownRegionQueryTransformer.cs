@@ -2,15 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Linq; 
-using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries;
+using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries.Yesterday;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries.Population;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.TrendsPost;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.TrendsPost;
 using Microsoft.Extensions.Logging;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.TrendsPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries
 {

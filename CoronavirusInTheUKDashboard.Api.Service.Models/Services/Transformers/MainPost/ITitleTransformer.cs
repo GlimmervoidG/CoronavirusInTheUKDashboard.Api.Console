@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.MainPost
 {
     public interface ITitleTransformer : IQueryTransformer<TitleResult>
     {

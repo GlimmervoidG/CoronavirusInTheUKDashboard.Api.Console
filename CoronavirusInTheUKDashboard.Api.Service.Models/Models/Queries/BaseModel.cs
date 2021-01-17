@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries
 {
-     public class BaseModel
+    public class BaseModel
     {
     }
 }

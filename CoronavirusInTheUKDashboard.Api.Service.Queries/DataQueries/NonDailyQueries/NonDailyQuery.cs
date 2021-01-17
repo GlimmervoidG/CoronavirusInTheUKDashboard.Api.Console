@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.NonDailyQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.NonDailyQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NonDailyQueries
 {

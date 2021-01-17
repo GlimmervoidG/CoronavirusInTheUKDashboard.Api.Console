@@ -27,9 +27,14 @@ await IncludeAsync("Daily", Model);
 await IncludeAsync("Lookback", Model); 
 }
 
-@if (Model.LookbackWeekendResult != null)
+@if (Model.LookbackWeekendNationalResult != null)
 {
 await IncludeAsync("LookbackWeekend", Model); 
+}
+ 
+@if (Model.LookbackCatchUpResult != null)
+{
+await IncludeAsync("LookbackCatchUp", Model); 
 }
  
 >

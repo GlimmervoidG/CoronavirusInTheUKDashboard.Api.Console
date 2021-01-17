@@ -1,4 +1,4 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Writers;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Writers;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;

@@ -4,11 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.DailyQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.DailyQueries
 {
     public class DailyQueryModel : BaseModel
-    { 
-        
+    {
+
         [StructureMetric(StructureMetrics.date)]
         public DateTime Date { get; set; }
 
@@ -23,7 +23,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.DailyQue
 
         [Structure]
         public DailyQueryDeathsModel Deaths { get; set; }
-         
+
 
     }
 }

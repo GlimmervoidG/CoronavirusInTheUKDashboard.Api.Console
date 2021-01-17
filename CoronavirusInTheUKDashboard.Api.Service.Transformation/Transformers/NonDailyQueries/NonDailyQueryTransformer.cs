@@ -1,19 +1,18 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries; 
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NonDailyQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.NonDailyQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
 using Microsoft.Extensions.Logging;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.NonDailyQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.NonDailyQueries
 {
-   public class NonDailyQueryTransformer : INonDailyQueryTransformer
+    public class NonDailyQueryTransformer : INonDailyQueryTransformer
     {
         public DateTime TargetDate { get; set; }
         public INonDailyQuery Query { get; set; }

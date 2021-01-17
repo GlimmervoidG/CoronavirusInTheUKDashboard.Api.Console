@@ -1,4 +1,4 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Engines;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Engines;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Templating
 {
-     public static class TemplatingIServiceCollectionExtension
+    public static class TemplatingIServiceCollectionExtension
     {
         /// <summary>
         /// Hook up all the transformers

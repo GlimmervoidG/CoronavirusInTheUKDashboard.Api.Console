@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RazorLight;
-using System.Linq; 
-using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
+using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Engines;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Engines;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Templating
 {

@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.AdmissionsByAge;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.AdmissionsByAge;
 using Microsoft.Extensions.Logging;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.AdmissionsByAge;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.AdmissionsByAge;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.AdmissionsQueries
 {

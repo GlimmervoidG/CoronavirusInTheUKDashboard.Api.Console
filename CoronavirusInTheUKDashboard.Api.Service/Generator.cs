@@ -1,6 +1,6 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Generator;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Services;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Writers;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Services;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Generator;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Writers;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 

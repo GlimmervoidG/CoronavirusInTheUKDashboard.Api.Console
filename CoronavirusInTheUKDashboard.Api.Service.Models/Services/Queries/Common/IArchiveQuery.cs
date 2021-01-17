@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Common
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.Common
 {
     public interface IArchiveQuery
     {

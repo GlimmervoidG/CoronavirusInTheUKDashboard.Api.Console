@@ -7,15 +7,15 @@ using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackQueries
 {
-    public class LookbackWeekendQuery : QueryBase, ILookbackWeekendQuery
+    public class LookbackCatchUpQuery : QueryBase, ILookbackCatchUpQuery
     {
         public IQuery<LookbackQueryModel> Query { get; set; }
-        public LookbackWeekendQuery(IQuery<LookbackQueryModel> query)
+        public LookbackCatchUpQuery(IQuery<LookbackQueryModel> query)
         {
             Query = query;
         }

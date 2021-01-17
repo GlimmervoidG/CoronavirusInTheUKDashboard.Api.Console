@@ -1,11 +1,11 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.RegionBreakdownQueries;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionBreakdownQueries;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Queries.TrendsPost
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.TrendsPost
 {
-    public interface IRegionBreakdownNationalQuery : IQuery<RegionBreakdownQueryModel> 
+    public interface IRegionBreakdownNationalQuery : IQuery<RegionBreakdownQueryModel>
     {
     }
 }

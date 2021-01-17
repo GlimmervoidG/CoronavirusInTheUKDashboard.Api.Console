@@ -1,21 +1,25 @@
 ﻿using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.AdmissionsByAge;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Common;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.MainPost;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.AdmissionsQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.DailyQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackEightDayQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.LookbackQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.NonDailyQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.RegionBreakdownQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.AdmissionsQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.DailyQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackEightDayQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackEnglandQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackNationalQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.NonDailyQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionBreakdownQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.AdmissionsByAge;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.Common;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.TrendsPost;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.AdmissionsQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.DailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackEightDayQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackNationalQueries.England;
+using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackNationalQueries.NorthernIreland;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NonDailyQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries.Yesterday;
+using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.RegionBreakdownQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.RegionBreakdownQueries.Yesterday;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.GeneralQueries;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -37,9 +41,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries
             services.AddTransient<IDailyQuery, DailyQuery>();
             services.AddTransient<ILookbackEightDayQuery, LookbackEightDayQuery>();
             services.AddTransient<ILookbackEnglandQuery, LookbackEnglandQuery>();
-            services.AddTransient<ILookbackWeekendEnglandQuery, LookbackWeekendEnglandQuery>();
+            services.AddTransient<ILookbackCatchUpEnglandQuery, LookbackCatchUpEnglandQuery>();
             services.AddTransient<ILookbackQuery, LookbackQuery>();
-            services.AddTransient<ILookbackWeekendQuery, LookbackWeekendQuery>();
+            services.AddTransient<ILookbackCatchUpQuery, LookbackCatchUpQuery>();
             services.AddTransient<INonDailyQuery, NonDailyQuery>();
             services.AddTransient<IRegionBreakdownNationalYesterdayQuery, RegionBreakdownNationalYesterdayQuery>();
             services.AddTransient<IRegionBreakdownOverviewYesterdayQuery, RegionBreakdownOverviewYesterdayQuery>();
@@ -48,15 +52,19 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries
             services.AddTransient<IRegionBreakdownOverviewQuery, RegionBreakdownOverviewQuery>();
             services.AddTransient<IRegionBreakdownRegionalQuery, RegionBreakdownRegionalQuery>();
             services.AddTransient<IArchiveQuery, ArchiveQuery>();
+            services.AddTransient<ILookbackWeekendEnglandQuery, LookbackWeekendEnglandQuery>();
+            services.AddTransient<ILookbackWeekendNorthernIrelandQuery, LookbackWeekendNorthernIrelandQuery>();
 
             services.AddTransient<IQuery<AdmissionsByAgeModel>, Query<AdmissionsByAgeModel>>();
             services.AddTransient<IQuery<DailyQueryModel>, Query<DailyQueryModel>>();
             services.AddTransient<IQuery<LookbackEightDayQueryModel>, Query<LookbackEightDayQueryModel>>();
             services.AddTransient<IQuery<LookbackEnglandQueryModel>, Query<LookbackEnglandQueryModel>>();
-            services.AddTransient<IQuery<LookbackWeekendEnglandQuery>, Query<LookbackWeekendEnglandQuery>>();
+            services.AddTransient<IQuery<LookbackCatchUpEnglandQuery>, Query<LookbackCatchUpEnglandQuery>>();
             services.AddTransient<IQuery<LookbackQueryModel>, Query<LookbackQueryModel>>();
             services.AddTransient<IQuery<NonDailyQueryModel>, Query<NonDailyQueryModel>>();
             services.AddTransient<IQuery<RegionBreakdownQueryModel>, Query<RegionBreakdownQueryModel>>();
+            services.AddTransient<IQuery<LookbackWeekendModel>, Query<LookbackWeekendModel>>();
+
 
             return services;
         }

@@ -4,10 +4,10 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.RegionBreakdownQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionBreakdownQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.TrendsPost;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NoneDailyQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.RegionBreakdownQueries
 {
     public class RegionBreakdownRegionalQuery : QueryBase, IRegionBreakdownRegionalQuery
     {

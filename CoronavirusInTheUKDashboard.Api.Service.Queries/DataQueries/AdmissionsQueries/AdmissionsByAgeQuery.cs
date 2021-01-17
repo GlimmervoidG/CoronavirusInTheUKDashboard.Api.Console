@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.Text;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.Models.AdmissionsQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Queries.AdmissionsByAge;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.AdmissionsQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.AdmissionsByAge;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.AdmissionsQueries
 {

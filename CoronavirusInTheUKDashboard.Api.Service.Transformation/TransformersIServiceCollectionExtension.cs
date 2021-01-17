@@ -1,12 +1,13 @@
-﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.AdmissionsByAge;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.MainPost;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Transformers.TrendsPost;
+﻿using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.AdmissionsByAge;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.TrendsPost;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.AdmissionsQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.ArchiveQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.DailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackEightDayQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackEnglandQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackNationalQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.NonDailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries;
@@ -17,7 +18,7 @@ using System.Text;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
 {
-     public static class TransformersIServiceCollectionExtension
+    public static class TransformersIServiceCollectionExtension
     {
         /// <summary>
         /// Hook up all the transformers
@@ -31,14 +32,15 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
             services.AddTransient<IDailyQueryTransformer, DailyQueryTransformer>();
             services.AddTransient<ITitleTransformer, TitleTransformer>();
             services.AddTransient<ILookbackEightDayQueryTransformer, LookbackEightDayQueryTransformer>();
-            services.AddTransient<ILookbackEnglandQueryTransformer, LookbackEnglandQueryTransformer>();
-            services.AddTransient<ILookbackWeekendEnglandQueryTransformer, LookbackWeekendEnglandQueryTransformer>();
+            services.AddTransient<ILookbackNationalQueryTransformer, LookbackNationalQueryTransformer>();
+            services.AddTransient<ILookbackCatchUpEnglandQueryTransformer, LookbackCatchUpNationalQueryTransformer>();
             services.AddTransient<ILookbackQueryTransformer, LookbackQueryTransformer>();
-            services.AddTransient<ILookbackWeekendQueryTransformer, LookbackWeekendQueryTransformer>();
+            services.AddTransient<ILookbackWeekendQueryTransformer, LookbackCatchUpQueryTransformer>();
             services.AddTransient<INonDailyQueryTransformer, NonDailyQueryTransformer>();
             services.AddTransient<IRegionBreakdownNationalQueryTransformer, RegionBreakdownNationalQueryTransformer>();
             services.AddTransient<IRegionBreakdownOverviewQueryTransformer, RegionBreakdownOverviewQueryTransformer>();
             services.AddTransient<IRegionBreakdownRegionQueryTransformer, RegionBreakdownRegionQueryTransformer>();
+            services.AddTransient<ILookbackWeekendNationQueryTransformer, LookbackWeekendNationQueryTransformer>();
             return services;
         }
     }
