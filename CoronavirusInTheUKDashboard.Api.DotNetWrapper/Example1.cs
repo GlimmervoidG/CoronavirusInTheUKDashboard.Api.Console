@@ -8,7 +8,7 @@ namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper
     {
         public void DoStuff()
         {
-            var quary = new Query<DailyStatsQuery>() { 
+            var quary = new DashboardQuery<DailyStatsQuery>() { 
                 Options = new ObjectAnnotation.QueryOptions()
                 {
                     Filter = new ObjectAnnotation.Filters.Filter()

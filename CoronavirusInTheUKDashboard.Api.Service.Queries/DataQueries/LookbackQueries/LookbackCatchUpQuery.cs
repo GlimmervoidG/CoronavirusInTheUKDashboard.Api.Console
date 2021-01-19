@@ -9,13 +9,14 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackQueries
 {
     public class LookbackCatchUpQuery : QueryBase, ILookbackCatchUpQuery
     {
-        public IQuery<LookbackQueryModel> Query { get; set; }
-        public LookbackCatchUpQuery(IQuery<LookbackQueryModel> query)
+        public IQueryEngine<LookbackQueryModel> Query { get; set; }
+        public LookbackCatchUpQuery(IQueryEngine<LookbackQueryModel> query)
         {
             Query = query;
         }

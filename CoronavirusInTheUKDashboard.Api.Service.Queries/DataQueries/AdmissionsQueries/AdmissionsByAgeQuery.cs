@@ -8,13 +8,14 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.AdmissionsQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.AdmissionsByAge;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.AdmissionsQueries
 {
     public class AdmissionsByAgeQuery : QueryBase, IAdmissionsByAgeQuery
     {
-        public IQuery<AdmissionsByAgeModel> Query { get; set; }
-        public AdmissionsByAgeQuery(IQuery<AdmissionsByAgeModel> query)
+        public IQueryEngine<AdmissionsByAgeModel> Query { get; set; }
+        public AdmissionsByAgeQuery(IQueryEngine<AdmissionsByAgeModel> query)
         {
             Query = query;
         }

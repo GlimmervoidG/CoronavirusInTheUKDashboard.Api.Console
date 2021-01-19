@@ -17,7 +17,7 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Queries;
 
 namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries
 {
-    public class Query<T> : IQuery<T>
+    public class DashboardQuery<T> : IDashboardQuery<T>
     {
         public QueryOptions Options { get; set; }
 
@@ -27,8 +27,10 @@ namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries
             var urlGenerator = new UrlGenerator() { Options = Options, StructureType = typeof(T) }; 
             var url = urlGenerator.GetUrl(); 
             var client = new QueryClient() { Url = url };
-            var textResult = client.DoQuery(); 
-         
+            var textResult = "";
+
+            textResult = client.DoQuery();
+
             if (string.IsNullOrEmpty(textResult))
             {
                 var nullResult = new QueryResponce<T>()
@@ -45,7 +47,20 @@ namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries
             json.Url = url;
 
             return json;
-        } 
+        }
 
+        public QueryResponce<T> GetEmptyQuery()
+        {
+            var urlGenerator = new UrlGenerator() { Options = Options, StructureType = typeof(T) };
+            var url = urlGenerator.GetUrl();
+            var nullResult = new QueryResponce<T>()
+            {
+                Data = new List<T>(),
+                Length = 0,
+                Pagination = null,
+                Url = url
+            };
+            return nullResult;
+        }
     }
 }

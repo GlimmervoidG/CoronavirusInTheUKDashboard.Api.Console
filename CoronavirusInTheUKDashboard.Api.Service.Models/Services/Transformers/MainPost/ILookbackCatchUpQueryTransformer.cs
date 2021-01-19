@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.MainPost
 {
-    public interface ILookbackWeekendQueryTransformer : IQueryTransformer<StandardRecord>
+    public interface ILookbackCatchUpQueryTransformer : IQueryTransformer<RecordGroup>
     {
     }
 }

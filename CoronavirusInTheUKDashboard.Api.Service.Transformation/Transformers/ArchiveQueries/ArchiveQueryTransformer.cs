@@ -58,7 +58,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Ar
                             Logger.LogWarning(ex, $"Problem archiving page {recordIndex}. Making attempt {i+1} of {archiveRetries}.");
                         } else 
                         {
-                            Logger.LogWarning(ex, $"Problem archiving page {recordIndex}. Retries exceeded. Skipping archive attempt for this page.");
+                            Logger.LogError(ex, $"Problem archiving page {recordIndex}. Retries exceeded. Skipping archive attempt for this page.");
                         } 
                     }
                 }

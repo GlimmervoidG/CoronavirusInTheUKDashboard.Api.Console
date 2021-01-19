@@ -5,6 +5,7 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackNationalQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackNa
 {
     public class LookbackWeekendEnglandQuery : QueryBase, ILookbackWeekendEnglandQuery
     {
-        public IQuery<LookbackWeekendModel> Query { get; set; }
-        public LookbackWeekendEnglandQuery(IQuery<LookbackWeekendModel> query)
+        public IQueryEngine<LookbackWeekendModel> Query { get; set; }
+        public LookbackWeekendEnglandQuery(IQueryEngine<LookbackWeekendModel> query)
         {
             Query = query;
         }

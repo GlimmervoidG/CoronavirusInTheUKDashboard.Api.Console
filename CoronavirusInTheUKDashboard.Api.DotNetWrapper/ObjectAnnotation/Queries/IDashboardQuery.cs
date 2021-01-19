@@ -5,9 +5,11 @@ using System.Text;
 
 namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries
 {
-    public interface IQuery<T>
+    public interface IDashboardQuery<T>
     {
         QueryOptions Options { get; set; }
         QueryResponce<T> DoQuery();
+
+        QueryResponce<T> GetEmptyQuery();
     }
 }

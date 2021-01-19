@@ -8,13 +8,14 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackEightDayQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackEightDayQueries
 {
     public class LookbackEightDayQuery : QueryBase, ILookbackEightDayQuery
     {
-        public IQuery<LookbackEightDayQueryModel> Query { get; set; }
-        public LookbackEightDayQuery(IQuery<LookbackEightDayQueryModel> query)
+        public IQueryEngine<LookbackEightDayQueryModel> Query { get; set; }
+        public LookbackEightDayQuery(IQueryEngine<LookbackEightDayQueryModel> query)
         {
             Query = query;
         }

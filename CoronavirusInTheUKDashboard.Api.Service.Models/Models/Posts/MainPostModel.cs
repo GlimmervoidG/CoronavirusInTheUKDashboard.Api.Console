@@ -15,7 +15,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts
 
         public Result<StandardRecord> LookbackWeekendNationalResult { get; set; }
 
-        public Result<StandardRecord> LookbackCatchUpResult { get; set; }
+        public Result<RecordGroup> LookbackCatchUpResult { get; set; }
         public Result<StandardRecord> LookbackCatchUpNationalResult { get; set; }
 
         public Result<IrregularRecord> NoneDailyQueryResult { get; set; }

@@ -15,7 +15,7 @@ Vaccine and testing pillar data is available with a one day delay. Here is yeste
 </text>
 }
 :--|:--|
-@foreach (var item in Model.LookbackEnglandResult.Records)
+@foreach (var item in Model.LookbackNationalResult.Records)
 {
 <text>@item.Name (@item.Date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US")) - @Enum.GetName(typeof(DayOfWeek), @item.Date.DayOfWeek)) | @HelperFunctions.Format(@item.Daily) | @HelperFunctions.Format(@item.Cumulative)
 </text>

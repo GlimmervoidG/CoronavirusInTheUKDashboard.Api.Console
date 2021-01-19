@@ -10,7 +10,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.MainP
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries
 {
-    public class LookbackCatchUpQueryTransformer : ILookbackWeekendQueryTransformer
+    public class LookbackCatchUpQueryTransformer : ILookbackCatchUpQueryTransformer
     {
         public DateTime TargetDate { get; set; }
         public ILookbackCatchUpQuery Query { get; set; }
@@ -21,19 +21,55 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             Query = query;
             Logger = logger;
         }
-        public Result<StandardRecord> QueryAndTransform()
+        public Result<RecordGroup> QueryAndTransform()
         {
             Logger.LogInformation($"Running Query and transform.");
             Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 
+            // Get records from the prevous Friday to yesterday. 
+            var dates = GetDatesToSearchFor().OrderBy(d => d.Date);
+
+            var groups = new List<RecordGroup>();
             var records = new List<StandardRecord>();
 
-            // Get records from the prevous Friday to yesterday. 
-            var dates = GetDatesToSearchFor().OrderBy(d => d.Date); 
+            records.Clear();
+            foreach (var date in dates)
+            {
+                var relevent = result.Data.FirstOrDefault(d => d.Date == date.Date);
+                records.Add(new StandardRecord()
+                {
+                    Name = NameConstants.LookbackQuery_FirstDose
+                    ,
+                    Date = date.Date
+                    ,
+                    Daily = relevent?.FirstDose?.Daily
+                    ,
+                    Cumulative = relevent?.FirstDose?.Cumulative
+                });
+            } 
+            groups.Add(new RecordGroup() { Records = records.ToList() });
 
-            foreach(var date in dates)
-            { 
+            records.Clear();
+            foreach (var date in dates)
+            {
+                var relevent = result.Data.FirstOrDefault(d => d.Date == date.Date);
+                records.Add(new StandardRecord()
+                {
+                    Name = NameConstants.LookbackQuery_SecondDose
+                    ,
+                    Date = date.Date
+                    ,
+                    Daily = relevent?.SecondDose?.Daily
+                    ,
+                    Cumulative = relevent?.SecondDose?.Cumulative
+                });
+            }
+            groups.Add(new RecordGroup() { Records = records.ToList() });
+
+            records.Clear();
+            foreach (var date in dates)
+            {
                 var relevent = result.Data.FirstOrDefault(d => d.Date == date.Date);
                 records.Add(new StandardRecord()
                 {
@@ -45,10 +81,12 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                     ,
                     Cumulative = relevent?.PcrTests?.Cumulative
                 });
-            } 
-            return new Result<StandardRecord>()
+            }
+            groups.Add(new RecordGroup() { Records = records.ToList() });
+
+            return new Result<RecordGroup>()
             {
-                Records = records,
+                Records = groups,
                 QueryRecords = new List<QueryRecord>() {
                     new QueryRecord() { Name = NameConstants.LookbackQuery_Weekend_Name, Url = result.Url }
                 }

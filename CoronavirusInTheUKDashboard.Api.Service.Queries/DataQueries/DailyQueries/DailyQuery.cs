@@ -9,13 +9,14 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.DailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.DailyQueries
 {
     public class DailyQuery : QueryBase, IDailyQuery
     {
-        public IQuery<DailyQueryModel> Query { get; set; }
-        public DailyQuery(IQuery<DailyQueryModel> query)
+        public IQueryEngine<DailyQueryModel> Query { get; set; }
+        public DailyQuery(IQueryEngine<DailyQueryModel> query)
         {
             Query = query;
         }

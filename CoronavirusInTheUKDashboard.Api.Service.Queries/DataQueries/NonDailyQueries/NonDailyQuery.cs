@@ -9,13 +9,14 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.NonDailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NonDailyQueries
 {
     public class NonDailyQuery : QueryBase, INonDailyQuery
     {
-        public IQuery<NonDailyQueryModel> Query { get; set; }
-        public NonDailyQuery(IQuery<NonDailyQueryModel> query)
+        public IQueryEngine<NonDailyQueryModel> Query { get; set; }
+        public NonDailyQuery(IQueryEngine<NonDailyQueryModel> query)
         {
             Query = query;
         }

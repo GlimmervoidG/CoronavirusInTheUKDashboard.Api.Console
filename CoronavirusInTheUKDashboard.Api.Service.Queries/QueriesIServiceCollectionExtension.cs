@@ -7,6 +7,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackNati
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.NonDailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionBreakdownQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.AdmissionsByAge;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.Common;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
@@ -55,15 +56,18 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries
             services.AddTransient<ILookbackWeekendEnglandQuery, LookbackWeekendEnglandQuery>();
             services.AddTransient<ILookbackWeekendNorthernIrelandQuery, LookbackWeekendNorthernIrelandQuery>();
 
-            services.AddTransient<IQuery<AdmissionsByAgeModel>, Query<AdmissionsByAgeModel>>();
-            services.AddTransient<IQuery<DailyQueryModel>, Query<DailyQueryModel>>();
-            services.AddTransient<IQuery<LookbackEightDayQueryModel>, Query<LookbackEightDayQueryModel>>();
-            services.AddTransient<IQuery<LookbackEnglandQueryModel>, Query<LookbackEnglandQueryModel>>();
-            services.AddTransient<IQuery<LookbackCatchUpEnglandQuery>, Query<LookbackCatchUpEnglandQuery>>();
-            services.AddTransient<IQuery<LookbackQueryModel>, Query<LookbackQueryModel>>();
-            services.AddTransient<IQuery<NonDailyQueryModel>, Query<NonDailyQueryModel>>();
-            services.AddTransient<IQuery<RegionBreakdownQueryModel>, Query<RegionBreakdownQueryModel>>();
-            services.AddTransient<IQuery<LookbackWeekendModel>, Query<LookbackWeekendModel>>();
+            services.AddTransient(typeof(IDashboardQuery<>), typeof(DashboardQuery<>));
+            services.AddTransient(typeof(IQueryEngine<>), typeof(QueryEngine<>));
+
+            //services.AddTransient<IDashboardQuery<AdmissionsByAgeModel>, DashboardQuery<AdmissionsByAgeModel>>();
+            //services.AddTransient<IDashboardQuery<DailyQueryModel>, DashboardQuery<DailyQueryModel>>();
+            //services.AddTransient<IDashboardQuery<LookbackEightDayQueryModel>, DashboardQuery<LookbackEightDayQueryModel>>();
+            //services.AddTransient<IDashboardQuery<LookbackEnglandQueryModel>, DashboardQuery<LookbackEnglandQueryModel>>();
+            //services.AddTransient<IDashboardQuery<LookbackCatchUpEnglandQuery>, DashboardQuery<LookbackCatchUpEnglandQuery>>();
+            //services.AddTransient<IDashboardQuery<LookbackQueryModel>, DashboardQuery<LookbackQueryModel>>();
+            //services.AddTransient<IDashboardQuery<NonDailyQueryModel>, DashboardQuery<NonDailyQueryModel>>();
+            //services.AddTransient<IDashboardQuery<RegionBreakdownQueryModel>, DashboardQuery<RegionBreakdownQueryModel>>();
+            //services.AddTransient<IDashboardQuery<LookbackWeekendModel>, DashboardQuery<LookbackWeekendModel>>();
 
 
             return services;

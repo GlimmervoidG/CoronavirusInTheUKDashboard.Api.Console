@@ -35,7 +35,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
             services.AddTransient<ILookbackNationalQueryTransformer, LookbackNationalQueryTransformer>();
             services.AddTransient<ILookbackCatchUpEnglandQueryTransformer, LookbackCatchUpNationalQueryTransformer>();
             services.AddTransient<ILookbackQueryTransformer, LookbackQueryTransformer>();
-            services.AddTransient<ILookbackWeekendQueryTransformer, LookbackCatchUpQueryTransformer>();
+            services.AddTransient<ILookbackCatchUpQueryTransformer, LookbackCatchUpQueryTransformer>();
             services.AddTransient<INonDailyQueryTransformer, NonDailyQueryTransformer>();
             services.AddTransient<IRegionBreakdownNationalQueryTransformer, RegionBreakdownNationalQueryTransformer>();
             services.AddTransient<IRegionBreakdownOverviewQueryTransformer, RegionBreakdownOverviewQueryTransformer>();

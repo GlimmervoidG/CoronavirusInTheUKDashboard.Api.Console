@@ -9,13 +9,14 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionBreakdownQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.TrendsPost;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.RegionBreakdownQueries.Yesterday
 {
     public class RegionBreakdownOverviewYesterdayQuery : QueryBase, IRegionBreakdownOverviewYesterdayQuery
     {
-        public IQuery<RegionBreakdownQueryModel> Query { get; set; }
-        public RegionBreakdownOverviewYesterdayQuery(IQuery<RegionBreakdownQueryModel> query)
+        public IQueryEngine<RegionBreakdownQueryModel> Query { get; set; }
+        public RegionBreakdownOverviewYesterdayQuery(IQueryEngine<RegionBreakdownQueryModel> query)
         {
             Query = query;
         }

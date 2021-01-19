@@ -33,8 +33,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
         public const string LookbackQuery_FirstDoseNi = "First vaccination dose (Northern Ireland Only)";
         public const string LookbackQuery_SecondDoseNi = "Second vaccination dose (Northern Ireland Only)";
 
-        public const string LookbackQuery_FirstDose = "People who have received vaccinations (First Dose)";
-        public const string LookbackQuery_SecondDose = "People who have received vaccinations (Second Dose)";
+        public const string LookbackQuery_FirstDose = "First vaccination dose";
+        public const string LookbackQuery_SecondDose = "Second vaccination dose";
 
 
         public const string NoneDailyQuery_Name = "Non daily query";

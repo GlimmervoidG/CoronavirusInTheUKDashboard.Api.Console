@@ -41,17 +41,25 @@ namespace CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Queries
             }
             catch (WebException ex)
             {
-                using (HttpWebResponse response = (HttpWebResponse)ex.Response)
-                {
-                    using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+                try {
+                    using (HttpWebResponse response = (HttpWebResponse)ex.Response)
                     {
-                        string respStr = sr.ReadToEnd();
-                        int statusCode = (int)response.StatusCode;
+                        using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+                        {
+                            string respStr = sr.ReadToEnd();
+                            int statusCode = (int)response.StatusCode;
 
-                        string errorMsh = $"Request ({Url}) failed ({statusCode}) on, with error: {respStr}";
-                        throw new Exception(errorMsh);
-                    }
+                            throw new WebDashboardException() { Url = Url, StatusCode = statusCode, Responce = respStr };
+                        }
+                    } 
+                } 
+                catch(Exception ex2)
+                {
+                    throw new UnknownDashboardException(ex2);
                 }
+            } catch (Exception ex)
+            {
+                throw new UnknownDashboardException(ex);
             }
 
         }
