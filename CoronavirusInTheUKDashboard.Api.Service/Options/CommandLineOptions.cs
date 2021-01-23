@@ -21,7 +21,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Options
         HelpText = "How many retries when using external archiving.")]
         public int ArchiveRetries { get; set; }
 
-        [Option('d', "dashboardretries", Required = false, Default = 5,
+        [Option('q', "dashboardretries", Required = false, Default = 5,
         HelpText = "How many retries when calling the dashboard.")]
         public int DashboardRetries { get; set; }
 

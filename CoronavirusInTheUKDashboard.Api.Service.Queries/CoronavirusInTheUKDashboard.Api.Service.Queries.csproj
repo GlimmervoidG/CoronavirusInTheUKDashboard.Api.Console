@@ -14,4 +14,10 @@
     <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Models\CoronavirusInTheUKDashboard.Api.Service.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataQueries\LookbackNationalQueries\Wales\" />
+    <Folder Include="DataQueries\LookbackNationalQueries\Scotland\" />
+    <Folder Include="DataQueries\LookbackNationalQueries\NorthernIreland\" />
+  </ItemGroup>
+
 </Project>

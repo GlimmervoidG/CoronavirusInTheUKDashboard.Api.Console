@@ -31,11 +31,5 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.Lookback
         [Structure]
         public LookbackQueryAllTestsModel PillarAll { get; set; }
 
-        [Structure]
-        public LookbackQueryDoseFirstModel FirstDose { get; set; }
-
-        [Structure]
-        public LookbackQueryDoseSecondModel SecondDose { get; set; }
-
     }
 }

@@ -40,7 +40,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
             services.AddTransient<IRegionBreakdownNationalQueryTransformer, RegionBreakdownNationalQueryTransformer>();
             services.AddTransient<IRegionBreakdownOverviewQueryTransformer, RegionBreakdownOverviewQueryTransformer>();
             services.AddTransient<IRegionBreakdownRegionQueryTransformer, RegionBreakdownRegionQueryTransformer>();
-            services.AddTransient<ILookbackWeekendNationQueryTransformer, LookbackWeekendNationQueryTransformer>();
+            services.AddTransient<ILookbackVaccineQueryTransformer, LookbackVaccineQueryTransformer>();
             return services;
         }
     }

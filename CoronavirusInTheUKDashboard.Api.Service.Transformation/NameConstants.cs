@@ -11,9 +11,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
         public const string DailyQuery_Deaths = "Deaths in all settings (death within 28 days of test)";
         public const string DailyQuery_Cases = "Positive cases (pillars 1, 2 and parts of 4)";
 
-        public const string LookbackQuery_Name = "Lookback query";
+        public const string LookbackQuery_Name = "Lookback vaccine query";
         public const string LookbackQuery_Lfd_Name = "Lookback query (England)";
-        public const string LookbackQuery_Weekend_Name = "Weekend Lookback query";
+        public const string LookbackQuery_CatchUp_Name = "Weekend Catch Up Lookback query";
         public const string LookbackQuery_Weekend_Lfd_Name = "Weekend Lookback query (England)";
         public const string LookbackQuery_National_England = "Lookback query (England)";
         public const string LookbackQuery_National_Ni = "Lookback query (Northern Ireland)";

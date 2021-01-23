@@ -3,24 +3,23 @@ using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Filters.FilterElements;
-using CoronavirusInTheUKDashboard.Api.DotNetWrapper.ObjectAnnotation.Queries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackNationalQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackJustVaccineQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.MainPost;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackNationalQueries.NorthernIreland
+namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackQueries
 {
-    public class LookbackWeekendNorthernIrelandQuery : QueryBase, ILookbackWeekendNorthernIrelandQuery
+    public class LookbackJustVaccineQuery : QueryBase, ILookbackJustVaccineQuery
     {
-        public IQueryEngine<LookbackWeekendModel> Query { get; set; }
-        public LookbackWeekendNorthernIrelandQuery(IQueryEngine<LookbackWeekendModel> query)
+        public IQueryEngine<LookbackJustVaccineModel> Query { get; set; }
+        public LookbackJustVaccineQuery(IQueryEngine<LookbackJustVaccineModel> query)
         {
             Query = query;
         }
-        public QueryResponce<LookbackWeekendModel> DoQuery()
+        public QueryResponce<LookbackJustVaccineModel> DoQuery()
         {
             var trueTargetDate = TargetDate.AddDays(0);
             var targetDate = TargetDate.AddDays(-1);
@@ -28,15 +27,12 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackNa
             {
                 Filter = new Filter()
                 {
-                    AreaType = new AreaType(AreaTypeMetrics.nation),
-                    AreaName = new AreaName("Northern Ireland"),
+                    AreaType = new AreaType(AreaTypeMetrics.overview),
                     Date = new DateFilter(targetDate)
                 },
 
             };
             return Query.DoQuery();
         }
-
-
     }
 }

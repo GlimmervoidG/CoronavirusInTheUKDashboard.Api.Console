@@ -29,28 +29,27 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             var records = new List<StandardRecord>();
             var relevent = result.Data.FirstOrDefault(d => d.Date == TargetDate.AddDays(-1).Date);
 
+            //records.Add(new StandardRecord()
+            //{
+            //    Name = NameConstants.LookbackQuery_FirstDose
+            //    ,
+            //    Date = TargetDate.AddDays(-1).Date
+            //    ,
+            //    Daily = relevent?.FirstDose?.Daily
+            //    ,
+            //    Cumulative = relevent?.FirstDose?.Cumulative
+            //});
 
-            records.Add(new StandardRecord()
-            {
-                Name = NameConstants.LookbackQuery_FirstDose
-                ,
-                Date = TargetDate.AddDays(-1).Date
-                ,
-                Daily = relevent?.FirstDose?.Daily
-                ,
-                Cumulative = relevent?.FirstDose?.Cumulative
-            });
-
-            records.Add(new StandardRecord()
-            {
-                Name = NameConstants.LookbackQuery_SecondDose
-                ,
-                Date = TargetDate.AddDays(-1).Date
-                ,
-                Daily = relevent?.SecondDose?.Daily
-                ,
-                Cumulative = relevent?.SecondDose?.Cumulative
-            });
+            //records.Add(new StandardRecord()
+            //{
+            //    Name = NameConstants.LookbackQuery_SecondDose
+            //    ,
+            //    Date = TargetDate.AddDays(-1).Date
+            //    ,
+            //    Daily = relevent?.SecondDose?.Daily
+            //    ,
+            //    Cumulative = relevent?.SecondDose?.Cumulative
+            //});
 
             records.Add(new StandardRecord()
             {

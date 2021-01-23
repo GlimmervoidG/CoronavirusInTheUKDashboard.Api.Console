@@ -5,11 +5,11 @@
 
 @inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts.MainPostModel>
 
-Testing pillar data is not available over the weekend. Scotland and Wales do not provide vaccine data on weekends. Here is yesterday’s data.
+Vaccine data is now available over the weekend for all home nations. Testing pillar data is not available over the weekend. Here is yesterday’s data. 
 
 ||**Daily**|**Cumulative**|
 :--|--:|--:|
-@foreach (var item in Model.LookbackWeekendNationalResult.Records)
+@foreach (var item in Model.LookbackVaccines.Records)
 {
 <text>@item.Name (@item.Date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US")) - @Enum.GetName(typeof(DayOfWeek), @item.Date.DayOfWeek)) | @HelperFunctions.Format(@item.Daily) | @HelperFunctions.Format(@item.Cumulative)
 </text>

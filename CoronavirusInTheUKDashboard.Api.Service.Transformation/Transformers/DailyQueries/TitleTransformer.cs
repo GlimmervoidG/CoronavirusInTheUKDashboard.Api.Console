@@ -15,14 +15,14 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
     {
         public DateTime TargetDate { get; set; }
         public IDailyQuery Query { get; set; }
-        public ILookbackQuery LookbackQuery { get; set; }
+        public ILookbackJustVaccineQuery LookbackJustVaccineQuery { get; set; }
         ILogger<TitleTransformer> Logger { get; set; }
-        public TitleTransformer(IDailyQuery query, 
-            ILookbackQuery lookbackQuery,
+        public TitleTransformer(IDailyQuery query,
+            ILookbackJustVaccineQuery lookbackQuery,
             ILogger<TitleTransformer> logger)
         {
             Query = query;
-            LookbackQuery = lookbackQuery;
+            LookbackJustVaccineQuery = lookbackQuery;
             Logger = logger;
         }
         public Result<TitleResult> QueryAndTransform()
@@ -31,8 +31,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
             Query.TargetDate = TargetDate;
             var result = Query.DoQuery();
 
-            LookbackQuery.TargetDate = TargetDate;
-            var yesterdayResult = LookbackQuery.DoQuery();
+            LookbackJustVaccineQuery.TargetDate = TargetDate;
+            var yesterdayResult = LookbackJustVaccineQuery.DoQuery();
 
             var relevent = result.Data.Where(d => d.Date == TargetDate).FirstOrDefault();
             var yesterdayRelevent = yesterdayResult.Data.Where(d => d.Date == TargetDate.AddDays(-1).Date).FirstOrDefault();

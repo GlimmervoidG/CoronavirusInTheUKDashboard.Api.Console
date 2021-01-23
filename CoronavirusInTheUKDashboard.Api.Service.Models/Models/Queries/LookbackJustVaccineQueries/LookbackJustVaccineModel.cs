@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackNationalQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackJustVaccineQueries
 {
-    public class LookbackWeekendModel : BaseModel
+    public class LookbackJustVaccineModel : BaseModel
     {
         [StructureMetric(StructureMetrics.date)]
         public DateTime Date { get; set; }
@@ -18,7 +18,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.Lookback
         [StructureMetric(StructureMetrics.areaCode)]
         public string Code { get; set; }
 
-  
+
         [Structure]
         public LookbackCatchUpDoseFirstModel FirstDose { get; set; }
 

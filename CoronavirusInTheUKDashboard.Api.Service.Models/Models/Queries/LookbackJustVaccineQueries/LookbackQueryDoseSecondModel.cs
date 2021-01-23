@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackQueries
+namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackJustVaccineQueries
 {
-    public class LookbackQueryDoseSecondModel
+    public class LookbackCatchUpDoseSecondModel
     {
         [StructureMetric("newPeopleVaccinatedSecondDoseByPublishDate")]
         public long? Daily { get; set; }

@@ -3,7 +3,6 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.AdmissionsQu
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.DailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackEightDayQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackEnglandQueries;
-using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackNationalQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.NonDailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionBreakdownQueries;
@@ -16,7 +15,6 @@ using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.AdmissionsQuer
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.DailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackEightDayQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackNationalQueries.England;
-using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackNationalQueries.NorthernIreland;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.NonDailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.RegionBreakdownQueries;
@@ -53,8 +51,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries
             services.AddTransient<IRegionBreakdownOverviewQuery, RegionBreakdownOverviewQuery>();
             services.AddTransient<IRegionBreakdownRegionalQuery, RegionBreakdownRegionalQuery>();
             services.AddTransient<IArchiveQuery, ArchiveQuery>();
-            services.AddTransient<ILookbackWeekendEnglandQuery, LookbackWeekendEnglandQuery>();
-            services.AddTransient<ILookbackWeekendNorthernIrelandQuery, LookbackWeekendNorthernIrelandQuery>();
+            services.AddTransient<ILookbackJustVaccineQuery, LookbackJustVaccineQuery>();
 
             services.AddTransient(typeof(IDashboardQuery<>), typeof(DashboardQuery<>));
             services.AddTransient(typeof(IQueryEngine<>), typeof(QueryEngine<>));
