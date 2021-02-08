@@ -21,17 +21,17 @@ await IncludeAsync("Daily", Model);
 >
 > -----
 >  
+
+@if (Model.LookbackVaccines != null)
+{
+await IncludeAsync("LookbackVaccine", Model); 
+}
  
 @if (Model.LookbackResult != null)
 {
 await IncludeAsync("Lookback", Model); 
 }
 
-@if (Model.LookbackVaccines != null)
-{
-await IncludeAsync("LookbackWeekend", Model); 
-}
- 
 @if (Model.LookbackCatchUpResult != null)
 {
 await IncludeAsync("LookbackCatchUp", Model); 

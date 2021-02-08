@@ -11,6 +11,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lookba
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.LookbackQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.NonDailyQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries;
+using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionVaccineProgress;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
             services.AddTransient<IRegionBreakdownOverviewQueryTransformer, RegionBreakdownOverviewQueryTransformer>();
             services.AddTransient<IRegionBreakdownRegionQueryTransformer, RegionBreakdownRegionQueryTransformer>();
             services.AddTransient<ILookbackVaccineQueryTransformer, LookbackVaccineQueryTransformer>();
+            services.AddTransient<IRegionVaccineProgressNationalQueryTransformer, RegionVaccineProgressNationalQueryTransformer>();
+            services.AddTransient<IRegionVaccineProgressOverviewQueryTransformer, RegionVaccineProgressOverviewQueryTransformer>();
+            services.AddTransient<IRegionVaccineProgressRegionQueryTransformer, RegionVaccineProgressRegionQueryTransformer>();
             return services;
         }
     }

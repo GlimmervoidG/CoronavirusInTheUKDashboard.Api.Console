@@ -61,6 +61,14 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
         public const string RegionBreakdownQuery_Region_Today = "English regions query";
         public const string RegionBreakdownQuery_Region_Yesterday = "English regions query yesterday";
 
+        public const string RegionVaccineProgressQuery_Overview_Today = "UK query (Vaccine)";
+        public const string RegionVaccineProgressQuery_Overview_Yesterday = "UK query yesterday (Vaccine)";
+
+        public const string RegionVaccineProgressQuery_National_Today = "Home Nations query (Vaccine)";
+        public const string RegionVaccineProgressQuery_National_Yesterday = "Home Nations query yesterday (Vaccine)";
+
+        public const string RegionVaccineProgressQuery_Region_Today = "English regions query (Vaccine)";
+        public const string RegionVaccineProgressQuery_Region_Yesterday = "English regions query yesterday (Vaccine)";
 
         public const string AdmissionsByAge = "Admissions by age";
     }

@@ -23,6 +23,13 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
         public IRegionBreakdownNationalQueryTransformer RegionBreakdownNationalQueryTransformer { get; set; }
 
         public IRegionBreakdownRegionQueryTransformer RegionBreakdownRegionQueryTransformer { get; set; }
+
+
+        public IRegionVaccineProgressOverviewQueryTransformer RegionVaccineProgressOverviewQueryTransformer { get; set; }
+        public IRegionVaccineProgressNationalQueryTransformer RegionVaccineProgressNationalQueryTransformer { get; set; }
+        public IRegionVaccineProgressRegionQueryTransformer RegionVaccineProgressRegionQueryTransformer { get; set; }
+
+
         public IArchiveTransformer ArchiveQueryTransformer { get; set; }
         private ILogger<TrendsPostModelGenerator> Logger { get; set; }
 
@@ -33,6 +40,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             IRegionBreakdownOverviewQueryTransformer regionBreakdownOverviewQueryTransformer,
             IRegionBreakdownNationalQueryTransformer regionBreakdownNationalQueryTransformer,
             IRegionBreakdownRegionQueryTransformer regionBreakdownRegionQueryTransformer,
+            IRegionVaccineProgressOverviewQueryTransformer regionVaccineProgressOverviewQueryTransformer,
+            IRegionVaccineProgressNationalQueryTransformer regionVaccineProgressNationalQueryTransformer,
+            IRegionVaccineProgressRegionQueryTransformer regionVaccineProgressRegionQueryTransformer,
             IArchiveTransformer archiveQueryTransformer,
             ILogger<TrendsPostModelGenerator> logger
             )
@@ -42,6 +52,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             RegionBreakdownOverviewQueryTransformer = regionBreakdownOverviewQueryTransformer;
             RegionBreakdownNationalQueryTransformer = regionBreakdownNationalQueryTransformer;
             RegionBreakdownRegionQueryTransformer = regionBreakdownRegionQueryTransformer;
+
+            RegionVaccineProgressOverviewQueryTransformer = regionVaccineProgressOverviewQueryTransformer;
+            RegionVaccineProgressNationalQueryTransformer = regionVaccineProgressNationalQueryTransformer;
+            RegionVaccineProgressRegionQueryTransformer = regionVaccineProgressRegionQueryTransformer;
+
             ArchiveQueryTransformer = archiveQueryTransformer;
             Logger = logger;
 
@@ -66,12 +81,22 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
             RegionBreakdownRegionQueryTransformer.TargetDate = searchData;
             var regionalBreakdown = RegionBreakdownRegionQueryTransformer.QueryAndTransform();
 
+
+            RegionVaccineProgressOverviewQueryTransformer.TargetDate = searchData;
+            var overviewVaccineProgress = RegionVaccineProgressOverviewQueryTransformer.QueryAndTransform();
+
+            RegionVaccineProgressNationalQueryTransformer.TargetDate = searchData;
+            var nationalVaccineProgress = RegionVaccineProgressNationalQueryTransformer.QueryAndTransform();
+
             var queryRecords = new List<QueryRecord>()
                .Union(eighDays?.QueryRecords != null ? eighDays?.QueryRecords : Enumerable.Empty<QueryRecord>())
                .Union(overviewBreakdown?.QueryRecords != null ? overviewBreakdown?.QueryRecords : Enumerable.Empty<QueryRecord>())
                .Union(nationalBreakdown?.QueryRecords != null ? nationalBreakdown?.QueryRecords : Enumerable.Empty<QueryRecord>())
                .Union(regionalBreakdown?.QueryRecords != null ? regionalBreakdown?.QueryRecords : Enumerable.Empty<QueryRecord>())
+               .Union(overviewVaccineProgress?.QueryRecords != null ? overviewVaccineProgress?.QueryRecords : Enumerable.Empty<QueryRecord>())
+               .Union(nationalVaccineProgress?.QueryRecords != null ? nationalVaccineProgress?.QueryRecords : Enumerable.Empty<QueryRecord>())
                .ToList();
+
 
             ArchiveQueryTransformer.ArchiveDate = trueDate;
             if (doArchive)
@@ -86,6 +111,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Generators.ModelGenerators
                 NationalRates = nationalBreakdown,
                 OverviewRates = overviewBreakdown,
                 RegionRates = regionalBreakdown,
+                OverviewVaccineProgress = overviewVaccineProgress,
+                NationalVaccineProgress = nationalVaccineProgress,
                 ArchiveInformation = queryRecords
             };
 

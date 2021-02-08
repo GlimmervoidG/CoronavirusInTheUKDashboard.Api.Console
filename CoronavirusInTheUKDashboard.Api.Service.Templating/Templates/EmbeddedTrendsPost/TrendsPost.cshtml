@@ -155,6 +155,22 @@
 </text>
 }
 
+The following table shows a simplified view of vaccine progress. It compares total first dose vaccines against the adult (18+) population of each region.
+
+|Area|Total first doses|Percentage of Adult Population|
+:--|--:|--:|
+@foreach (var item in Model.OverviewVaccineProgress.Records)
+{
+    <text>|@item.Name|@HelperFunctions.Format(@item.Total) (@HelperFunctions.Format(@item.DailyIncrease, true)) |@HelperFunctions.Format(@item.PercentageProgress)% (@HelperFunctions.Format(@item.Increase, true))|
+</text>
+}
+||||
+@foreach (var item in Model.NationalVaccineProgress.Records)
+{
+    <text>|@item.Name|@HelperFunctions.Format(@item.Total) (@HelperFunctions.Format(@item.DailyIncrease, true)) |@HelperFunctions.Format(@item.PercentageProgress)% (@HelperFunctions.Format(@item.Increase, true))|
+</text>
+}
+
 The following API queries were used to generate this post:
 
 @foreach(var item in Model.ArchiveInformation)

@@ -9,7 +9,7 @@
     <None Remove="Templates\EmbeddedMainPost\Daily.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\Lookback.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\LookbackCatchUp.cshtml" />
-    <None Remove="Templates\EmbeddedMainPost\LookbackWeekend.cshtml" />
+    <None Remove="Templates\EmbeddedMainPost\LookbackVaccine.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\NoneDaily.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\OrginalPost.cshtml" />
     <None Remove="Templates\EmbeddedMainPost\SearchTargetEmbeddedMainPost.txt" />
@@ -22,7 +22,7 @@
     <EmbeddedResource Include="Templates\EmbeddedMainPost\Archive.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\Daily.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\Lookback.cshtml" />
-    <EmbeddedResource Include="Templates\EmbeddedMainPost\LookbackWeekend.cshtml" />
+    <EmbeddedResource Include="Templates\EmbeddedMainPost\LookbackVaccine.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\LookbackCatchUp.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\NoneDaily.cshtml" />
     <EmbeddedResource Include="Templates\EmbeddedMainPost\OrginalPost.cshtml" />

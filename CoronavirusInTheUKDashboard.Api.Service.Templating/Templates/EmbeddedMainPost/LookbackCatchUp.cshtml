@@ -5,16 +5,10 @@
 
 @inherits TemplatePage<CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts.MainPostModel>
 
-Vaccine and testing data is normally available with a one day delay but testing data is not available over the weekend. Here is the weekend data.
+Testing data is not available over the weekend. Here is the weekend data.
 
 ||**Daily**|**Cumulative**|
 :--|--:|--:|
-@foreach (var item in Model.LookbackVaccines.Records)
-{
-<text>@item.Name (@item.Date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US")) - @Enum.GetName(typeof(DayOfWeek), @item.Date.DayOfWeek)) | @HelperFunctions.Format(@item.Daily) | @HelperFunctions.Format(@item.Cumulative)
-</text>
-}
-||
 @foreach (var item in Model.LookbackCatchUpResult.Records)
 {
 <text>@item.Name (@item.Date.ToString("d MMMM", CultureInfo.CreateSpecificCulture("en-US")) - @Enum.GetName(typeof(DayOfWeek), @item.Date.DayOfWeek)) | @HelperFunctions.Format(@item.Daily) | @HelperFunctions.Format(@item.Cumulative)

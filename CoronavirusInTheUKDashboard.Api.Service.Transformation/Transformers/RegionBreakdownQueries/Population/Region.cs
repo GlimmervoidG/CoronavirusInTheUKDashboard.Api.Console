@@ -8,6 +8,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
     public class Region
     {
         public double Population { get; set; }
+        public double AdultPopulation { get; set; }
         public string Name { get; set; }
 
         public RegionType RegionType { get; set; }

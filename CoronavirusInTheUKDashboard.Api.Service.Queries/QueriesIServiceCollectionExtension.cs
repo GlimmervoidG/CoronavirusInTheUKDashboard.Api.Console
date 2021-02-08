@@ -52,6 +52,12 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries
             services.AddTransient<IRegionBreakdownRegionalQuery, RegionBreakdownRegionalQuery>();
             services.AddTransient<IArchiveQuery, ArchiveQuery>();
             services.AddTransient<ILookbackJustVaccineQuery, LookbackJustVaccineQuery>();
+            services.AddTransient<IRegionVaccineProgressOverviewQuery, RegionVaccineProgressOverviewQuery>();
+            services.AddTransient<IRegionVaccineProgressNationalQuery, RegionVaccineProgressNationalQuery>();
+            services.AddTransient<IRegionVaccineProgressRegionalQuery, RegionVaccineProgressRegionalQuery>();
+            services.AddTransient<IRegionVaccineProgressOverviewYesterdayQuery, RegionVaccineProgressOverviewYesterdayQuery>();
+            services.AddTransient<IRegionVaccineProgressNationalYesterdayQuery, RegionVaccineProgressNationalYesterdayQuery>();
+            services.AddTransient<IRegionVaccineProgressRegionalYesterdayQuery, RegionVaccineProgressRegionalYesterdayQuery>();
 
             services.AddTransient(typeof(IDashboardQuery<>), typeof(DashboardQuery<>));
             services.AddTransient(typeof(IQueryEngine<>), typeof(QueryEngine<>));

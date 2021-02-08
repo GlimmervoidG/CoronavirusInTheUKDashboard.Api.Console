@@ -11,6 +11,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Posts
         public Result<RegionRateRecord> OverviewRates { get; set; }
         public Result<RegionRateRecord> NationalRates { get; set; }
         public Result<RegionRateRecord> RegionRates { get; set; }
+
+        public Result<RegionProgressRecord> OverviewVaccineProgress { get; set; }
+        public Result<RegionProgressRecord> NationalVaccineProgress { get; set; }
+
         public List<QueryRecord> ArchiveInformation { get; set; }
     }
 }
