@@ -23,7 +23,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
         public const string LookbackQuery_Pillar3 = "Pillar 3 all tests processed";
         public const string LookbackQuery_Pillar4 = "Pillar 4 all tests processed";
         public const string LookbackQuery_PillarAll = "All tests processed (pillars 1 to 4)";
-        public const string LookbackQuery_PcrTests = "All PCR tests processed (pillars 1, most of 2 and parts of 4)";
+        public const string LookbackQuery_PcrTests = "All PCR tests processed (pillars 1, parts of 2 and parts of 4)";
         public const string LookbackQuery_LfdTests = "Lateral flow device tests conducted (England only)";
 
 
@@ -39,7 +39,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
 
         public const string NoneDailyQuery_Name = "Non daily query";
         public const string NoneDailyQuery_Capacity = "Testing capacity (all pillars)";
-        public const string NoneDailyQuery_CapacityPCR = "PCR testing capacity (pillars 1, most of 2 and parts of 4)";
+        public const string NoneDailyQuery_CapacityPCR = "PCR testing capacity (pillars 1, parts of 2 and parts of 4)";
         public const string NoneDailyQuery_PatientsInHospital = "Patients in hospital";
         public const string NoneDailyQuery_PatientsInVentilatorBeds = "Patients in ventilator beds";
         public const string NoneDailyQuery_PatientsAdmitted = "Patients admitted";
