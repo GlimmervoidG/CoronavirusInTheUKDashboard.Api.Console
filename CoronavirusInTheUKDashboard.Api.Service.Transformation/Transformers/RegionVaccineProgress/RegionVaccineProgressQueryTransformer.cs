@@ -33,34 +33,58 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
 
                 long? firstDoseTotal = null;
                 long? firstDoseNew = null;
-                double? percentageProgress = null;
-                double? increase = null;
+                double? firstDosePercentageProgress = null;
+                double? firstDoseIncrease = null;
 
                 if (today?.FirstDoseNew != null && today?.FirstDoseCum != null)
                 {
                     firstDoseTotal = today?.FirstDoseCum;
                     firstDoseNew = today?.FirstDoseNew;
-                    percentageProgress = ((double)today.FirstDoseCum / (double)regionStats.AdultPopulation) * (double)100;
+                    firstDosePercentageProgress = ((double)today.FirstDoseCum / (double)regionStats.AdultPopulation) * (double)100;
                
                     if (yesterday?.FirstDoseCum != null)
                     {
                         var percentageYesterday = ((double)yesterday.FirstDoseCum / (double)regionStats.AdultPopulation) * (double)100;
-                        increase = percentageProgress - percentageYesterday;
+                        firstDoseIncrease = firstDosePercentageProgress - percentageYesterday;
                     }
                 }
-                 
+
+                long? secondDoseTotal = null;
+                long? secondDoseNew = null;
+                double? secondDosePercentageProgress = null;
+                double? secondDoseIncrease = null;
+
+                if (today?.SecondDoseNew != null && today?.SecondDoseCum != null)
+                {
+                    secondDoseTotal = today?.SecondDoseCum;
+                    secondDoseNew = today?.SecondDoseNew;
+                    secondDosePercentageProgress = ((double)today.SecondDoseCum / (double)regionStats.AdultPopulation) * (double)100;
+
+                    if (yesterday?.SecondDoseCum != null)
+                    {
+                        var percentageYesterday = ((double)yesterday.SecondDoseCum / (double)regionStats.AdultPopulation) * (double)100;
+                        secondDoseIncrease = secondDosePercentageProgress - percentageYesterday;
+                    }
+                }
+
                 var record = new RegionProgressRecord()
                 {
                     Name = region,
                     Date = TargetDate.Date,
-                    Total = firstDoseTotal,
-                    DailyIncrease = firstDoseNew,
-                    PercentageProgress = percentageProgress,
-                    Increase = increase
+                    FirstDoseTotal = firstDoseTotal,
+                    FirstDoseDailyIncrease = firstDoseNew,
+                    FirstDosePercentageProgress = firstDosePercentageProgress,
+                    FirstDoseIncrease = firstDoseIncrease,
+
+                    SecondDoseTotal = secondDoseTotal,
+                    SecondDoseDailyIncrease = secondDoseNew,
+                    SecondDosePercentageProgress = secondDosePercentageProgress,
+                    SecondDoseIncrease = secondDoseIncrease
+
                 };
                 records.Add(record);
             }
-            records = records.OrderByDescending(r => r.PercentageProgress).ToList();
+            records = records.OrderByDescending(r => r.FirstDosePercentageProgress).ToList();
 
             return new Result<RegionProgressRecord>()
             {
@@ -72,7 +96,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
             };
 
         }
-
 
         private Region GetRegionRecord(string name)
         {

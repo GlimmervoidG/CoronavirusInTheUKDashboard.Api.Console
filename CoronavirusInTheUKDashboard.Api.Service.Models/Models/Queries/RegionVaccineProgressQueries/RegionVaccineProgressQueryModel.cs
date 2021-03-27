@@ -24,5 +24,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionVa
         [StructureMetric("cumPeopleVaccinatedFirstDoseByPublishDate")]
         public long? FirstDoseCum { get; set; }
 
+        [StructureMetric("newPeopleVaccinatedSecondDoseByPublishDate")]
+        public long? SecondDoseNew { get; set; }
+
+        [StructureMetric("cumPeopleVaccinatedSecondDoseByPublishDate")]
+        public long? SecondDoseCum { get; set; }
+
     }
 }

@@ -131,6 +131,27 @@
 
 > Last 9 days were: @string.Join(", ", Model.EightDayLookback.FirstDoses.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
 
+@{
+    switch (Model.EightDayLookback.TotalDoseChange)
+    {
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Equal:
+            <text>Total vaccination doses for yesterday is the same as the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Less:
+            <text>Total vaccination doses for yesterday is less than the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.More:
+            <text>Total vaccination doses for yesterday is more than the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.NotUpdated:
+            <text>Vaccination data hasn't been updated yet.</text>
+            break;
+    }<text> Yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.TodayTotalDose.Value), the day before yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.YesterdayTotalDose.Value).</text>
+}
+
+
+> Last 9 days were: @string.Join(", ", Model.EightDayLookback.TotalDoses.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
+
 *Usual reminder about weekend drops and Tuesday spikes. The data releases on a given day covers the previous day. As such, weekend drops are expected on Sunday and Monday.
 
 **Percentage increase is probably not a good measure. See [here](https://www.reddit.com/r/ukpolitics/comments/g0j4ez/as_of_9am_13_april_367667_tests_have_concluded/fna0f5f/). Remember, this can and will go down, even if deaths are still increasing day on day.
@@ -155,19 +176,19 @@
 </text>
 }
 
-The following table shows a simplified view of vaccine progress. It compares total first dose vaccines against the adult (18+) population of each region.
+The following table shows a simplified view of vaccine progress. It compares total first and second dose vaccines against the adult (18+) population of each region.
 
-|Area|Total first doses|Percentage of Adult Population|
-:--|--:|--:|
+|Area|Total first doses|Percentage of Adult Population|Total second doses|Percentage of Adult Population|
+:--|--:|--:|--:|--:|
 @foreach (var item in Model.OverviewVaccineProgress.Records)
 {
-    <text>|@item.Name|@HelperFunctions.Format(@item.Total) (@HelperFunctions.Format(@item.DailyIncrease, true)) |@HelperFunctions.Format(@item.PercentageProgress)% (@HelperFunctions.Format(@item.Increase, true))|
+    <text>|@item.Name|@HelperFunctions.Format(@item.FirstDoseTotal) (@HelperFunctions.Format(@item.FirstDoseDailyIncrease, true)) |@HelperFunctions.Format(@item.FirstDosePercentageProgress)% (@HelperFunctions.Format(@item.FirstDoseIncrease, true))|@HelperFunctions.Format(@item.SecondDoseTotal) (@HelperFunctions.Format(@item.SecondDoseDailyIncrease, true)) |@HelperFunctions.Format(@item.SecondDosePercentageProgress)% (@HelperFunctions.Format(@item.SecondDoseIncrease, true))|
 </text>
 }
-||||
+||||||
 @foreach (var item in Model.NationalVaccineProgress.Records)
 {
-    <text>|@item.Name|@HelperFunctions.Format(@item.Total) (@HelperFunctions.Format(@item.DailyIncrease, true)) |@HelperFunctions.Format(@item.PercentageProgress)% (@HelperFunctions.Format(@item.Increase, true))|
+    <text>|@item.Name|@HelperFunctions.Format(@item.FirstDoseTotal) (@HelperFunctions.Format(@item.FirstDoseDailyIncrease, true)) |@HelperFunctions.Format(@item.FirstDosePercentageProgress)% (@HelperFunctions.Format(@item.FirstDoseIncrease, true))|@HelperFunctions.Format(@item.SecondDoseTotal) (@HelperFunctions.Format(@item.SecondDoseDailyIncrease, true)) |@HelperFunctions.Format(@item.SecondDosePercentageProgress)% (@HelperFunctions.Format(@item.SecondDoseIncrease, true))|
 </text>
 }
 

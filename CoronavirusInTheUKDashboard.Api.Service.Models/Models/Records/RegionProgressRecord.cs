@@ -6,9 +6,14 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records
 {
     public class RegionProgressRecord : BaseRecord
     {
-        public long? Total { get; set; }
-        public long? DailyIncrease { get; set; }
-        public double? PercentageProgress { get; set; }
-        public double? Increase { get; set; }
+        public long? FirstDoseTotal { get; set; }
+        public long? FirstDoseDailyIncrease { get; set; }
+        public double? FirstDosePercentageProgress { get; set; }
+        public double? FirstDoseIncrease { get; set; }
+
+        public long? SecondDoseTotal { get; set; }
+        public long? SecondDoseDailyIncrease { get; set; }
+        public double? SecondDosePercentageProgress { get; set; }
+        public double? SecondDoseIncrease { get; set; }
     }
 }
