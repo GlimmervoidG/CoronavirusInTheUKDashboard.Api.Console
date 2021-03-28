@@ -30,6 +30,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.Lookback
         public LookbackEightDayQueryFirstDoseModel FirstDoses { get; set; }
 
         [Structure]
+        public LookbackEightDayQuerySecondDoseModel SecondDoses { get; set; }
+
+        [Structure]
         public LookbackEightDayQueryTotalDosesModel TotalDoses { get; set; }
         
 

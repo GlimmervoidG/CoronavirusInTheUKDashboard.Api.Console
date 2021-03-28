@@ -132,6 +132,27 @@
 > Last 9 days were: @string.Join(", ", Model.EightDayLookback.FirstDoses.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
 
 @{
+    switch (Model.EightDayLookback.SecondDoseChange)
+    {
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Equal:
+            <text>Second dose vaccinations for yesterday is the same as the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Less:
+            <text>Second dose vaccinations for yesterday is less than the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.More:
+            <text>Second dose vaccinations for yesterday is more than the day before yesterday.</text>
+            break;
+        case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.NotUpdated:
+            <text>Vaccination data hasn't been updated yet.</text>
+            break;
+    }<text> Yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.TodaySecondDose.Value), the day before yesterday is +@HelperFunctions.SimpleFormat(Model.EightDayLookback.YesterdaySecondDose.Value).</text>
+}
+
+
+> Last 9 days were: @string.Join(", ", Model.EightDayLookback.SecondDoses.Select(d => HelperFunctions.Emphasise(d.IsLowDay, HelperFunctions.SimpleFormat(d.Value))))
+
+@{
     switch (Model.EightDayLookback.TotalDoseChange)
     {
         case CoronavirusInTheUKDashboard.Api.Service.Models.Models.Change.Equal:
