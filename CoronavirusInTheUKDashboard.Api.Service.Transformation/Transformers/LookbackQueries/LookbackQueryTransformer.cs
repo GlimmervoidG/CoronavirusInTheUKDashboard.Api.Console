@@ -57,9 +57,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 ,
                 Date = TargetDate.AddDays(-1).Date
                 ,
-                Daily = relevent?.Pillar1?.Daily
+                Daily = relevent?.Pillar1_Daily
                 ,
-                Cumulative = relevent?.Pillar1?.Cumulative
+                Cumulative = relevent?.Pillar1_Cumulative
             });
             records.Add(new StandardRecord()
             {
@@ -67,9 +67,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 ,
                 Date = TargetDate.AddDays(-1).Date
                 ,
-                Daily = relevent?.Pillar2?.Daily
+                Daily = relevent?.Pillar2_Daily
                 ,
-                Cumulative = relevent?.Pillar2?.Cumulative
+                Cumulative = relevent?.Pillar2_Cumulative
             });
             records.Add(new StandardRecord()
             {
@@ -77,9 +77,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 ,
                 Date = TargetDate.AddDays(-1).Date
                 ,
-                Daily = relevent?.Pillar3?.Daily
+                Daily = relevent?.Pillar3_Daily
                 ,
-                Cumulative = relevent?.Pillar3?.Cumulative
+                Cumulative = relevent?.Pillar3_Cumulative
             });
             records.Add(new StandardRecord()
             {
@@ -87,9 +87,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 ,
                 Date = TargetDate.AddDays(-1).Date
                 ,
-                Daily = relevent?.Pillar4?.Daily
+                Daily = relevent?.Pillar4_Daily
                 ,
-                Cumulative = relevent?.Pillar4?.Cumulative
+                Cumulative = relevent?.Pillar4_Cumulative
             });
             records.Add(new StandardRecord()
             {
@@ -97,9 +97,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 ,
                 Date = TargetDate.AddDays(-1).Date
                 ,
-                Daily = relevent?.PillarAll?.Daily
+                Daily = relevent?.PillarAll_Daily
                 ,
-                Cumulative = relevent?.PillarAll?.Cumulative
+                Cumulative = relevent?.PillarAll_Cumulative
             });
             records.Add(new StandardRecord()
             {
@@ -107,9 +107,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 ,
                 Date = TargetDate.AddDays(-1).Date
                 ,
-                Daily = relevent?.PcrTests?.Daily
+                Daily = relevent?.PcrTests_Daily
                 ,
-                Cumulative = relevent?.PcrTests?.Cumulative
+                Cumulative = relevent?.PcrTests_Cumulative
             });
 
 

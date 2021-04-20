@@ -19,10 +19,23 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.Lookback
         public string Code { get; set; }
 
 
-        [Structure]
-        public LookbackCatchUpDoseFirstModel FirstDose { get; set; }
+        //[Structure]
+        //public LookbackCatchUpDoseFirstModel FirstDose { get; set; }
 
-        [Structure]
-        public LookbackCatchUpDoseSecondModel SecondDose { get; set; }
+        [StructureMetric("newPeopleVaccinatedFirstDoseByPublishDate")]
+        public long? FirstDose_Daily { get; set; }
+
+        [StructureMetric("cumPeopleVaccinatedFirstDoseByPublishDate")]
+        public long? FirstDose_Cumulative { get; set; }
+
+
+        //[Structure]
+        //public LookbackCatchUpDoseSecondModel SecondDose { get; set; }
+
+        [StructureMetric("newPeopleVaccinatedSecondDoseByPublishDate")]
+        public long? SecondDose_Daily { get; set; }
+
+        [StructureMetric("cumPeopleVaccinatedSecondDoseByPublishDate")]
+        public long? SecondDose_Cumulative { get; set; }
     }
 }

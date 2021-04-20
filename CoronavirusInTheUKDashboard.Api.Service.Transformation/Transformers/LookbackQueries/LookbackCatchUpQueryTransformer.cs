@@ -42,9 +42,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                     ,
                     Date = date.Date
                     ,
-                    Daily = relevent?.PcrTests?.Daily
+                    Daily = relevent?.PcrTests_Daily
                     ,
-                    Cumulative = relevent?.PcrTests?.Cumulative
+                    Cumulative = relevent?.PcrTests_Cumulative
                 });
             }
 

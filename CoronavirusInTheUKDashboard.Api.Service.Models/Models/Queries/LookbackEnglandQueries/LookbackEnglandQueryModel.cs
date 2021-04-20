@@ -18,8 +18,14 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.Lookback
         [StructureMetric(StructureMetrics.areaCode)]
         public string Code { get; set; }
 
-        [Structure]
-        public LookbacEnglandQueryLfdTestsModel LfdTests { get; set; }
+        //[Structure]
+        //public LookbacEnglandQueryLfdTestsModel LfdTests { get; set; }
+
+        [StructureMetric("newLFDTests")]
+        public long? LfdTests_Daily { get; set; }
+
+        [StructureMetric("cumLFDTests")]
+        public long? LfdTests_Cumulative { get; set; }
 
 
     }

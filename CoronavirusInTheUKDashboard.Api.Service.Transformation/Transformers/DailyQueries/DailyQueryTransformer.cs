@@ -33,8 +33,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
             var records = new List<StandardRecord>();
             var relevent = result.Data.Where(d => d.Date == TargetDate).FirstOrDefault();
 
-            records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_Deaths, Date = TargetDate, Daily = relevent?.Deaths?.Daily, Cumulative = relevent?.Deaths?.Cumulative });
-            records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_Cases, Date = TargetDate, Daily = relevent?.Cases?.Daily, Cumulative = relevent?.Cases?.Cumulative });
+            records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_Deaths, Date = TargetDate, Daily = relevent?.Deaths_Daily, Cumulative = relevent?.Deaths_Cumulative });
+            records.Add(new StandardRecord() { Name = NameConstants.DailyQuery_Cases, Date = TargetDate, Daily = relevent?.Cases_Daily, Cumulative = relevent?.Cases_Cumulative });
    
             return new Result<StandardRecord>() { 
                 Records = records, 

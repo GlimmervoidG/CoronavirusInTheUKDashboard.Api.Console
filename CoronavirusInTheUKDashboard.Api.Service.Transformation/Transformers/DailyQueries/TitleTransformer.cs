@@ -42,17 +42,17 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Da
                 TotalCases = new SimpleRecord() 
                 { 
                     Date = TargetDate,
-                    Value = relevent?.Cases?.Cumulative 
+                    Value = relevent?.Cases_Cumulative
                 },
                 TotalDeaths = new SimpleRecord()
                 {
                     Date = TargetDate,
-                    Value = relevent?.Deaths?.Cumulative
+                    Value = relevent?.Deaths_Cumulative
                 },
                 TotalVaccines = new SimpleRecord()
                 {
                     Date = TargetDate,
-                    Value = yesterdayRelevent?.FirstDose?.Cumulative
+                    Value = yesterdayRelevent?.FirstDose_Cumulative
                 },
                 Date = TargetDate 
             };

@@ -35,9 +35,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                                ,
                 Date = TargetDate.AddDays(-1).Date
                                ,
-                Daily = relevent?.LfdTests?.Daily
+                Daily = relevent?.LfdTests_Daily
                                ,
-                Cumulative = relevent?.LfdTests?.Cumulative
+                Cumulative = relevent?.LfdTests_Cumulative
             });
 
             return new Result<StandardRecord>()

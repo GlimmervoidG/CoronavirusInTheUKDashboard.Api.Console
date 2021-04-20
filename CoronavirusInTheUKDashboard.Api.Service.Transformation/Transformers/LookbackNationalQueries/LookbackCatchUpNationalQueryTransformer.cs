@@ -42,8 +42,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 {
                     Name = NameConstants.LookbackQuery_LfdTests,
                     Date = date.Date,
-                    Daily = relevent?.LfdTests?.Daily,
-                    Cumulative = relevent?.LfdTests?.Cumulative
+                    Daily = relevent?.LfdTests_Daily,
+                    Cumulative = relevent?.LfdTests_Cumulative
                 });
             }
 

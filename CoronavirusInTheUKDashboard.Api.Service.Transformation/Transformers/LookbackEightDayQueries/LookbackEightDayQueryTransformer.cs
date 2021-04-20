@@ -64,10 +64,14 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                     windowDays.Add(new LookbackEightDayQueryModel()
                     {
                         Date = date,
-                        Cases = new LookbackEightDayQueryCasesModel(),
-                        Deaths = new LookbackEightDayQueryDeathsModel(),
-                        VirusTests = new LookbackEightDayQueryVirusTestsModel(),
-                        FirstDoses = new LookbackEightDayQueryFirstDoseModel()
+                        Cases_Daily = null,
+                        Cases_Cumulative = null,
+                        Deaths_Daily = null,
+                        Deaths_Cumulative = null,
+                        VirusTests_Daily = null,
+                        VirusTests_Cumulative = null,
+                        FirstDoses_Daily = null,
+                        FirstDoses_Cumulative = null 
                     });
                 }
             }
@@ -77,16 +81,16 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 var dataItem = windowDays[i];
                 var dataItemDaybefore = windowDays[i + 1];
 
-                if (dataItem.Deaths.Daily.HasValue && dataItemDaybefore.Deaths.Cumulative.HasValue)
+                if (dataItem?.Deaths_Daily.HasValue == true && dataItemDaybefore?.Deaths_Cumulative.HasValue == true)
                 {
 
                     deaths.Add(new SimpleRecord()
                     {
                         Date = dataItem.Date,
-                        Value = dataItem.Deaths.Daily
+                        Value = dataItem.Deaths_Daily
                     });
 
-                    double percentageIncreaseDeaths = ((double)dataItem.Deaths.Daily / (double)dataItemDaybefore.Deaths.Cumulative) * 100;
+                    double percentageIncreaseDeaths = ((double)dataItem.Deaths_Daily / (double)dataItemDaybefore.Deaths_Cumulative) * 100;
                     deathsPercentageIncrease.Add(new SimplePercentageRecord()
                     {
                         Date = dataItem.Date,
@@ -112,16 +116,16 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
 
 
 
-                if (dataItem.Cases.Daily.HasValue && dataItemDaybefore.Cases.Cumulative.HasValue)
+                if (dataItem?.Cases_Daily.HasValue == true && dataItemDaybefore?.Cases_Cumulative.HasValue == true)
                 {
 
                     cases.Add(new SimpleRecord()
                     {
                         Date = dataItem.Date,
-                        Value = dataItem.Cases.Daily
+                        Value = dataItem.Cases_Daily
                     });
 
-                    double percentageIncreasecases = ((double)dataItem.Cases.Daily / (double)dataItemDaybefore.Cases.Cumulative) * 100;
+                    double percentageIncreasecases = ((double)dataItem.Cases_Daily / (double)dataItemDaybefore.Cases_Cumulative) * 100;
                     casesPercentageIncrease.Add(new SimplePercentageRecord()
                     {
                         Date = dataItem.Date,
@@ -145,13 +149,13 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 }
 
 
-                if (dataItem.FirstDoses.Daily.HasValue)
+                if (dataItem?.FirstDoses_Daily.HasValue == true)
                 {
 
                     firstDoses.Add(new SimpleRecord()
                     {
                         Date = dataItem.Date,
-                        Value = dataItem.FirstDoses.Daily
+                        Value = dataItem.FirstDoses_Daily
                     }); 
 
                 }
@@ -165,13 +169,13 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
 
                 }
 
-                if (dataItem.SecondDoses.Daily.HasValue)
+                if (dataItem?.SecondDoses_Daily.HasValue == true)
                 {
 
                     secondDoses.Add(new SimpleRecord()
                     {
                         Date = dataItem.Date,
-                        Value = dataItem.SecondDoses.Daily
+                        Value = dataItem.SecondDoses_Daily
                     });
 
                 }
@@ -185,13 +189,13 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
 
                 }
 
-                if (dataItem.TotalDoses.Daily.HasValue)
+                if (dataItem?.TotalDoses_Daily.HasValue == true)
                 {
 
                     totalDoses.Add(new SimpleRecord()
                     {
                         Date = dataItem.Date,
-                        Value = dataItem.TotalDoses.Daily
+                        Value = dataItem.TotalDoses_Daily
                     });
 
                 }
@@ -205,9 +209,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
 
                 }
 
-                if (dataItem.VirusTests.Daily.HasValue && dataItem.Cases.Daily.HasValue)
+                if (dataItem?.VirusTests_Daily.HasValue == true && dataItem?.Cases_Daily.HasValue == true)
                 {
-                    double positivity = ((double)dataItem.Cases.Daily.Value / (double)dataItem.VirusTests.Daily.Value) * 100;
+                    double positivity = ((double)dataItem.Cases_Daily.Value / (double)dataItem.VirusTests_Daily.Value) * 100;
 
                     positivityRate.Add(new SimplePercentageRecord()
                     {

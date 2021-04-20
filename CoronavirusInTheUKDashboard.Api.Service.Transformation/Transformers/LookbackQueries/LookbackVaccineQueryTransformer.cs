@@ -40,9 +40,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                                ,
                 Date = TargetDate.AddDays(-1).Date
                                ,
-                Daily = relevent1?.FirstDose?.Daily
+                Daily = relevent1?.FirstDose_Daily
                                ,
-                Cumulative = relevent1?.FirstDose?.Cumulative
+                Cumulative = relevent1?.FirstDose_Cumulative
             });
 
             records.Add(new StandardRecord()
@@ -51,16 +51,16 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                    ,
                 Date = TargetDate.AddDays(-1).Date
                    ,
-                Daily = relevent1?.SecondDose?.Daily
+                Daily = relevent1?.SecondDose_Daily
                    ,
-                Cumulative = relevent1?.SecondDose?.Cumulative
+                Cumulative = relevent1?.SecondDose_Cumulative
             }); 
          
             return new Result<StandardRecord>()
             {
                 Records = records,
                 QueryRecords = new List<QueryRecord>() {
-                    new QueryRecord() { Name = NameConstants.LookbackQuery_Name, Url = result.Url }
+                    new QueryRecord() { Name = NameConstants.LookbackQuery_Vaccine_Name, Url = result.Url }
                 }
             };
         }
