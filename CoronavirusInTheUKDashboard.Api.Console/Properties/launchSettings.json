@@ -2,7 +2,7 @@
   "profiles": {
     "CoronavirusInTheUKDashboard.Api.Console": {
       "commandName": "Project",
-      "commandLineArgs": "-p MainPost,TrendsPost -f \"C:\\Users\\gream\\Documents\\Virus\\Scrapes2\" -d \"2021/02/07\""
+      "commandLineArgs": "-p MainPost,TrendsPost -f \"C:\\Users\\gream\\Documents\\Virus\\Scrapes2\" "
     }
   }
 }

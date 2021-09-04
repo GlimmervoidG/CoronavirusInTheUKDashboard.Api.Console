@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Models\CoronavirusInTheUKDashboard.Api.Service.Models.csproj" />
     <ProjectReference Include="..\CoronavirusInTheUKDashboard.Api.Service.Queries\CoronavirusInTheUKDashboard.Api.Service.Queries.csproj" />
+    <ProjectReference Include="..\Uk.Ons.PopulationEstimates.Unofficial\Uk.Ons.PopulationEstimates.Unofficial.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,6 +9,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Region
 using Microsoft.Extensions.Logging;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.TrendsPost;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.TrendsPost;
+using Uk.Ons.PopulationEstimates.Unofficial;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries
 {
@@ -37,8 +38,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
             QueryNameToday = NameConstants.RegionBreakdownQuery_National_Today;
             QueryNameYesterday = NameConstants.RegionBreakdownQuery_National_Yesterday;
 
-            var regions = PopulationHelper.GetAllAsRegionList().Where(r => r.RegionType == RegionType.HomeNation).Select(r => r.Name).ToList();
-            return Transform(regions, resultToday, resultYesterday);
+
+            var list = PopulationDataSet.DataSet().HomeNations().ToList();
+            return Transform(list, resultToday, resultYesterday);
         }
  
     }

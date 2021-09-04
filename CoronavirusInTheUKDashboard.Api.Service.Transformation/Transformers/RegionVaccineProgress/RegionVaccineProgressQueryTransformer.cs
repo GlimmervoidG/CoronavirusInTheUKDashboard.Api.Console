@@ -9,6 +9,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
 using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries.Population;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionBreakdownQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionVaccineProgressQueries;
+using Uk.Ons.PopulationEstimates.Unofficial.Model;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionVaccineProgress
 {
@@ -19,7 +20,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
         protected string QueryNameToday { get; set; }
         protected string QueryNameYesterday { get; set; }
 
-        public Result<RegionProgressRecord> Transform(List<string> regions, QueryResponce<RegionVaccineProgressQueryModel> resultToday, QueryResponce<RegionVaccineProgressQueryModel> resultYesterday)
+        public Result<RegionProgressRecord> Transform(List<Area> regions, QueryResponce<RegionVaccineProgressQueryModel> resultToday, QueryResponce<RegionVaccineProgressQueryModel> resultYesterday)
         {
 
             var records = new List<RegionProgressRecord>();
@@ -27,9 +28,9 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
             var yesterdayRecords = resultYesterday.Data.Where(d => d.Date == TargetDate.AddDays(-2).Date).ToList();
             foreach (var region in regions)
             {
-                var today = todayRecords.FirstOrDefault(r => r.Name == region);
-                var yesterday = yesterdayRecords.FirstOrDefault(r => r.Name == region);
-                var regionStats = GetRegionRecord(region);
+                var today = todayRecords.FirstOrDefault(r => r.Code == region.Code);
+                var yesterday = yesterdayRecords.FirstOrDefault(r => r.Code == region.Code);
+                var regionStats = region;
 
                 long? firstDoseTotal = null;
                 long? firstDoseNew = null;
@@ -40,11 +41,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
                 {
                     firstDoseTotal = today?.FirstDoseCum;
                     firstDoseNew = today?.FirstDoseNew;
-                    firstDosePercentageProgress = ((double)today.FirstDoseCum / (double)regionStats.AdultPopulation) * (double)100;
+                    firstDosePercentageProgress = ((double)today.FirstDoseCum / (double)regionStats.SixteenOrMorePopulation()) * (double)100;
                
                     if (yesterday?.FirstDoseCum != null)
                     {
-                        var percentageYesterday = ((double)yesterday.FirstDoseCum / (double)regionStats.AdultPopulation) * (double)100;
+                        var percentageYesterday = ((double)yesterday.FirstDoseCum / (double)regionStats.SixteenOrMorePopulation()) * (double)100;
                         firstDoseIncrease = firstDosePercentageProgress - percentageYesterday;
                     }
                 }
@@ -58,18 +59,18 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
                 {
                     secondDoseTotal = today?.SecondDoseCum;
                     secondDoseNew = today?.SecondDoseNew;
-                    secondDosePercentageProgress = ((double)today.SecondDoseCum / (double)regionStats.AdultPopulation) * (double)100;
+                    secondDosePercentageProgress = ((double)today.SecondDoseCum / (double)regionStats.SixteenOrMorePopulation()) * (double)100;
 
                     if (yesterday?.SecondDoseCum != null)
                     {
-                        var percentageYesterday = ((double)yesterday.SecondDoseCum / (double)regionStats.AdultPopulation) * (double)100;
+                        var percentageYesterday = ((double)yesterday.SecondDoseCum / (double)regionStats.SixteenOrMorePopulation()) * (double)100;
                         secondDoseIncrease = secondDosePercentageProgress - percentageYesterday;
                     }
                 }
 
                 var record = new RegionProgressRecord()
                 {
-                    Name = region,
+                    Name = region.DisplayName(),
                     Date = TargetDate.Date,
                     FirstDoseTotal = firstDoseTotal,
                     FirstDoseDailyIncrease = firstDoseNew,
@@ -95,15 +96,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
                 }
             };
 
-        }
-
-        private Region GetRegionRecord(string name)
-        {
-            var regions = PopulationHelper.GetAllAsRegionList();
-            var area = regions.First(r => r.Name == name);
-            return area;
-        }
-
-
+        } 
     }
 }
