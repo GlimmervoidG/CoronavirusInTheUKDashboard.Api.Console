@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Uk.Ons.PopulationEstimates.Unofficial.Model
+namespace UkOnsPopulationEstimatesUnofficial.Model
 {
+    /// <summary>
+    /// What type of Area an Area is.
+    /// </summary>
     public enum AreaType
     {
         [Display(Name = "Council Area")]

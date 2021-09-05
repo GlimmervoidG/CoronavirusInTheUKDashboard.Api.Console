@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Uk.Ons.PopulationEstimates.Unofficial.Model
+namespace UkOnsPopulationEstimatesUnofficial.Model
 {
+    /// <summary>
+    /// A population segement associated with an area.
+    /// </summary>
     public class PopulationCount
     {
         public int MinAge { get; set; }

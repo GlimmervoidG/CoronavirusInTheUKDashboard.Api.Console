@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Uk.Ons.PopulationEstimates.Unofficial
+namespace UkOnsPopulationEstimatesUnofficial
 {
     public enum TimeSet
     {

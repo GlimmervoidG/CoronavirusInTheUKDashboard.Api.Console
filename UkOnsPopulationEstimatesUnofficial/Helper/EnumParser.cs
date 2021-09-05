@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Uk.Ons.PopulationEstimates.Unofficial.Helper
+namespace UkOnsPopulationEstimatesUnofficial.Helper
 {
     public static class EnumParser<T>
     {

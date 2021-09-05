@@ -9,7 +9,7 @@ using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Region
 using Microsoft.Extensions.Logging;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.TrendsPost;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.TrendsPost;
-using Uk.Ons.PopulationEstimates.Unofficial;
+using UkOnsPopulationEstimatesUnofficial;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries
 {

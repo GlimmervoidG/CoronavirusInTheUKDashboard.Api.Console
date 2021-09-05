@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Uk.Ons.PopulationEstimates.Unofficial.Helper;
-using Uk.Ons.PopulationEstimates.Unofficial.Model;
+using UkOnsPopulationEstimatesUnofficial.Helper;
+using UkOnsPopulationEstimatesUnofficial.Model;
 
-namespace Uk.Ons.PopulationEstimates.Unofficial.Helper
+namespace UkOnsPopulationEstimatesUnofficial.Helper
 {
     class AgeFileMap : ClassMap<Area>
     {
