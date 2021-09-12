@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Options;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.Common;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers;
+using System.Threading;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.ArchiveQueries
 {
@@ -51,11 +52,17 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Ar
                         record.ArchiveDate = ArchiveDate;
                         break;
                     }
-                    catch (Exception ex)
+                    catch (ArchiveQueryException ex)
                     {
                         if (i < archiveRetries)
                         {
                             Logger.LogWarning(ex, $"Problem archiving page {recordIndex}. Making attempt {i+1} of {archiveRetries}.");
+                            if (ex.ForcePause)
+                            {
+                                Logger.LogWarning(ex, $"Pausing before retry.");
+                                Thread.Sleep(10000);
+                            }
+                            Logger.LogWarning(ex, $"Retrying.");
                         } else 
                         {
                             Logger.LogError(ex, $"Problem archiving page {recordIndex}. Retries exceeded. Skipping archive attempt for this page.");

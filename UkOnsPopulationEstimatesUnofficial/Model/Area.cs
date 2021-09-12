@@ -73,7 +73,7 @@ namespace UkOnsPopulationEstimatesUnofficial.Model
         /// <returns></returns>
         public long TwelveOrMorePopulation()
         {
-            return Population.Where(p => p.MinAge >= 16).Sum(p => p.Population);
+            return Population.Where(p => p.MinAge >= 12).Sum(p => p.Population);
         }
     }
 }

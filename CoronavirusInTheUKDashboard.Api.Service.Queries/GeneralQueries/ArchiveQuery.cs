@@ -26,7 +26,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries.GeneralQueries
                     if (absuluteUri.ToString().StartsWith("https://web.archive.org/save/"))
                     {
                         // something has gone wrong. Try again.
-                        throw new Exception("Achive failed. Page did not correctly save.");
+                        throw new ArchiveQueryException("Achive failed. Page did not correctly save.");
                     }
 
                     return absuluteUri.ToString();
@@ -34,7 +34,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries.GeneralQueries
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Exception when archiving.", ex);
+                    bool forcePause = ex.Message.Contains("No connection could be made because the target machine actively refused it.");
+                    throw new ArchiveQueryException("Exception when archiving.", ex) { ForcePause = forcePause };
                 } 
             }
 

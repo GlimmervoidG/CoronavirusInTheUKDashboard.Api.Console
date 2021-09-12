@@ -12,7 +12,7 @@ namespace UkOnsPopulationEstimatesUnofficial.Helper
     public class DataLoader
     {
         /// <summary>
-        /// Loads population data and turns a list of populated Areas.
+        /// Loads population data and returns a list of populated Areas.
         /// </summary>
         /// <param name="timeSet"></param>
         /// <returns></returns>
@@ -24,14 +24,12 @@ namespace UkOnsPopulationEstimatesUnofficial.Helper
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             using (StreamReader reader = new StreamReader(stream))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-                {
-                    csv.Context.RegisterClassMap<AgeFileMap>();
-                    var records = csv.GetRecords<Area>();
+                csv.Context.RegisterClassMap<AgeFileMap>();
+                var records = csv.GetRecords<Area>();
 
-                    list.AddRange(records); 
-                }
+                list.AddRange(records);
             }
             return list;
         }
