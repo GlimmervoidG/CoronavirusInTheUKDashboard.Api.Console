@@ -9,7 +9,14 @@ namespace UkOnsPopulationEstimatesUnofficial.Model
     /// </summary>
     public class PopulationCount
     {
+        /// <summary>
+        /// Inclusive min age for this population segment.
+        /// </summary>
         public int MinAge { get; set; }
+
+        /// <summary>
+        /// Inclusive max age for this population segment.
+        /// </summary>
         public int MaxAge { get; set; } 
         public long Population { get; set; }
 

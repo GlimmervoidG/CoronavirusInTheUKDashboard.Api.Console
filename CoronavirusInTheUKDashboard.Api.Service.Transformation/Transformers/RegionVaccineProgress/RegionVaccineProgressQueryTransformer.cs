@@ -41,11 +41,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
                 {
                     firstDoseTotal = today?.FirstDoseCum;
                     firstDoseNew = today?.FirstDoseNew;
-                    firstDosePercentageProgress = ((double)today.FirstDoseCum / (double)regionStats.SixteenOrMorePopulation()) * (double)100;
+                    firstDosePercentageProgress = ((double)today.FirstDoseCum / (double)regionStats.TwelveOrMorePopulation()) * (double)100;
                
                     if (yesterday?.FirstDoseCum != null)
                     {
-                        var percentageYesterday = ((double)yesterday.FirstDoseCum / (double)regionStats.SixteenOrMorePopulation()) * (double)100;
+                        var percentageYesterday = ((double)yesterday.FirstDoseCum / (double)regionStats.TwelveOrMorePopulation()) * (double)100;
                         firstDoseIncrease = firstDosePercentageProgress - percentageYesterday;
                     }
                 }
@@ -59,11 +59,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
                 {
                     secondDoseTotal = today?.SecondDoseCum;
                     secondDoseNew = today?.SecondDoseNew;
-                    secondDosePercentageProgress = ((double)today.SecondDoseCum / (double)regionStats.SixteenOrMorePopulation()) * (double)100;
+                    secondDosePercentageProgress = ((double)today.SecondDoseCum / (double)regionStats.TwelveOrMorePopulation()) * (double)100;
 
                     if (yesterday?.SecondDoseCum != null)
                     {
-                        var percentageYesterday = ((double)yesterday.SecondDoseCum / (double)regionStats.SixteenOrMorePopulation()) * (double)100;
+                        var percentageYesterday = ((double)yesterday.SecondDoseCum / (double)regionStats.TwelveOrMorePopulation()) * (double)100;
                         secondDoseIncrease = secondDosePercentageProgress - percentageYesterday;
                     }
                 }
