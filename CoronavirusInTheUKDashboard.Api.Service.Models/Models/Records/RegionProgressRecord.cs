@@ -15,5 +15,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records
         public long? SecondDoseDailyIncrease { get; set; }
         public double? SecondDosePercentageProgress { get; set; }
         public double? SecondDoseIncrease { get; set; }
+
+        public long? ThirdDoseTotal { get; set; }
+        public long? ThirdDoseDailyIncrease { get; set; }
+        public double? ThirdDosePercentageProgress { get; set; }
+        public double? ThirdDoseIncrease { get; set; }
     }
 }

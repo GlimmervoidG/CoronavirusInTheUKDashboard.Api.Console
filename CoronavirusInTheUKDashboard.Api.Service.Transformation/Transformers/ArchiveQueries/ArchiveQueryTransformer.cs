@@ -41,22 +41,27 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Ar
             foreach (var record in records)
             {
                 recordIndex++;
-                Logger.LogInformation($"Archiving page {recordIndex} of {recordCount}");
+        
 
                 for (int i=1; i <= archiveRetries; i++)
                 {
                     try
                     {
+                        Logger.LogInformation($"Archiving page {recordIndex} of {recordCount}. Making attempt {i} of {archiveRetries}.");
+
                         ArchiveQuery.TargetUrl = record.Url;
                         record.ArchiveUrl = ArchiveQuery.DoQuery();
                         record.ArchiveDate = ArchiveDate;
+
+                        Logger.LogInformation($"Successfully archived page {recordIndex}.");
+
                         break;
                     }
                     catch (ArchiveQueryException ex)
                     {
                         if (i < archiveRetries)
                         {
-                            Logger.LogWarning(ex, $"Problem archiving page {recordIndex}. Making attempt {i+1} of {archiveRetries}.");
+                            Logger.LogWarning(ex, $"Problem archiving page {recordIndex}.");
                             if (ex.ForcePause)
                             {
                                 Logger.LogWarning(ex, $"Pausing before retry.");

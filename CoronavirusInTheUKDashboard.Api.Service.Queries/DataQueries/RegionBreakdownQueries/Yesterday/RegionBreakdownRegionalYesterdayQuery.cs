@@ -20,19 +20,16 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries.DataQueries.RegionBrea
         public QueryResponce<RegionBreakdownQueryModel> DoQuery()
         {
             var targetDate = TargetDate.AddDays(-1).Date;
-            var quary = new DashboardQuery<RegionBreakdownQueryModel>()
+            Query.Options = new QueryOptions()
             {
-                Options = new QueryOptions()
+                Filter = new Filter()
                 {
-                    Filter = new Filter()
-                    {
-                        AreaType = new AreaType(AreaTypeMetrics.region),
-                        Date = new DateFilter(targetDate)
-                    },
+                    AreaType = new AreaType(AreaTypeMetrics.region),
+                    Date = new DateFilter(targetDate)
+                },
 
-                }
             };
-            return quary.DoQuery();
+            return Query.DoQuery();
         }
 
 

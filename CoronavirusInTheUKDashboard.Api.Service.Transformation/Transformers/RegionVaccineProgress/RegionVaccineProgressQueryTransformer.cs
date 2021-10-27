@@ -6,7 +6,6 @@ using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.DotNetWrapper.Common.Response;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries.Population;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionBreakdownQueries;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionVaccineProgressQueries;
 using UkOnsPopulationEstimatesUnofficial.Model;
@@ -68,6 +67,24 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
                     }
                 }
 
+                long? thirdDoseTotal = null;
+                long? thirdDoseNew = null;
+                double? thirdDosePercentageProgress = null;
+                double? thirdDoseIncrease = null;
+
+                if (today?.ThirdDoseNew != null && today?.ThirdDoseCum != null)
+                {
+                    thirdDoseTotal = today?.ThirdDoseCum;
+                    thirdDoseNew = today?.ThirdDoseNew;
+                    thirdDosePercentageProgress = ((double)today.ThirdDoseCum / (double)regionStats.TwelveOrMorePopulation()) * (double)100;
+
+                    if (yesterday?.ThirdDoseCum != null)
+                    {
+                        var percentageYesterday = ((double)yesterday.ThirdDoseCum / (double)regionStats.TwelveOrMorePopulation()) * (double)100;
+                        thirdDoseIncrease = thirdDosePercentageProgress - percentageYesterday;
+                    }
+                }
+
                 var record = new RegionProgressRecord()
                 {
                     Name = region.DisplayName(),
@@ -80,7 +97,12 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Re
                     SecondDoseTotal = secondDoseTotal,
                     SecondDoseDailyIncrease = secondDoseNew,
                     SecondDosePercentageProgress = secondDosePercentageProgress,
-                    SecondDoseIncrease = secondDoseIncrease
+                    SecondDoseIncrease = secondDoseIncrease,
+
+                    ThirdDoseTotal = thirdDoseTotal,
+                    ThirdDoseDailyIncrease = thirdDoseNew,
+                    ThirdDosePercentageProgress = thirdDosePercentageProgress,
+                    ThirdDoseIncrease = thirdDoseIncrease
 
                 };
                 records.Add(record);

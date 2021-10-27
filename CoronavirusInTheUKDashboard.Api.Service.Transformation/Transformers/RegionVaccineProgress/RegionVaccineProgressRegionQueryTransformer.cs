@@ -5,7 +5,6 @@ using System.Text;
 using System.Linq;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models.Records;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Models;
-using CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.RegionBreakdownQueries.Population;
 using Microsoft.Extensions.Logging;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Queries.TrendsPost;
 using CoronavirusInTheUKDashboard.Api.Service.Models.Services.Transformers.TrendsPost;

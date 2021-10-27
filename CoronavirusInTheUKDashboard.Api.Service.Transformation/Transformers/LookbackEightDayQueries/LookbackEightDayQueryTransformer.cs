@@ -44,6 +44,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             var deaths = new List<SimpleRecord>();
             var firstDoses = new List<SimpleRecord>();
             var secondDoses = new List<SimpleRecord>();
+            var thirdDoses = new List<SimpleRecord>();
             var totalDoses = new List<SimpleRecord>();
 
             var casesPercentageIncrease = new List<SimplePercentageRecord>();
@@ -71,7 +72,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                         VirusTests_Daily = null,
                         VirusTests_Cumulative = null,
                         FirstDoses_Daily = null,
-                        FirstDoses_Cumulative = null 
+                        FirstDoses_Cumulative = null,
+                        SecondDoses_Daily = null,
+                        SecondDoses_Cumulative = null,
+                        ThirdDoses_Daily = null,
+                        ThirdDoses_Cumulative = null
                     });
                 }
             }
@@ -112,8 +117,6 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                     });
 
                 }
-
-
 
 
                 if (dataItem?.Cases_Daily.HasValue == true && dataItemDaybefore?.Cases_Cumulative.HasValue == true)
@@ -189,6 +192,26 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
 
                 }
 
+                if (dataItem?.ThirdDoses_Daily.HasValue == true)
+                {
+
+                    thirdDoses.Add(new SimpleRecord()
+                    {
+                        Date = dataItem.Date,
+                        Value = dataItem.ThirdDoses_Daily
+                    });
+
+                }
+                else
+                {
+                    thirdDoses.Add(new SimpleRecord()
+                    {
+                        Date = dataItem.Date,
+                        Value = null
+                    });
+
+                }
+
                 if (dataItem?.TotalDoses_Daily.HasValue == true)
                 {
 
@@ -247,6 +270,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             SetLowDay(deaths.ConvertAll(x => (BaseSimpleRecord)x));
             SetDoseLowDay(firstDoses.ConvertAll(x => (BaseSimpleRecord)x));
             SetDoseLowDay(secondDoses.ConvertAll(x => (BaseSimpleRecord)x));
+            SetDoseLowDay(thirdDoses.ConvertAll(x => (BaseSimpleRecord)x));
             SetDoseLowDay(totalDoses.ConvertAll(x => (BaseSimpleRecord)x));
             SetLowDay(casesPercentageIncrease.ConvertAll(x => (BaseSimpleRecord)x));
             SetLowDay(deathsPercentageIncrease.ConvertAll(x => (BaseSimpleRecord)x));
@@ -256,6 +280,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             var todayDeaths = deaths[0];
             var todayFirstDoses = firstDoses[1];
             var todaySecondDoses = secondDoses[1];
+            var todayThirdDoses = thirdDoses[1];
             var todayTotalDoses = totalDoses[1];
             var todayCasesPercentageIncrease = casesPercentageIncrease[0];
             var todayDeathsPercentageIncrease = deathsPercentageIncrease[0];
@@ -264,6 +289,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             var yesterdayDeaths = deaths[1];
             var yesterdayFirstDoses = firstDoses[2];
             var yesterdaySecondDoses = secondDoses[2];
+            var yesterdayThirdDoses = thirdDoses[2];
             var yesterdayTotalDoses = totalDoses[2];
             var yesterdayCasesPercentageIncrease = casesPercentageIncrease[1];
             var yesterdayDeathsPercentageIncrease = deathsPercentageIncrease[1];
@@ -273,6 +299,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             var deathsChange = CalculateChange(todayDeaths, yesterdayDeaths);
             var firstDoseChange = CalculateChange(todayFirstDoses, yesterdayFirstDoses);
             var secondDoseChange = CalculateChange(todaySecondDoses, yesterdaySecondDoses);
+            var thirdDoseChange = CalculateChange(todayThirdDoses, yesterdayThirdDoses);
             var totalDoseChange = CalculateChange(todayTotalDoses, yesterdayTotalDoses);
             var casesPercentageIncreaseChange = CalculateChange(todayCasesPercentageIncrease, yesterdayCasesPercentageIncrease);
             var deathsPercentageIncreaseChange = CalculateChange(todayDeathsPercentageIncrease, yesterdayDeathsPercentageIncrease);
@@ -283,6 +310,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
             deaths = deaths.OrderBy(r => r.Date).ToList();
             firstDoses = firstDoses.OrderBy(r => r.Date).ToList();
             secondDoses = secondDoses.OrderBy(r => r.Date).ToList();
+            thirdDoses = thirdDoses.OrderBy(r => r.Date).ToList();
             totalDoses = totalDoses.OrderBy(r => r.Date).ToList();
             casesPercentageIncrease = casesPercentageIncrease.OrderBy(r => r.Date).ToList();
             deathsPercentageIncrease = deathsPercentageIncrease.OrderBy(r => r.Date).ToList();
@@ -295,6 +323,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 Deaths = deaths,
                 FirstDoses = firstDoses,
                 SecondDoses = secondDoses,
+                ThirdDoses = thirdDoses,
                 TotalDoses = totalDoses,
                 CasesPercentageIncrease = casesPercentageIncrease,
                 DeathsPercentageIncrease = deathsPercentageIncrease,
@@ -303,6 +332,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 TodayDeaths = todayDeaths,
                 TodayFirstDose = todayFirstDoses,
                 TodaySecondDose = todaySecondDoses,
+                TodayThirdDose = todayThirdDoses,
                 TodayTotalDose = todayTotalDoses,
                 TodayCasesPercentageIncrease = todayCasesPercentageIncrease,
                 TodayDeathsPercentageIncrease = todayDeathsPercentageIncrease,
@@ -311,6 +341,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 YesterdayDeaths = yesterdayDeaths,
                 YesterdayFirstDose = yesterdayFirstDoses,
                 YesterdaySecondDose = yesterdaySecondDoses,
+                YesterdayThirdDose = yesterdayThirdDoses,
                 YesterdayTotalDose = yesterdayTotalDoses,
                 YesterdayCasesPercentageIncrease = yesterdayCasesPercentageIncrease,
                 YesterdayDeathsPercentageIncrease = yesterdayDeathsPercentageIncrease,
@@ -321,6 +352,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 DeathsPercentageIncreaseChange = deathsPercentageIncreaseChange,
                 FirstDoseChange = firstDoseChange,
                 SecondDoseChange = secondDoseChange,
+                ThirdDoseChange = thirdDoseChange,
                 TotalDoseChange = totalDoseChange,
                 PositivityRateChange = positivityRateChange,
             };

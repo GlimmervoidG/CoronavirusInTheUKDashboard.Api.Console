@@ -54,8 +54,19 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation.Transformers.Lo
                 Daily = relevent1?.SecondDose_Daily
                    ,
                 Cumulative = relevent1?.SecondDose_Cumulative
-            }); 
-         
+            });
+
+            records.Add(new StandardRecord()
+            {
+                Name = NameConstants.LookbackQuery_ThirdDose
+                   ,
+                Date = TargetDate.AddDays(-1).Date
+                   ,
+                Daily = relevent1?.ThirdDose_Daily
+                   ,
+                Cumulative = relevent1?.ThirdDose_Cumulative
+            });
+
             return new Result<StandardRecord>()
             {
                 Records = records,

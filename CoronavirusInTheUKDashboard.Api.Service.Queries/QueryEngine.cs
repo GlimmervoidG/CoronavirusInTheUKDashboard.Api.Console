@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace CoronavirusInTheUKDashboard.Api.Service.Queries
 {
@@ -33,13 +34,23 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries
             for (var i = 1; i <= retries; i++)
             {
                 try {
-                    return DashboardQuery.DoQuery(); 
+                    Logger.LogInformation($"Qerying dashboard. Making attempt {i} of {retries}.");
+                    var result = DashboardQuery.DoQuery();
+                    Logger.LogInformation("Successfully queried dashboard.");
+                    return result;
                 } 
                 catch (Exception ex)
                 {
                     if (i < retries)
                     {
-                        Logger.LogWarning(ex, $"Problem querying dashboard. Making attempt {i + 1} of {retries}.");
+                        Logger.LogWarning(ex, $"Problem querying dashboard.");
+                        var pauseBeforeRetry = true;
+                        if (pauseBeforeRetry)
+                        {
+                            Logger.LogWarning($"Pausing before retry.");
+                            Thread.Sleep(10000);
+                        }
+                        Logger.LogWarning($" Retrying...");
                     }
                     else
                     {
