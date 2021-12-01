@@ -18,22 +18,22 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.RegionVa
         [StructureMetric(StructureMetrics.areaCode)]
         public string Code { get; set; }
 
-        [StructureMetric("newPeopleVaccinatedFirstDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.newPeopleVaccinatedFirstDoseByPublishDate)]
         public long? FirstDoseNew { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedFirstDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedFirstDoseByPublishDate)]
         public long? FirstDoseCum { get; set; }
 
-        [StructureMetric("newPeopleVaccinatedSecondDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.newPeopleVaccinatedSecondDoseByPublishDate)]
         public long? SecondDoseNew { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedSecondDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedSecondDoseByPublishDate)]
         public long? SecondDoseCum { get; set; }
 
-        [StructureMetric("newPeopleVaccinatedThirdInjectionByPublishDate")]
+        [StructureMetric(StructureMetrics.newPeopleVaccinatedThirdInjectionByPublishDate)]
         public long? ThirdDoseNew { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedThirdInjectionByPublishDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedThirdInjectionByPublishDate)]
         public long? ThirdDoseCum { get; set; }
 
     }

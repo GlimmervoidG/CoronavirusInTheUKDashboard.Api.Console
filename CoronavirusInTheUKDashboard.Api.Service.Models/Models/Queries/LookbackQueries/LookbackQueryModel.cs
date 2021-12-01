@@ -58,10 +58,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.Lookback
         //[Structure]
         //public LookbackQueryPcrTestsModel PcrTests { get; set; }
 
-        [StructureMetric("newPCRTestsByPublishDate")]
+        [StructureMetric(StructureMetrics.newPCRTestsByPublishDate)]
         public long? PcrTests_Daily { get; set; }
 
-        [StructureMetric("cumPCRTestsByPublishDate")]
+        [StructureMetric(StructureMetrics.cumPCRTestsByPublishDate)]
         public long? PcrTests_Cumulative { get; set; }
 
         //[Structure]

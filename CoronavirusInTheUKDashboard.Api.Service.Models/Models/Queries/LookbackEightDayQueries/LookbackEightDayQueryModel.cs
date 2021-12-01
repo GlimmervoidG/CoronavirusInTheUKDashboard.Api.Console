@@ -20,11 +20,11 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.Lookback
 
         //[Structure]
         //public LookbackEightDayQueryVirusTestsModel VirusTests { get; set; }
-
-        [StructureMetric("newVirusTests")]
+         
+        [StructureMetric(StructureMetrics.newVirusTestsByPublishDate)]
         public long? VirusTests_Daily { get; set; }
 
-        [StructureMetric("cumVirusTests")]
+        [StructureMetric(StructureMetrics.cumVirusTestsByPublishDate)]
         public long? VirusTests_Cumulative { get; set; }
 
 
@@ -44,27 +44,28 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.Lookback
         [StructureMetric(StructureMetrics.cumCasesByPublishDate)]
         public long? Cases_Cumulative { get; set; }
 
-        [StructureMetric("newPeopleVaccinatedFirstDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.newPeopleVaccinatedFirstDoseByPublishDate)]
         public long? FirstDoses_Daily { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedFirstDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedFirstDoseByPublishDate)]
         public long? FirstDoses_Cumulative { get; set; }
-        [StructureMetric("newPeopleVaccinatedSecondDoseByPublishDate")]
+
+        [StructureMetric(StructureMetrics.newPeopleVaccinatedSecondDoseByPublishDate)]
         public long? SecondDoses_Daily { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedSecondDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedSecondDoseByPublishDate)]
         public long? SecondDoses_Cumulative { get; set; } 
 
-        [StructureMetric("newPeopleVaccinatedThirdInjectionByPublishDate")]
+        [StructureMetric(StructureMetrics.newPeopleVaccinatedThirdInjectionByPublishDate)]
         public long? ThirdDoses_Daily { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedThirdInjectionByPublishDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedThirdInjectionByPublishDate)]
         public long? ThirdDoses_Cumulative { get; set; }
 
-        [StructureMetric("newVaccinesGivenByPublishDate")]
+        [StructureMetric(StructureMetrics.newVaccinesGivenByPublishDate)]
         public long? TotalDoses_Daily { get; set; }
 
-        [StructureMetric("cumVaccinesGivenByPublishDate")]
+        [StructureMetric(StructureMetrics.cumVaccinesGivenByPublishDate)]
         public long? TotalDoses_Cumulative { get; set; }
 
 

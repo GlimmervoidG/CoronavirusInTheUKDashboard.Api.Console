@@ -55,6 +55,8 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Queries
                     else
                     {
                         Logger.LogError(ex, $"Problem querying dashboard. Retries exceeded. Skipping query.");
+                       // throw new Exception("Fatal Failure in achive");
+
                     }
                 }
             }

@@ -23,7 +23,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.NonDaily
         public long? Capacity { get; set; }
 
 
-        [StructureMetric("plannedPCRCapacityByPublishDate")]
+        [StructureMetric(StructureMetrics.plannedPCRCapacityByPublishDate)]
         public long? CapacityPCR { get; set; }
 
 
@@ -39,22 +39,22 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.NonDaily
         public long? PatientsAdmitted { get; set; }
 
 
-        [StructureMetric("newOnsDeathsByRegistrationDate")]
+        [StructureMetric(StructureMetrics.newOnsDeathsByRegistrationDate)]
         public long? WeeklyOnsDeaths { get; set; }
 
-        [StructureMetric("cumOnsDeathsByRegistrationDate")]
+        [StructureMetric(StructureMetrics.cumOnsDeathsByRegistrationDate)]
         public long? TotalOnsDeaths { get; set; }
 
-        [StructureMetric("weeklyPeopleVaccinatedFirstDoseByVaccinationDate")]
+        [StructureMetric(StructureMetrics.weeklyPeopleVaccinatedFirstDoseByVaccinationDate)]
         public long? WeeklyFirstDose { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedFirstDoseByVaccinationDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedFirstDoseByVaccinationDate)]
         public long? TotalFirstDose { get; set; }
 
-        [StructureMetric("weeklyPeopleVaccinatedSecondDoseByVaccinationDate")]
+        [StructureMetric(StructureMetrics.weeklyPeopleVaccinatedSecondDoseByVaccinationDate)]
         public long? WeeklySecondDose { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedSecondDoseByVaccinationDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedSecondDoseByVaccinationDate)]
         public long? TotalSecondDose { get; set; }
 
     }

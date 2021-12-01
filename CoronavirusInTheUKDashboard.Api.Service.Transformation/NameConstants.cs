@@ -36,7 +36,7 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Transformation
 
         public const string LookbackQuery_FirstDose = "First vaccination dose";
         public const string LookbackQuery_SecondDose = "Second vaccination dose";
-        public const string LookbackQuery_ThirdDose = "Third vaccination dose";
+        public const string LookbackQuery_ThirdDose = "Booster or third vaccination dose";
 
 
         public const string NoneDailyQuery_Name = "Non daily query";

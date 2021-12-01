@@ -8,10 +8,10 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.Lookback
 {
     public class LookbacEnglandQueryLfdTestsModel
     {
-        [StructureMetric("newLFDTests")]
+        [StructureMetric(StructureMetrics.newLFDTestsBySpecimenDate)]
         public long? Daily { get; set; }
 
-        [StructureMetric("cumLFDTests")]
+        [StructureMetric(StructureMetrics.cumLFDTestsBySpecimenDate)]
         public long? Cumulative { get; set; }
     }
 }

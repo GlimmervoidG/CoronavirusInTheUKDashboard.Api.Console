@@ -18,23 +18,23 @@ namespace CoronavirusInTheUKDashboard.Api.Service.Models.Models.Queries.Lookback
         [StructureMetric(StructureMetrics.areaCode)]
         public string Code { get; set; }
          
-        [StructureMetric("newPeopleVaccinatedFirstDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.newPeopleVaccinatedFirstDoseByPublishDate)]
         public long? FirstDose_Daily { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedFirstDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedFirstDoseByPublishDate)]
         public long? FirstDose_Cumulative { get; set; }
          
 
-        [StructureMetric("newPeopleVaccinatedSecondDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.newPeopleVaccinatedSecondDoseByPublishDate)]
         public long? SecondDose_Daily { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedSecondDoseByPublishDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedSecondDoseByPublishDate)]
         public long? SecondDose_Cumulative { get; set; }
 
-        [StructureMetric("newPeopleVaccinatedThirdInjectionByPublishDate")]
+        [StructureMetric(StructureMetrics.newPeopleVaccinatedThirdInjectionByPublishDate)]
         public long? ThirdDose_Daily { get; set; }
 
-        [StructureMetric("cumPeopleVaccinatedThirdInjectionByPublishDate")]
+        [StructureMetric(StructureMetrics.cumPeopleVaccinatedThirdInjectionByPublishDate)]
         public long? ThirdDose_Cumulative { get; set; }
     }
 }
